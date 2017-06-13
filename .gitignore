@@ -26,4 +26,3 @@ yarn-error.log*
 .idea/vcs.xml
 .idea/workspace.xml
 README.md
-package.json
