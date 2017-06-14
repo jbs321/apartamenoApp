@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import '../../App.css';
 import Menu from "../menu/menu";
-import './header.css';
 import LoginControl from "../login-control/LoginControl";
 
 class Header extends Component {
