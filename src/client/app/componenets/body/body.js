@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import FetchDemo from '../building/building-manager';
+import Autocomplete from 'react-google-autocomplete';
+import FetchDemo from "../building/building-manager";
 
 class Body extends Component {
     constructor(props) {
@@ -21,7 +22,11 @@ class Body extends Component {
         const tempature = this.state.temperature;
         return (
             <div className="body">
-                <FetchDemo/>
+                <div className="container">
+                    <div className="col-4 offset-4"><Autocomplete/></div>
+                    <hr/>
+                    <FetchDemo/>
+                </div>
             </div>
         );
     }
