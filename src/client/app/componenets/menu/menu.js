@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Toggle from "../form/toggle/toggle";
-import Button from "../form/button/button";
 
 class Menu extends Component {
     handleNav(e) {
@@ -10,8 +8,12 @@ class Menu extends Component {
 
     render() {
         return (
-            <nav>
-                <ul className="nav justify-content-center">
+            <nav className=" menu navbar navbar-toggleable-md navbar-light bg-faded">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item my-lg-0">
+                        <img className="icon" src="./public/img/icon.png" alt=""/>
+                    </li>
+
                     <li className="nav-item">
                         <a className="nav-link active" href="#" onClick={this.handleNav}>Home</a>
                     </li>
@@ -20,12 +22,6 @@ class Menu extends Component {
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#" onClick={this.handleNav}>Users</a>
-                    </li>
-                    <li className="nav-item">
-                        <Toggle/>
-                    </li>
-                    <li className="nav-item">
-                        <Button/>
                     </li>
                 </ul>
             </nav>

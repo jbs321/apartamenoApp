@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Toggle from "../form/toggle/toggle";
+
 
 class Body extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Body extends Component {
         const tempature = this.state.temperature;
         return (
             <div className="body">
-                <Toggle val/>
+
             </div>
         );
     }
