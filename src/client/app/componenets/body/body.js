@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import FetchDemo from '../building/building-manager';
 
 class Body extends Component {
     constructor(props) {
@@ -15,11 +15,13 @@ class Body extends Component {
         });
     }
 
+
+
     render() {
         const tempature = this.state.temperature;
         return (
             <div className="body">
-
+                <FetchDemo/>
             </div>
         );
     }
