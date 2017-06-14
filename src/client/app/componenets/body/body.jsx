@@ -17,7 +17,6 @@ class Body extends Component {
     }
 
     render() {
-        const tempature = this.state.temperature;
         return (
             <div className="body">
                 <div className="container">
