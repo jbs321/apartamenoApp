@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Menu from "../menu/menu";
+import Menu from "../menu/menu.jsx";
 
 class Header extends Component {
 

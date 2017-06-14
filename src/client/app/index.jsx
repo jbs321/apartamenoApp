@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Header from '../app/componenets/header/header';
-import Body from '../app/componenets/body/body';
-import Footer from '../app/componenets/footer/footer';
+import Header from './componenets/header/header.jsx';
+import Body from '../app/componenets/body/body.jsx';
+import Footer from './componenets/footer/footer.jsx';
 
 class App extends React.Component {
     render () {

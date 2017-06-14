@@ -16,8 +16,6 @@ class Body extends Component {
         });
     }
 
-
-
     render() {
         const tempature = this.state.temperature;
         return (
