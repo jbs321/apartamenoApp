@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import FetchDemo from "../building/building-manager";
+import FetchDemo from "../building/building-manager.jsx";
 
 class Body extends Component {
     constructor(props) {
