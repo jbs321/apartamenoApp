@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-class FetchDemo extends Component {
+class BuildingCollection extends React.Component {
     constructor(props) {
         super(props);
 
@@ -10,6 +11,7 @@ class FetchDemo extends Component {
         };
     }
 
+    //TODO:: change hard coded API Query to Global setting
     componentDidMount() {
         axios.get(`http://dev.api.apartamento.webtosuccess.ca/api/buildings`)
             .then(res => {
@@ -18,6 +20,8 @@ class FetchDemo extends Component {
             });
     }
 
+
+    //TODO::add a Building Component inside instead using a list
     render() {
         return (
             <div className="container">
@@ -27,7 +31,7 @@ class FetchDemo extends Component {
                             <div className="building-row">
                                 <img src={building.imgSrc}/>
                                 <div className="building-body">
-                                    <a href="#" className="building-play"></a>
+                                    <Link to={'/building/' + building.id} className="building-play"></Link>
                                     <p className="address">{building.address}</p>
                                     <div className="comment">
                                         <b>{building.comments[0].user.first_name} {building.comments[0].user.last_name} wrote:</b>
@@ -44,4 +48,4 @@ class FetchDemo extends Component {
     }
 }
 
-export default FetchDemo;
+export default BuildingCollection;

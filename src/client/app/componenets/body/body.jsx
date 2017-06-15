@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import FetchDemo from "../building/building-manager.jsx";
+import BuildingCollection from "../building/building-manager.jsx";
 
-class Body extends Component {
+class Body extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,9 +20,11 @@ class Body extends Component {
         return (
             <div className="body">
                 <div className="container">
-                    <div className="col-4 offset-4"><Autocomplete/></div>
+                    <div className="col-4 offset-4">
+                        <Autocomplete/>
+                    </div>
                     <hr/>
-                    <FetchDemo/>
+                    <BuildingCollection/>
                 </div>
             </div>
         );

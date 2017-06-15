@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class Menu extends Component {
+class Menu extends React.Component {
     handleNav(e) {
         e.preventDefault();
         console.log(this);
@@ -13,13 +14,13 @@ class Menu extends Component {
                     <img className="icon" src="./public/img/icon.png" alt=""/>
                 </div>
                 <div className="nav-item  ml-auto">
-                    <a className="nav-link active" href="#" onClick={this.handleNav}>Home</a>
+                    <Link to="/" className="nav-link">Home</Link>
                 </div>
                 <div className="nav-item ">
-                    <a className="nav-link" href="#" onClick={this.handleNav}>Buildings</a>
+                    <Link to="/ass" className="nav-link">Ass</Link>
                 </div>
                 <div className="nav-item">
-                    <a className="nav-link" href="#" onClick={this.handleNav}>Users</a>
+                    <Link to="/" className="nav-link">Home</Link>
                 </div>
 
             </nav>

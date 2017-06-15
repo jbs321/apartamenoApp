@@ -1,19 +1,31 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 import Header from './componenets/header/header.jsx';
 import Body from '../app/componenets/body/body.jsx';
+import Building from '../app/componenets/building/building.jsx';
 import Footer from './componenets/footer/footer.jsx';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 
 class App extends React.Component {
-    render () {
+    render() {
         return (
             <div className="App">
                 <Header/>
-                <Body />
+                <Switch>
+                    <Route path="/building/:id" render={Building}/>
+                    <Route component={Body}/>
+                </Switch>
                 <Footer />
             </div>
         );
     }
 }
 
-render(<App/>, document.getElementById('app'));
+export default App;
+
+ReactDOM.render((
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+), document.getElementById('root'));

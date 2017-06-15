@@ -35,28 +35,26 @@
         background-color: #fff;
 
         &::before {
-          content: "\f1e0";
           color: #3498db;
+          content: "\f1e0";
           font-family: 'FontAwesome';
         }
       }
 
       .address {
-        margin-top: 25px;
+        width: 200px;
         overflow:hidden;
-        font-size: 13px;
+        font-size: 20px;
+        margin-top: 5px;
+        font-weight: bold;
         white-space: nowrap;
         text-overflow: ellipsis;
-        font-weight: bold;
-        font-size: 20px;
-        width: 200px;
-        margin-top: 5px;
       }
 
       .comment {
+        overflow:hidden;
         font-size: 12px;
         font-style: italic;
-        overflow:hidden;
         text-overflow: ellipsis;
 
         blockquote {
@@ -67,8 +65,6 @@
             content: close-quote;
           }
         }
-
-
       }
     }
 

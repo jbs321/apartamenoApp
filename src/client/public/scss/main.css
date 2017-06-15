@@ -55,23 +55,21 @@ body {
         border-radius: 50%;
         background-color: #fff; }
         .building .building-row .building-body .building-play::before {
-          content: "\f1e0";
           color: #3498db;
+          content: "\f1e0";
           font-family: 'FontAwesome'; }
       .building .building-row .building-body .address {
-        margin-top: 25px;
-        overflow: hidden;
-        font-size: 13px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font-weight: bold;
-        font-size: 20px;
         width: 200px;
-        margin-top: 5px; }
+        overflow: hidden;
+        font-size: 20px;
+        margin-top: 5px;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis; }
       .building .building-row .building-body .comment {
+        overflow: hidden;
         font-size: 12px;
         font-style: italic;
-        overflow: hidden;
         text-overflow: ellipsis; }
         .building .building-row .building-body .comment blockquote::before {
           content: open-quote; }
