@@ -5,12 +5,13 @@ import Body from '../app/componenets/body/body.jsx';
 import Building from '../app/componenets/building/building.jsx';
 import Footer from './componenets/footer/footer.jsx';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-
+import { Button } from 'react-bootstrap';
 
 class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <Button>dfsdfsd</Button>
                 <Header/>
                 <Switch>
                     <Route path="/building/:id" render={Building}/>
