@@ -1,0 +1,40 @@
+.building-page {
+  @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+  .img-responsive {
+    width: 100%;
+  }
+
+  .address {
+    margin: 10px 0;
+  }
+
+  .ratings-wrapper {
+    margin: 0;
+    background: $primary-color-dark;
+
+    .rating-block {
+      height: 100px;
+      padding: 10px 0;
+      text-align: center;
+
+      .rsr-root input {
+        display: none;
+
+      }
+    }
+  }
+
+  .comments-wrapper {
+    margin: 0 0 20px 0;
+    text-align: justify;
+
+    .comment-block {
+      min-height: 70px;
+      padding: 20px;
+
+      &:nth-child(2n) {
+        background: $accent-color;
+      }
+    }
+  }
+}

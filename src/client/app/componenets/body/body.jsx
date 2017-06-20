@@ -3,20 +3,9 @@ import Autocomplete from 'react-google-autocomplete';
 import BuildingCollection from "../building/building-manager.jsx";
 
 class Body extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {temperature: ''};
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
-        this.setState({
-            temperature: e.target.value
-        });
-    }
 
     render() {
+        console.log(this.props);
         return (
             <div className="body">
                 <div className="container">
@@ -24,7 +13,8 @@ class Body extends React.Component {
                         <Autocomplete/>
                     </div>
                     <hr/>
-                    <BuildingCollection/>
+
+                    <BuildingCollection buildings={this.props.buildings}/>
                 </div>
             </div>
         );
