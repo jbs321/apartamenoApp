@@ -26,3 +26,6 @@ yarn-error.log*
 .idea/vcs.xml
 .idea/workspace.xml
 README.md
+
+bundle.js
+src/client/public/scss/main.css.map

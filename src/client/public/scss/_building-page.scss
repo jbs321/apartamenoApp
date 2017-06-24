@@ -10,7 +10,10 @@
 
   .ratings-wrapper {
     margin: 0;
-    background: $primary-color-dark;
+
+    .bg {
+      background: #0288D1;
+    }
 
     .rating-block {
       height: 100px;

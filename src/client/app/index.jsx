@@ -5,7 +5,13 @@ import Body from '../app/componenets/body/body.jsx';
 import Building from '../app/componenets/building/building.jsx';
 import Footer from './componenets/footer/footer.jsx';
 import axios from 'axios';
+import Rating from './componenets/rating/rating.jsx'
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+//react-tap-event-plugin provides onTouchTap() to all React Components. It's a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.
+injectTapEventPlugin();
 
 class App extends React.Component {
 
@@ -31,10 +37,12 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <Rating />
                 <Header/>
                 <Switch>
-                    <Route path="/building/:id" render={(props) => <Building {...props} buildings={this.state.buildings} /> } />
-                    <Route render={() => <Body buildings={this.state.buildings} />} />
+                    <Route path="/building/:id"
+                           render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>
+                    <Route render={() => <Body buildings={this.state.buildings}/>}/>
                 </Switch>
                 <Footer />
             </div>
@@ -46,6 +54,8 @@ export default App;
 
 ReactDOM.render((
     <BrowserRouter>
-        <App />
+        <MuiThemeProvider>
+            <App />
+        </MuiThemeProvider>
     </BrowserRouter>
 ), document.getElementById('root'));

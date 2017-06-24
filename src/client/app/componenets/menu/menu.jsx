@@ -16,13 +16,6 @@ class Menu extends React.Component {
                 <div className="nav-item  ml-auto">
                     <Link to="/" className="nav-link">Home</Link>
                 </div>
-                <div className="nav-item ">
-                    <Link to="/ass" className="nav-link">Ass</Link>
-                </div>
-                <div className="nav-item">
-                    <Link to="/" className="nav-link">Home</Link>
-                </div>
-
             </nav>
         );
     }
