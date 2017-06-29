@@ -1,5 +1,6 @@
 @import "palletes";
 @import "font";
+@import "mixins";
 @import "general";
 @import "header";
 @import "footer";
@@ -9,8 +10,10 @@
 @import "rating";
 
 .rating {
- i{
-   color: #f5f500;
-   font-size: 40px;
- }
+  i{
+    color: #f5f500;
+    font-size: 40px;
+  }
 }
+
+

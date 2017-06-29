@@ -8,7 +8,7 @@ import axios from 'axios';
 import Rating from './componenets/rating/rating.jsx'
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 //react-tap-event-plugin provides onTouchTap() to all React Components. It's a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.
 injectTapEventPlugin();
@@ -25,7 +25,7 @@ class App extends React.Component {
 
     //TODO:: change hard coded API Query to Global setting
     componentDidMount() {
-        axios.get(`http://api.apartamento.ca/api/buildings`)
+        axios.get(`http://localhost/apartamenoApi/public/api/buildings`)
             .then(res => {
                 const buildings = res.data;
                 this.setState({

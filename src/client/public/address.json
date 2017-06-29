@@ -1,0 +1,156 @@
+{
+  "html_attributions" : [],
+  "results" : [
+    {
+      "formatted_address" : "2295 W 40th Ave, Denver, CO 80211, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 39.7717282,
+          "lng" : -105.0146568
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 39.77308438029149,
+            "lng" : -105.0133077697085
+          },
+          "southwest" : {
+            "lat" : 39.77038641970849,
+            "lng" : -105.0160057302915
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "bdfcc75d80527fcc33dbfdfd723350253e6bae5b",
+      "name" : "2295 W 40th Ave",
+      "place_id" : "EiYyMjk1IFcgNDB0aCBBdmUsIERlbnZlciwgQ08gODAyMTEsIFVTQQ",
+      "reference" : "CpQBhAAAAEhpyNLYc7_e5oqvTRXnSp3SYboVlnvjyHY2AV_CtjONVTYgL_u7DqoDng-ynYOo4fI91uso24woosAJeORlatYKdHrPnrFxpM3xFWKppPV77bgCj6UJu6tthzme3jLPZzDeBKJqTVyBrcxYdTKSlwLfX8AJ9vIFRTU4qp68cdwf8GeCY-CelvMELFYEYg_5mBIQd-Ya-Z4WRPdcINGD-uGkYBoU4qwSimeicyGchzRsuepCvW09AKM",
+      "types" : [ "street_address" ]
+    },
+    {
+      "formatted_address" : "2295 W 40th Ave, Manhattan, KS 66502, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 39.132547,
+          "lng" : -96.6354353
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 39.1338961802915,
+            "lng" : -96.63409571970848
+          },
+          "southwest" : {
+            "lat" : 39.1311982197085,
+            "lng" : -96.6367936802915
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "91ea1accead3232422950bffcf27120c7692e503",
+      "name" : "2295 W 40th Ave",
+      "place_id" : "EikyMjk1IFcgNDB0aCBBdmUsIE1hbmhhdHRhbiwgS1MgNjY1MDIsIFVTQQ",
+      "reference" : "CpQBhwAAAHUGl0PJwDa5W5B-PYQ-CimIzBqmTJgwFHZFhGo0JHQVLVNjDZsf11X1D9G_SgA11-PBsE_lKeIDJAKB1Sdw1dYxvO1IR7LJ5gwdG2SPKRqbS_G3Z9pwEvikz9TUGacxhNNeCfn9jOIElxlL4kRr04iQKJ4qBzQv0sDI9p73L4WzkT8S1Ic3-W7_fefdkzwROhIQBAFMUBVy35WrmuvlbtL8fRoUS2d-Z6JCqSpXIGYCCSTVRpm3hVg",
+      "types" : [ "street_address" ]
+    },
+    {
+      "formatted_address" : "2295 W 40th Ave, Pine Bluff, AR 71603, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 34.1885209,
+          "lng" : -92.0262522
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 34.18987758029149,
+            "lng" : -92.0249017197085
+          },
+          "southwest" : {
+            "lat" : 34.1871796197085,
+            "lng" : -92.02759968029152
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "b87debcdfe9b3406b875578f45b466e81261ce00",
+      "name" : "2295 W 40th Ave",
+      "place_id" : "EioyMjk1IFcgNDB0aCBBdmUsIFBpbmUgQmx1ZmYsIEFSIDcxNjAzLCBVU0E",
+      "reference" : "CpQBiAAAAAZcoEG7NWxEXah65RxVC8WeGjKlnmHO87-Kpb5AL79mpB9CbWFGT18lVEl1JTxWdgYOYAnFg6wgm2cYu1_ugvwxR1mDYQRInEDIngcEpCQxBd9bMC5cxVGogv3Xb3C1HCnoyfnjl7s3L7WMsUKkOUmf8k8a8eIdM4jXA4mMNliLTI8bJRnDRO1rk9tX5B_r7RIQ0TeKXyBBS3M4bwaUfeL0VRoU5J5W2DF0qJneLABuXuPUlJzah8s",
+      "types" : [ "street_address" ]
+    },
+    {
+      "formatted_address" : "2295 W 40th St, Lorain, OH 44053, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 41.4343411,
+          "lng" : -82.20116759999999
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 41.4356830302915,
+            "lng" : -82.1998185697085
+          },
+          "southwest" : {
+            "lat" : 41.4329850697085,
+            "lng" : -82.2025165302915
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "10031d4159484dde97b6b05542687f9f57ccdebf",
+      "name" : "2295 W 40th St",
+      "place_id" : "EiUyMjk1IFcgNDB0aCBTdCwgTG9yYWluLCBPSCA0NDA1MywgVVNB",
+      "reference" : "CpQBgwAAAA9HqDR9l_Qin5hg_yrs9Je7-Bijiz4cJSKZ2_oIcuCB9-4lkFWU1RzFavWJ8MCiVNOWwpIxrZcZ5JmULX38ZPV77xu34tiOITnKE4uRncybgorYOOT10f3wbiRBGzR8ZphicdBNgP9LRv6EqiTA0zXtSR4TI37nZ3oHbTXHe-JHkHZJwI3mtBj7mtS7T2diiBIQGfPuatJHYn1G8frXGhDb0hoUuUiJlBtpET89zNcM70VnVr16DlY",
+      "types" : [ "street_address" ]
+    },
+    {
+      "formatted_address" : "2295 W 40th St, Tulsa, OK 74107, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 36.1054122,
+          "lng" : -96.0185324
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 36.1067687302915,
+            "lng" : -96.01718331970849
+          },
+          "southwest" : {
+            "lat" : 36.1040707697085,
+            "lng" : -96.0198812802915
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "f7f2094b3cde84964cbda5fa05288432c04329ac",
+      "name" : "2295 W 40th St",
+      "place_id" : "EiQyMjk1IFcgNDB0aCBTdCwgVHVsc2EsIE9LIDc0MTA3LCBVU0E",
+      "reference" : "CpQBgQAAADpITYJv18tSMRETUG4TF563mbALolKuz2cgWUWN9hczoAwkoDKnJ6loSSh7UAF8TLzmW6mWJUhtkE6dr3bhDPrCFRuIe22yUNTe6z_sh03KBl2BLPShT9T_RX2VUj5dooSxOkvCrSP5Ieodj6By1x4Pcl6AG3J3ZjjlfUGYIxGYDDIgYIUWB5FkKu3H_DszbBIQSD1ClCRE9bsFK4bzrut2wBoUnQL4bu0ydSLwQuihwzw4thrRiCQ",
+      "types" : [ "street_address" ]
+    },
+    {
+      "formatted_address" : "2295 W 40th St, Cleveland, OH 44113, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 41.47677669999999,
+          "lng" : -81.7123907
+        },
+        "viewport" : {
+          "northeast" : {
+            "lat" : 41.47812553029149,
+            "lng" : -81.71103231970849
+          },
+          "southwest" : {
+            "lat" : 41.4754275697085,
+            "lng" : -81.7137302802915
+          }
+        }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      "id" : "f2d16f48c5f8fd56b68f50df3e531c296657afa1",
+      "name" : "2295 W 40th St",
+      "place_id" : "EigyMjk1IFcgNDB0aCBTdCwgQ2xldmVsYW5kLCBPSCA0NDExMywgVVNB",
+      "reference" : "CpQBhgAAAJldaZ9YGLcPO90sElhX0q56OjqNnA_ElVpQgtGycKbZa_zRgIffsSeQkvNoHubW0YUITY7szDeerSv0Y3k67KuDIPeeJ4Q7e-E3nZnjeAHGWvaTABHBY9c5U8Ln0Fy9bx6_URDD24tbkFOpwlid_zU0h5iyFrXnuAnMiBYayUMXkwQjY_owOugjTaE377-qwxIQR7gbjjMv1HmBBzoWGb5I1BoUZQBVYTN5pe5i49lwF5VZmE8WFHo",
+      "types" : [ "street_address" ]
+    }
+  ],
+  "status" : "OK"
+}
