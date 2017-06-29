@@ -1,15 +1,14 @@
 import React from 'react';
-import BuildingCollection from "../building/building-manager.jsx";
-import Search from '../search.jsx'
-import GridListExampleSingleLine from '../GridListExampleSingleLine.jsx';
+import BuildingCollection from '../GridListExampleSingleLine.jsx';
 
 class Body extends React.Component {
     render() {
         return (
             <div className="body">
                 <div className="container">
-                    {/*<BuildingCollection buildings={this.props.buildings}/>*/}
-                    <GridListExampleSingleLine />
+                    <div className="main main-raised">
+                        <BuildingCollection buildings={this.props.buildings}/>
+                    </div>
                 </div>
             </div>
         );

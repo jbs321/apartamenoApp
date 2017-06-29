@@ -19,68 +19,24 @@ const styles = {
     },
 };
 
-const tilesData = [
-    {
-        img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-        title: 'Breakfast',
-        author: 'jill111',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-        title: 'Tasty burger',
-        author: 'pashminu',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-        title: 'Camera',
-        author: 'Danson67',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-        title: 'Morning',
-        author: 'fancycrave1',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-        title: 'Hats',
-        author: 'Hans',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-        title: 'Honey',
-        author: 'fancycravel',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-        title: 'Vegetables',
-        author: 'jill111',
-    },
-    {
-        img: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-        title: 'Water plant',
-        author: 'BkrmadtyaKarki',
-    },
-];
-
-/**
- * This example demonstrates the horizontal scrollable single-line grid list of images.
- */
-const GridListExampleSingleLine = () => (
-    <div style={styles.root}>
-        <GridList style={styles.gridList} cols={2.2}>
-            {tilesData.map((tile) => (
-                <GridTile
-                    key={tile.img}
-                    title={tile.title}
-                    actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
-                    titleStyle={styles.titleStyle}
-                    titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                >
-                    <img src={tile.img} />
-                </GridTile>
-            ))}
-        </GridList>
-    </div>
-);
-
-export default GridListExampleSingleLine;
+export default class BuildingCollection extends React.Component {
+    render() {
+        return (
+                <div style={styles.root}>
+                    <GridList style={styles.gridList} cols={2.2}>
+                        {this.props.buildings.map(building =>
+                            <GridTile
+                                key={building.id}
+                                title={building.address}
+                                actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)"/></IconButton>}
+                                titleStyle={styles.titleStyle}
+                                titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                            >
+                                <img src={building.imgSrc}/>
+                            </GridTile>
+                        )}
+                    </GridList>
+                </div>
+        );
+    }
+}
