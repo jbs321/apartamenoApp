@@ -2,13 +2,8 @@ import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
-
-
-
-
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import {red500, greenA200} from 'material-ui/styles/colors';
-
 import RestaurantIcon from 'material-ui/svg-icons/maps/restaurant';
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import StoreIcon from 'material-ui/svg-icons/maps/store-mall-directory';
@@ -75,7 +70,9 @@ class Search extends React.Component {
 
 
                 this.setState({
-                    dataSource: res.data.results.map(address => {
+                    dataSource: res.data.results
+                        .filter(address => address.formatted_address.includes(searchText))
+                        .map(address => {
                         return {
                             text: address.formatted_address,
                             value:  (<MenuItem children={this.getImage(address)} />)
