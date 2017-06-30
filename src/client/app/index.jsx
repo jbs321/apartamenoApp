@@ -38,7 +38,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <Rating />
-                <Header/>
+                <Header buildings={this.state.buildings}/>
                 <Switch>
                     <Route path="/building/:id"
                            render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>

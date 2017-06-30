@@ -1,6 +1,8 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import MenuItem from 'material-ui/MenuItem';
+import axios from 'axios';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import {red500, greenA200} from 'material-ui/styles/colors';
 
@@ -12,27 +14,6 @@ const iconStyles = {
     height: 30,
 };
 
-const dataSource1 = [
-    {
-        text: 'text-value1',
-        value: (
-            <MenuItem
-                primaryText="text-value1"
-                secondaryText="&#9786;"
-            />
-        ),
-    },
-    {
-        text: 'text-value2',
-        value: (
-            <MenuItem
-                primaryText="text-value2"
-                secondaryText="&#9786;"
-            />
-        ),
-    },
-];
-
 const dataSourceConfig = {
     text: 'text',
     value: 'value',
@@ -40,8 +21,55 @@ const dataSourceConfig = {
 
 class Search extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            dataSource: [
+                {
+                    text: "a",
+                    value: "asdasds"
+                }
+            ]
+        };
+
+        this.handleUpdateInput = this.handleUpdateInput.bind(this);
+    }
+
     handleUpdateInput(searchText) {
-        console.log(searchText);
+
+        this.setState({
+            dataSource: [
+                {
+                    text: "a",
+                    value: (
+                        <Card><img src="https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location=starbucks, vancouver, bc" />) </Card>
+                    )
+                }
+            ]
+        });
+
+        // axios.get(`http://apartamento.com/public/address.json`)
+        //     .then(res => {
+        //         console.log(res.data.results);
+        //
+        //         let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location="
+        //
+        //         // const buildings = res.formatted_address;
+        //         this.setState({
+        //             dataSource: [
+        //                 {
+        //                     id: 1,
+        //                     address: (
+        //                         <MenuItem
+        //                             primaryText="a"
+        //                             secondaryText="&#9786;"
+        //                         />
+        //                     )
+        //                 }
+        //             ]
+        //         });
+        //     });
     }
 
     render() {
@@ -51,11 +79,12 @@ class Search extends React.Component {
                     <div className="search-wrapper col-xs-12 col-sm-11">
                         <AutoComplete
                             hintText="Search Address"
-                            dataSource={dataSource1}
-                            dataSourceConfig={dataSourceConfig}
+                            dataSource={this.state.dataSource}
+
                             onUpdateInput={this.handleUpdateInput}
                             animated={false}
                             fullWidth={true}
+                            filter={AutoComplete.noFilter}
                         />
                     </div>
                     <div className="search-icon-wrapper col-1 d-flex align-items-center justify-content-end">
