@@ -36,3 +36,14 @@
 html * {
   -webkit-font-smoothing: antialiased;
 }
+
+.list-item {
+  img {
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  .icons {
+    float: right;
+  }
+}

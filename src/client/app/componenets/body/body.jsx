@@ -1,5 +1,5 @@
 import React from 'react';
-import BuildingCollection from '../GridListExampleSingleLine.jsx';
+import BuildingCollection from '../BuildingCollection.jsx';
 
 class Body extends React.Component {
     render() {
