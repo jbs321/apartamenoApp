@@ -4,9 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import {red500, greenA200} from 'material-ui/styles/colors';
-import RestaurantIcon from 'material-ui/svg-icons/maps/restaurant';
-import HomeIcon from 'material-ui/svg-icons/action/home';
-import StoreIcon from 'material-ui/svg-icons/maps/store-mall-directory';
+import { Link } from 'react-router-dom';
 
 const iconStyles = {
     color: {red500},
@@ -37,26 +35,10 @@ class Search extends React.Component {
         return (
             <div className="list-item">
                <img src={address.icon} height="200px" />
-                {address.formatted_address}
+                <Link to={{pathname: '/building/' + this.getRandomInt(1, 40), props: {name:"safas"}}}>{address.formatted_address}</Link>
+
             </div>
         )
-    }
-
-    getIcon(description) {
-
-        switch (description) {
-            case "home":
-                return (<HomeIcon />);
-            case "restaurant":
-                return (<RestaurantIcon />);
-            case "cafe":
-                return (<RestaurantIcon />);
-            case "store":
-                return (<StoreIcon />);
-            default:
-                return (<HomeIcon />);
-                break;
-        }
     }
 
     handleUpdateInput(searchText) {
@@ -76,6 +58,12 @@ class Search extends React.Component {
                     })
                 });
             });
+    }
+
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
     render() {
