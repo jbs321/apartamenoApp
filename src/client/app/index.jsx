@@ -10,7 +10,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { MuiThemeProvider } from 'material-ui/styles';
 
-//react-tap-event-plugin provides onTouchTap() to all React Components. It's a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.
+//react-tap-event-plugin provides onTouchTap() to all React Components.
+// It's a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.
 injectTapEventPlugin();
 
 class App extends React.Component {

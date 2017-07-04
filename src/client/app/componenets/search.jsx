@@ -34,14 +34,10 @@ class Search extends React.Component {
     }
 
     getImage(address) {
-
-        let icon = this.getIcon(address.types[0]);
-
         return (
             <div className="list-item">
-               <img src={'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=50x50&location=' + address.address} height="200px" />
+               <img src={address.icon} height="200px" />
                 {address.formatted_address}
-                <span className="icons">{icon}</span>
             </div>
         )
     }
