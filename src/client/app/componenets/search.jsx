@@ -7,6 +7,7 @@ import {red500, greenA200} from 'material-ui/styles/colors';
 import RestaurantIcon from 'material-ui/svg-icons/maps/restaurant';
 import HomeIcon from 'material-ui/svg-icons/action/home';
 import StoreIcon from 'material-ui/svg-icons/maps/store-mall-directory';
+import { Link } from 'react-router-dom';
 
 const iconStyles = {
     color: {red500},
@@ -40,7 +41,10 @@ class Search extends React.Component {
         return (
             <div className="list-item">
                <img src={'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=50x50&location=' + address.address} height="200px" />
-                {address.formatted_address}
+
+                <Link to={{pathname: '/building/' + address.id.slice(1), props: {name:"safas"}}}  className="building-play">{address.formatted_address}</Link>
+
+
                 <span className="icons">{icon}</span>
             </div>
         )
