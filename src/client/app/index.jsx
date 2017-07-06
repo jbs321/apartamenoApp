@@ -16,7 +16,7 @@ injectTapEventPlugin();
 
 class App extends React.Component {
 
-    constructor(props) {
+    constructor(props) {//a
         super(props);
 
         this.state = {
