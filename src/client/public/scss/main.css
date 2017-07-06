@@ -3,14 +3,15 @@
 * {
   font-family: 'Roboto', sans-serif; }
 
-h1, h2, h3 {
-  text-align: center; }
-
-body {
-  margin-bottom: 60px; }
-
-.no-pad {
-  padding: 0; }
+html {
+  height: 100%; }
+  html body {
+    height: 100%;
+    margin-bottom: 60px; }
+    html body h1, html body h2, html body h3 {
+      text-align: center; }
+    html body .no-pad {
+      padding: 0; }
 
 .header ul {
   height: 30px;
@@ -59,7 +60,7 @@ body {
           display: none !important; } }
 
 .footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 60px;
