@@ -26,6 +26,41 @@ class App extends React.Component {
 
     //TODO:: change hard coded API Query to Global setting
     componentDidMount() {
+
+        this.setState({
+            buildings: [
+                {
+                    "id": 1,
+                    "user_id": 1,
+                    "imgSrc": "/public/card.gif",
+                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                },
+                {
+                    "id": 2,
+                    "user_id": 1,
+                    "imgSrc": "/public/card.gif",
+                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                },
+                {
+                    "id": 3,
+                    "user_id": 1,
+                    "imgSrc": "/public/card.gif",
+                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                },{
+                    "id": 4,
+                    "user_id": 1,
+                    "imgSrc": "/public/card.gif",
+                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                },
+                {
+                    "id": 5,
+                    "user_id": 1,
+                    "imgSrc": "/public/card.gif",
+                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                },
+            ]
+        });
+
         axios.get(`http://localhost/apartamenoApi/public/api/buildings`)
             .then(res => {
                 const buildings = res.data;

@@ -23,7 +23,7 @@ export default class Header extends Component {
 
                 <Drawer
                     open={this.state.open}
-                    docked={false}
+                    docked={false}k
                     onRequestChange={(open) => this.setState({open})}>
                     <AppBar title="AppBar"  showMenuIconButton={false}/>
                     <MenuItem>Home</MenuItem>
