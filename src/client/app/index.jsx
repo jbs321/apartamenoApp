@@ -33,30 +33,30 @@ class App extends React.Component {
                     "id": 1,
                     "user_id": 1,
                     "imgSrc": "/public/card.gif",
-                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                    "address": "Loading Address...",
                 },
                 {
                     "id": 2,
                     "user_id": 1,
                     "imgSrc": "/public/card.gif",
-                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                    "address": "Loading Address...",
                 },
                 {
                     "id": 3,
                     "user_id": 1,
                     "imgSrc": "/public/card.gif",
-                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                    "address": "Loading Address...",
                 },{
                     "id": 4,
                     "user_id": 1,
                     "imgSrc": "/public/card.gif",
-                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                    "address": "Loading Address...",
                 },
                 {
                     "id": 5,
                     "user_id": 1,
                     "imgSrc": "/public/card.gif",
-                    "address": "6975 Gorczany Street Apt. 463\nSchaeferborough, MD 37538-8601",
+                    "address": "Loading Address...",
                 },
             ]
         });

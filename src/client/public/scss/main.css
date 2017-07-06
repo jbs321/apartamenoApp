@@ -208,6 +208,10 @@ body {
 .main {
   padding-bottom: 40px; }
 
+img.card-image {
+  width: 350px !important;
+  height: 200px !important; }
+
 html * {
   -webkit-font-smoothing: antialiased; }
 

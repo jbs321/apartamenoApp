@@ -33,11 +33,11 @@ class Search extends React.Component {
 
     getImage(address) {
         return (
-            <div className="list-item">
+            <Link to={{pathname: '/building/' + this.getRandomInt(1, 40), props: {name:"safas"}}}><div className="list-item">
                <img src={address.icon} height="200px" />
-                <Link to={{pathname: '/building/' + this.getRandomInt(1, 40), props: {name:"safas"}}}>{address.formatted_address}</Link>
+                {address.formatted_address}
 
-            </div>
+            </div></Link>
         )
     }
 
