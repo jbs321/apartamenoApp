@@ -44,7 +44,8 @@ export default class Search extends React.Component {
 
     handleUpdateInput(searchText) {
         if(searchText != "" && searchText != undefined) {
-            axios.get(`http://localhost/apartamenoApi/public/api/google-places/` + searchText)
+            // axios.get(`http://localhost/apartamenoApi/public/api/google-places/` + searchText)
+            axios.get(`http://apartamento.ca/public/address.json`)
                 .then(res => {
                     let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location=";
 
