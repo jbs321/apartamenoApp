@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Rating extends React.Component {
+export default class Rating extends React.Component {
     render() {
 
         let ratingArr = [];
@@ -15,12 +15,10 @@ class Rating extends React.Component {
         }
 
         return (
-            <div className="rating">
+            <div className="rating" key={this.props.ratingValue + Math.random(0, 99999)}>
                 {ratingArr}
                 {unRatingArr}
             </div>
         );
     }
 }
-
-export default Rating;

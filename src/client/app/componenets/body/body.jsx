@@ -1,7 +1,7 @@
 import React from 'react';
 import BuildingCollection from '../BuildingCollection.jsx';
 
-class Body extends React.Component {
+export default class Body extends React.Component {
     render() {
         return (
             <div className="body">
@@ -25,5 +25,3 @@ class Body extends React.Component {
         );
     }
 }
-
-export default Body;

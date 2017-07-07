@@ -78,7 +78,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/building/:id"
                            render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>
-                    <Route render={() => <Body buildings={this.state.buildings}/>}/>
+                    <Route render={()      => <Body buildings={this.state.buildings}/>}/>
                 </Switch>
                 <Footer />
             </div>

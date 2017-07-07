@@ -44,7 +44,7 @@ class Search extends React.Component {
     handleUpdateInput(searchText) {
         axios.get(`http://apartamento.ca/public/address.json`)
             .then(res => {
-                let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location="
+                let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location=";
 
 
                 this.setState({
@@ -79,8 +79,7 @@ class Search extends React.Component {
                             onUpdateInput={this.handleUpdateInput}
                             animated={false}
                             fullWidth={true}
-                            filter={AutoComplete.noFilter}
-                        />
+                            filter={AutoComplete.noFilter}/>
                     </div>
                     <div className="search-icon-wrapper col-1 d-flex align-items-center justify-content-end">
                         <SearchIcon style={iconStyles}/>

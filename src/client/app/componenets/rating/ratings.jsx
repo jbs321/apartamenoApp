@@ -3,19 +3,26 @@ import Rating from './rating.jsx'
 
 class Ratings extends React.Component {
     render() {
-        console.log(this.props);
-        return (
-            <div className="container bg">
-                <div className="row">
-                    {this.props.ratings.map(rating =>
-                        <div key={rating.id} className="col-6 rating-block">
+
+
+
+        if(this.props.ratings != undefined) {
+            return (
+                <div className="container bg">
+                    <div className="row">
+
+                        {this.props.ratings.map(rating =>
+                        <div key={rating.value} className="col-6 rating-block">
                             <div>{rating.description}</div>
-                            <Rating ratingValue={rating.value}/>
+                            <Rating ratingValue={rating.value} key={rating.value}/>
                         </div>
-                    )}
+                        )}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+
+        return null;
     }
 }
 
