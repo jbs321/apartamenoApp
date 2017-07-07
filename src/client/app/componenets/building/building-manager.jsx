@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class BuildingCollection extends React.Component {
+export default class BuildingCollection extends React.Component {
     //TODO::add a Building Component inside instead using a list
     render() {
         return (
@@ -28,5 +28,3 @@ class BuildingCollection extends React.Component {
         );
     }
 }
-
-export default BuildingCollection;

@@ -30,9 +30,9 @@ export default class BuildingCollection extends React.Component {
                                 title={building.address}
                                 actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)"/></IconButton>}
                                 titleStyle={styles.titleStyle}
-                                titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
-                                {console.log(building.imgSrc)}
-                                <img src={building.imgSrc}/>
+                                titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                            >
+                                <img src={building.imgSrc} className="card-image"/>
                             </GridTile>
                         )}
                     </GridList>

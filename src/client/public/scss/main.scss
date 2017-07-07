@@ -38,6 +38,12 @@
   padding-bottom: 40px;
 }
 
+
+img.card-image {
+  width: 350px!important;
+  height: 200px!important;
+}
+
 html * {
   -webkit-font-smoothing: antialiased;
 }
@@ -47,7 +53,7 @@ html * {
     height: 30px;
     margin-right: 5px;
   }
-
+  
   .icons {
     float: right;
   }

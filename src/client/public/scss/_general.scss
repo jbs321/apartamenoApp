@@ -12,9 +12,10 @@ html {
     h1, h2, h3 {
       text-align: center;
     }
+
+    .no-pad {
+      padding: 0;
+    }
   }
 }
 
-.no-pad {
-  padding: 0;
-}
