@@ -19,7 +19,7 @@ const dataSourceConfig = {
     value: 'value',
 };
 
-class Search extends React.Component {
+export default class Search extends React.Component {
 
     constructor(props) {
         super(props);
@@ -43,21 +43,23 @@ class Search extends React.Component {
     }
 
     handleUpdateInput(searchText) {
-        axios.get(`http://apartamento.ca/public/address.json`)
-            .then(res => {
-                let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location="
+        if(searchText != "" && searchText != undefined) {
+            axios.get(`http://localhost/apartamenoApi/public/api/google-places/` + searchText)
+                .then(res => {
+                    let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location=";
 
-                this.setState({
-                    dataSource: res.data.results
-                        .filter(address => address.formatted_address.includes(searchText))
-                        .map(address => {
-                        return {
-                            text: address.formatted_address,
-                            value:  (<MenuItem children={this.getImage(address)} />)
-                        }
-                    })
+                    this.setState({
+                        dataSource: res.data.results
+                            .filter(address => address.formatted_address.includes(searchText))
+                            .map(address => {
+                                return {
+                                    text: address.formatted_address,
+                                    value: (<MenuItem children={this.getImage(address)}/>)
+                                }
+                            })
+                    });
                 });
-            });
+        }
     }
 
     getRandomInt(min, max) {
@@ -90,5 +92,3 @@ class Search extends React.Component {
         );
     }
 }
-
-export default Search;
