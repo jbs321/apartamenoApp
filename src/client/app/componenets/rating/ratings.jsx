@@ -3,7 +3,10 @@ import Rating from './rating.jsx'
 
 class Ratings extends React.Component {
     render() {
-        console.log(this.props);
+        if(this.props.ratings == undefined) {
+            return null;
+        }
+
         return (
             <div className="container bg">
                 <div className="row">

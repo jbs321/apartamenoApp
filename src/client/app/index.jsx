@@ -74,7 +74,7 @@ export default class App extends React.Component {
                 <Rating />
                 <Header buildings={this.state.buildings}/>
                 <Switch>
-                    <Route path="/building/:id"
+                    <Route path="/building/:address"
                            render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>
                     <Route render={() => <Body buildings={this.state.buildings}/>}/>
                 </Switch>

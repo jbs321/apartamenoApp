@@ -33,7 +33,14 @@ export default class Search extends React.Component {
 
     getImage(address) {
         return (
-            <Link to={{pathname: '/building/' + this.getRandomInt(1, 40), props: {name:"safas"}}}>
+            <Link to={
+                {
+                    pathname: '/building/' + address.formatted_address ,
+                    props: {
+                        address:address
+                    }
+                }
+            }>
                 <div className="list-item">
                     <img src={address.icon} height="200px" />
                     <span>{address.formatted_address}</span>
@@ -44,11 +51,8 @@ export default class Search extends React.Component {
 
     handleUpdateInput(searchText) {
         if(searchText != "" && searchText != undefined) {
-            // axios.get(`http://localhost/apartamenoApi/public/api/google-places/` + searchText)
             axios.get(`http://apartamento.ca/public/address.json`)
                 .then(res => {
-                    let google = "https://maps.googleapis.com/maps/api/streetview?key=AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk&size=300x300&location=";
-
                     this.setState({
                         dataSource: res.data.results
                             .filter(address => address.formatted_address.includes(searchText))

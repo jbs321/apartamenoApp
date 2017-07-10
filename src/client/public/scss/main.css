@@ -222,4 +222,10 @@ html * {
 .list-item .icons {
   float: right; }
 
+.loading {
+  height: auto !important;
+  width: auto !important;
+  margin: auto;
+  display: block; }
+
 /*# sourceMappingURL=main.css.map */

@@ -2,6 +2,10 @@ import React from 'react';
 
 class Comment extends React.Component {
     render() {
+        if(this.props.comments == undefined) {
+            return null;
+        }
+
         return (
             <div className="container">
                 <div className="row">
