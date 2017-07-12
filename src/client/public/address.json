@@ -877,6 +877,52 @@
         "point_of_interest",
         "establishment"
       ]
+    },
+    {
+      "formatted_address": "Bat Yam",
+      "geometry": {
+        "location": {
+          "lat": 40.1068411,
+          "lng": -88.22185789999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.1082672802915,
+            "lng": -88.2205095697085
+          },
+          "southwest": {
+            "lat": 40.1055693197085,
+            "lng": -88.2232075302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "db8b99d18c31ca684655cd23c4c1c32cc36c5fe5",
+      "name": "Starbucks",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112974260801658716406/photos\">Song H</a>"
+          ],
+          "photo_reference": "CmRaAAAAWsBPcZOC5iI2bV1QdnSOzyqz4Vw-HB0q8nVOwTlVhxJb7en1dAjvvoT9S-RW3-dSUgPuYv7iceyyLgfTNDIq3OZTTapfNruXl0eo0EcBNYojsG_49JMFvUXfOGPwRHXnEhBpb8QQ3ol21cn6aNLylgH1GhTD-3gmvBJJb3f9rvG5w02qTJSVOA",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJg1lICBTXDIgRi2yrOmC-pgI",
+      "price_level": 2,
+      "rating": 3.4,
+      "reference": "CmRRAAAAUCuv1S3DfKzVHIi9qMlvGZ3Ll_IxY5K0z8I6pyzG-301K4bmZ6QiKoCkZRs2VdLrK-FhU0BDVKGk7deyU6CAwNx1dUD5wfI3U6u89Q-474j6bYM-JrhPQ6yMc6JnBYfkEhDE-6IiROZYpeN2NQqlVAc4GhSSmUD5XnEJFs7weWES5de8nuqYhw",
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ]
     }
   ],
   "status": "OK"

@@ -14,7 +14,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 // It's a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.
 injectTapEventPlugin();
 
-class App extends React.Component {
+export default class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,9 +24,7 @@ class App extends React.Component {
         };
     }
 
-    //TODO:: change hard coded API Query to Global setting
     componentDidMount() {
-
         this.setState({
             buildings: [
                 {
@@ -76,7 +74,7 @@ class App extends React.Component {
                 <Rating />
                 <Header buildings={this.state.buildings}/>
                 <Switch>
-                    <Route path="/building/:id"
+                    <Route path="/building/:address"
                            render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>
                     <Route render={()      => <Body buildings={this.state.buildings}/>}/>
                 </Switch>
@@ -85,8 +83,6 @@ class App extends React.Component {
         );
     }
 }
-
-export default App;
 
 ReactDOM.render((
     <BrowserRouter>
