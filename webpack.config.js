@@ -4,6 +4,8 @@ var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
+let env = require('dotenv').config();
+
 var config = {
     entry: APP_DIR + '/index.jsx',
     output: {
@@ -46,7 +48,13 @@ var config = {
                 loader: 'url?limit=10000&mimetype=image/svg+xml'
             }
         ]
-    }
+    },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            ENV: JSON.stringify(env.parsed),
+        })
+    ]
 };
 
 module.exports = config;
