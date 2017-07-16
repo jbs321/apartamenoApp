@@ -52,7 +52,9 @@ var config = {
 
     plugins: [
         new webpack.DefinePlugin({
-            ENV: JSON.stringify(env.parsed),
+            'process.env': {
+                ENV: JSON.stringify(env.parsed)
+            }
         })
     ]
 };

@@ -59,7 +59,7 @@ export default class App extends React.Component {
             ]
         });
 
-        axios.get(`http://localhost/apartamenoApi/public/api/buildings`)
+        axios.get(process.env.ENV.API_URL + 'buildings')
             .then(res => {
                 const buildings = res.data;
                 this.setState({
@@ -76,6 +76,7 @@ export default class App extends React.Component {
                 <Switch>
                     <Route path="/building/:address"
                            render={(props) => <Building {...props} buildings={this.state.buildings}/> }/>
+
                     <Route render={()      => <Body buildings={this.state.buildings}/>}/>
                 </Switch>
                 <Footer />

@@ -35,7 +35,7 @@ export default class Search extends React.Component {
         return (
             <Link to={
                 {
-                    pathname: '/building/' + address.formatted_address ,
+                    pathname: '/building/' + address.formatted_addresss ,
                     props: {
                         address:address
                     }
@@ -65,12 +65,6 @@ export default class Search extends React.Component {
                     });
                 });
         }
-    }
-
-    getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
     render() {
