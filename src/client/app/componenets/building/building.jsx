@@ -19,10 +19,8 @@ export default class Building extends React.Component {
     }
 
     componentDidMount() {
-
-        if(this.props.location.props != undefined
-            && this.props.location.props.address != undefined) {
-            axios.post(`http://localhost/apartamenoApi/public/api/buildings`, {
+        if(this.props.location.props != undefined && this.props.location.props.address != undefined) {
+            axios.post(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.id, {
                 address: this.props.location.props.address
             }).then(result => {
                 this.setState({
@@ -30,8 +28,6 @@ export default class Building extends React.Component {
                 });
             });
 
-        } else if(true) {
-            console.log(this.props.match.params);
         }
     }
 

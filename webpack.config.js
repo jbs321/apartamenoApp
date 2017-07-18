@@ -6,7 +6,7 @@ var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 let env = require('dotenv').config();
 
-var config = {
+module.exports = {
     entry: APP_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
@@ -58,5 +58,3 @@ var config = {
         })
     ]
 };
-
-module.exports = config;

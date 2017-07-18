@@ -7,7 +7,11 @@
 @import "menu";
 @import "building";
 @import "building-page";
+
 @import "rating";
+
+//chat
+@import "chat/general";
 
 .rating {
   i {
@@ -21,11 +25,6 @@
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-
-  @include breakpoint(xs) {
-    margin: -120px 5px 0px;
-    padding: 15px;
-  }
 }
 
 .main {
@@ -44,9 +43,7 @@ img.card-image {
   height: 200px!important;
 }
 
-html * {
-  -webkit-font-smoothing: antialiased;
-}
+
 
 .list-item {
   img {

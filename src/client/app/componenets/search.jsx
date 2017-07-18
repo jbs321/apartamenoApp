@@ -35,7 +35,7 @@ export default class Search extends React.Component {
         return (
             <Link to={
                 {
-                    pathname: '/building/' + address.formatted_addresss ,
+                    pathname: '/building/' + address.formatted_address ,
                     props: {
                         address:address
                     }
@@ -51,11 +51,11 @@ export default class Search extends React.Component {
 
     handleUpdateInput(searchText) {
         if(searchText != "" && searchText != undefined) {
-            axios.get(`http://apartamento.ca/public/address.json`)
+            axios.get(process.env.ENV.API_URL + "/buildings")
                 .then(res => {
                     this.setState({
-                        dataSource: res.data.results
-                            .filter(address => address.formatted_address.includes(searchText))
+                        dataSource: res.data
+                            .filter(address => address.address.includes(searchText))
                             .map(address => {
                                 return {
                                     text: address.formatted_address,

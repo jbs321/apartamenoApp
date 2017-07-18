@@ -25,41 +25,8 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            buildings: [
-                {
-                    "id": 1,
-                    "user_id": 1,
-                    "imgSrc": "/public/card.gif",
-                    "address": "Loading Address...",
-                },
-                {
-                    "id": 2,
-                    "user_id": 1,
-                    "imgSrc": "/public/card.gif",
-                    "address": "Loading Address...",
-                },
-                {
-                    "id": 3,
-                    "user_id": 1,
-                    "imgSrc": "/public/card.gif",
-                    "address": "Loading Address...",
-                },{
-                    "id": 4,
-                    "user_id": 1,
-                    "imgSrc": "/public/card.gif",
-                    "address": "Loading Address...",
-                },
-                {
-                    "id": 5,
-                    "user_id": 1,
-                    "imgSrc": "/public/card.gif",
-                    "address": "Loading Address...",
-                },
-            ]
-        });
 
-        axios.get(process.env.ENV.API_URL + 'buildings')
+        axios.get(process.env.ENV.API_URL + '/buildings')
             .then(res => {
                 const buildings = res.data;
                 this.setState({
