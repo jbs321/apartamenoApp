@@ -14,19 +14,14 @@ export default class Comment extends React.Component {
     }
 
     componentDidMount() {
-        // axios.post(process.env + `/buildings`, {
-        //     address: this.props.location.props.address
-        // }).then(result => {
-        //     this.setState({
-        //         address: result.data
-        //     });
-        // });
+
+        this.setState({
+            comments: this.props.comments,
+            message: "",
+        });
     }
 
     render() {
-
-        console.log(this.props);
-
         return (
             <div className="container">
                 <div className="row">

@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import {red500, greenA200} from 'material-ui/styles/colors';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const iconStyles = {
     color: {red500},
@@ -25,7 +25,9 @@ export default class Search extends React.Component {
         super(props);
 
         this.state = {
-            dataSource: []
+            dataSource: [],
+            isAxiosOn: false,
+            axiosRequest: null,
         };
 
         this.handleUpdateInput = this.handleUpdateInput.bind(this);
@@ -34,15 +36,15 @@ export default class Search extends React.Component {
     getImage(address) {
         return (
             <Link to={
-                {
-                    pathname: '/building/' + address.formatted_address ,
-                    props: {
-                        address:address
-                    }
+            {
+                pathname: '/building/' + address.formatted_address,
+                props: {
+                    address: address
                 }
+            }
             }>
                 <div className="list-item">
-                    <img src={address.icon} height="200px" />
+                    <img src={address.icon} height="200px"/>
                     <span>{address.formatted_address}</span>
                 </div>
             </Link>
@@ -50,19 +52,28 @@ export default class Search extends React.Component {
     }
 
     handleUpdateInput(searchText) {
-        if(searchText != "" && searchText != undefined) {
-            axios.get(process.env.ENV.API_URL + "/buildings")
+
+        if (this.state.isAxiosOn) {
+            this.state.axiosRequest.abort();
+            this.state.isAxiosOn = false;
+        }
+
+        if (searchText != "" && searchText != undefined) {
+            this.state.axiosRequest = axios.get(process.env.ENV.API_URL + "/google-places/" + searchText)
                 .then(res => {
-                    this.setState({
-                        dataSource: res.data
-                            .filter(address => address.address.includes(searchText))
-                            .map(address => {
-                                return {
-                                    text: address.formatted_address,
-                                    value: (<MenuItem children={this.getImage(address)}/>)
-                                }
-                            })
-                    });
+                    if (res.data.length > 0) {
+                        this.setState({
+                            dataSource: res.data
+                                .map(address => {
+                                    return {
+                                        text: address.formatted_address,
+                                        value: (<MenuItem children={this.getImage(address)}/>)
+                                    }
+                                })
+                        });
+                    }
+                }).catch(function (err) {
+                    console.log(err);
                 });
         }
     }
@@ -76,7 +87,7 @@ export default class Search extends React.Component {
                             hintText="Search Address"
                             dataSource={this.state.dataSource}
                             dataSourceConfig={this.dataSourceConfig}
-                            listStyle={{ maxHeight: 200, overflow: 'auto' }}
+                            listStyle={{maxHeight: 200, overflow: 'auto'}}
                             onUpdateInput={this.handleUpdateInput}
                             animated={false}
                             fullWidth={true}

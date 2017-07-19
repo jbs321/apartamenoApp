@@ -19,13 +19,19 @@ export default class Building extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.location.props != undefined && this.props.location.props.address != undefined) {
-            axios.post(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.id, {
+        if (this.props.location.props != undefined && this.props.location.props.address != undefined) {
+            console.log(this.props.location.props.address);
+            axios.get(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.place_id, {
                 address: this.props.location.props.address
             }).then(result => {
-                this.setState({
-                    address: result.data
-                });
+
+                if (result.data !== undefined) {
+                    this.setState({
+                        address: result.data
+                    });
+                }
+            }).catch(function (err) {
+                console.log(err);
             });
 
         }
@@ -35,16 +41,16 @@ export default class Building extends React.Component {
         return (
             <div className="container-fluid no-pad building-page">
                 <div className="row">
-                    <div className="col-12">
-                        <GoogleImg src={this.state.address.imgSrc}/>
-                    </div>
-                    <div className="col-12">
-                        <h3 className="address">{this.state.address.address}</h3>
-                    </div>
+                    {/*<div className="col-12">*/}
+                        {/*<GoogleImg src={this.state.address.imgSrc}/>*/}
+                    {/*</div>*/}
+                    {/*<div className="col-12">*/}
+                        {/*<h3 className="address">{this.state.address.address}</h3>*/}
+                    {/*</div>*/}
 
-                    <div className="col-12 ratings-wrapper">
-                        <Ratings ratings={this.state.address.ratings}/>
-                    </div>
+                    {/*<div className="col-12 ratings-wrapper">*/}
+                        {/*<Ratings ratings={this.state.address.ratings}/>*/}
+                    {/*</div>*/}
 
                     <div className="col-12 comments-wrapper">
                         <Comment comments={this.state.address.comments}/>
