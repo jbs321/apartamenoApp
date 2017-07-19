@@ -29,12 +29,18 @@ export default class Building extends React.Component {
                     this.setState({
                         address: result.data
                     });
+
+                    this.commentRef.sync();
                 }
             }).catch(function (err) {
                 console.log(err);
             });
 
         }
+    }
+
+    componentDidUpdate() {
+        this.componentDidMount();
     }
 
     render() {
@@ -53,7 +59,9 @@ export default class Building extends React.Component {
                     {/*</div>*/}
 
                     <div className="col-12 comments-wrapper">
-                        <Comment comments={this.state.address.comments}/>
+                        <Comment ref={(commentRef) => {
+                            this.commentRef = commentRef;
+                        }} comments={this.state.address.comments}/>
                     </div>
                 </div>
             </div>

@@ -11,15 +11,25 @@ export default class Comment extends React.Component {
             comments: [],
             message: ""
         };
+
+        console.log(this.props);
     }
 
     componentDidMount() {
+        this.sync();
+    }
 
+    componentDidUpdate() {
+        console.log("Comment componentDidUpdate");
+    }
+
+    sync() {
         this.setState({
             comments: this.props.comments,
             message: "",
         });
     }
+
 
     render() {
         return (
@@ -83,5 +93,24 @@ export default class Comment extends React.Component {
         });
 
         this.state.messageObj.value = "";
+
+        this.saveComment(messageObj);
+    }
+
+    saveComment(comments) {
+        axios.create(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.place_id, {
+            address: this.props.location.props.address
+        }).then(result => {
+
+            if (result.data !== undefined) {
+                this.setState({
+                    address: result.data
+                });
+
+                this.commentRef.sync();
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 }

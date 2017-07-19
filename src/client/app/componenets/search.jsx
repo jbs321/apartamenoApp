@@ -6,19 +6,6 @@ import SearchIcon from 'material-ui/svg-icons/action/search';
 import {red500, greenA200} from 'material-ui/styles/colors';
 import {Link} from 'react-router-dom';
 
-const iconStyles = {
-    color: {red500},
-    hoverColor: {greenA200},
-    marginRight: "15px",
-    width: 30,
-    height: 30,
-};
-
-const dataSourceConfig = {
-    text: 'text',
-    value: 'value',
-};
-
 export default class Search extends React.Component {
 
     constructor(props) {
@@ -41,8 +28,7 @@ export default class Search extends React.Component {
                 props: {
                     address: address
                 }
-            }
-            }>
+            }}>
                 <div className="list-item">
                     <img src={address.icon} height="200px"/>
                     <span>{address.formatted_address}</span>
@@ -86,7 +72,10 @@ export default class Search extends React.Component {
                         <AutoComplete
                             hintText="Search Address"
                             dataSource={this.state.dataSource}
-                            dataSourceConfig={this.dataSourceConfig}
+                            dataSourceConfig={{
+                                text: 'text',
+                                value: 'value',
+                            }}
                             listStyle={{maxHeight: 200, overflow: 'auto'}}
                             onUpdateInput={this.handleUpdateInput}
                             animated={false}
@@ -95,7 +84,13 @@ export default class Search extends React.Component {
                         />
                     </div>
                     <div className="search-icon-wrapper col-1 d-flex align-items-center justify-content-end">
-                        <SearchIcon style={iconStyles}/>
+                        <SearchIcon style={{
+                            color: {red500},
+                            hoverColor: {greenA200},
+                            marginRight: "15px",
+                            width: 30,
+                            height: 30,
+                        }}/>
                     </div>
                 </div>
             </div>
