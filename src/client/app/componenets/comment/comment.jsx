@@ -11,17 +11,13 @@ export default class Comment extends React.Component {
             comments: [],
             message: ""
         };
-
-        console.log(this.props);
     }
 
     componentDidMount() {
         this.sync();
     }
 
-    componentDidUpdate() {
-        console.log("Comment componentDidUpdate");
-    }
+    componentDidUpdate() {}
 
     sync() {
         this.setState({
@@ -66,16 +62,10 @@ export default class Comment extends React.Component {
             return null;
         }
 
-        let maxId = 0;
-
-        for (let i = 0; i < this.state.comments.length; i++) {
-            if (this.state.comments[i].id > maxId) {
-                maxId = this.state.comments[i].id;
-            }
-        }
+        let newId = this.saveComment(this.state.message);
 
         let messageObj = {
-            id: maxId + 1,
+            id: newId,
             description: this.state.message,
             user: {
                 first_name: "Jacob",
@@ -93,24 +83,15 @@ export default class Comment extends React.Component {
         });
 
         this.state.messageObj.value = "";
-
-        this.saveComment(messageObj);
     }
 
-    saveComment(comments) {
-        axios.create(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.place_id, {
-            address: this.props.location.props.address
+    saveComment(comment) {
+        axios.post(process.env.ENV.API_URL + `/comment`, {
+            comment: comment
         }).then(result => {
-
-            if (result.data !== undefined) {
-                this.setState({
-                    address: result.data
-                });
-
-                this.commentRef.sync();
-            }
+                console.log(result);
         }).catch(function (err) {
-            console.log(err);
+            console.log("saving comment error - saveComment(): ". err.message);
         });
     }
 }
