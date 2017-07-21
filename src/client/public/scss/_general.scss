@@ -1,20 +1,15 @@
-* {
-  font-family: 'Roboto', sans-serif;
-}
-
 html {
   height: 100%;
 
   body {
     height: 100%;
-    margin-bottom: 60px;
+
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
 
     h1, h2, h3 {
       text-align: center;
-    }
-
-    .no-pad {
-      padding: 0;
     }
   }
 }
