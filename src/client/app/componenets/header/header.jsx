@@ -3,11 +3,58 @@ import AppBar from 'material-ui/AppBar';
 import Search from "../search.jsx";
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import Toggle from 'material-ui/Toggle';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+
+const Logged = (props) => (
+    <IconMenu {...props}
+              targetOrigin={{horizontal: 'right', vertical: 'top'}}
+              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+              iconButtonElement={
+                  <IconButton><MoreVertIcon /></IconButton>
+              }>
+        <MenuItem primaryText="Sign out" />
+    </IconMenu>
+);
+
+const NotLogged = (props) => (
+    <IconMenu {...props}
+              targetOrigin={{horizontal: 'right', vertical: 'top'}}
+              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+              iconButtonElement={
+                  <IconButton><MoreVertIcon /></IconButton>
+              }>
+        <MenuItem primaryText="Log In"/>
+    </IconMenu>
+);
 
 export default class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+
+        const { isAuthenticated } = this.props.auth;
+
+
+        this.state = {
+            open: false,
+            logged: isAuthenticated(),
+        };
+    }
+
+    goTo(route) {
+        this.props.history.replace(`/${route}`)
+    }
+
+    login() {
+        this.props.auth.login();
+    }
+
+    logout() {
+        this.props.auth.logout();
     }
 
     handleToggle() {
@@ -15,17 +62,18 @@ export default class Header extends Component {
     }
 
     render() {
+        const { isAuthenticated } = this.props.auth;
         return (
             <header className="header">
-                <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more"
-                        style={{"background": "inherit", color: "green"}}
-                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)}/>
+                <AppBar style={{"background": "inherit", color: "green"}}
+                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
+                        iconElementRight={this.state.logged ?  <Logged/>: <NotLogged/>}/>
 
                 <Drawer
                     open={this.state.open}
-                    docked={false}k
+                    docked={false}
                     onRequestChange={(open) => this.setState({open})}>
-                    <AppBar title="AppBar"  showMenuIconButton={false}/>
+                    <AppBar title="AppBar" showMenuIconButton={false}/>
                     <MenuItem>Home</MenuItem>
                 </Drawer>
 

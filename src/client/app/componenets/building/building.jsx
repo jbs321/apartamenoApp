@@ -45,7 +45,7 @@ export default class Building extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid no-pad building-page">
+            <div className="container-fluid building-page">
                 <div className="row">
                     {/*<div className="col-12">*/}
                         {/*<GoogleImg src={this.state.address.imgSrc}/>*/}
