@@ -130,6 +130,7 @@ html {
         color: #FFFFFF; }
 
 .building-page {
+  top: -64px;
   padding: 0;
   @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css); }
   .building-page .img-responsive {
