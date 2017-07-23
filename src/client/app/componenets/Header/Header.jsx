@@ -11,32 +11,32 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 const Logged = (props) => (
-    <IconMenu {...props}
-              targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    <IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'top'}}
               iconButtonElement={
                   <IconButton><MoreVertIcon /></IconButton>
-              }>
-        <MenuItem primaryText="Sign out" />
+              }
+              onItemTouchTap={props.auth.logout.bind(this)}>
+        <MenuItem primaryText="Sign out"/>
     </IconMenu>
 );
 
-const NotLogged = (props) => (
-    <IconMenu {...props}
-              targetOrigin={{horizontal: 'right', vertical: 'top'}}
-              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-              iconButtonElement={
-                  <IconButton><MoreVertIcon /></IconButton>
-              }>
+const NotLogged = (props) => {
+    return (<IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                      iconButtonElement={
+                          <IconButton><MoreVertIcon /></IconButton>
+                      }
+                      onItemTouchTap={props.auth.login.bind(this)}>
         <MenuItem primaryText="Log In"/>
-    </IconMenu>
-);
+    </IconMenu>);
+};
 
 export default class Header extends Component {
     constructor(props) {
         super(props);
 
-        const { isAuthenticated } = this.props.auth;
+        const {isAuthenticated} = this.props.auth;
 
 
         this.state = {
@@ -45,29 +45,19 @@ export default class Header extends Component {
         };
     }
 
-    goTo(route) {
-        this.props.history.replace(`/${route}`)
-    }
-
-    login() {
-        this.props.auth.login();
-    }
-
-    logout() {
-        this.props.auth.logout();
-    }
-
     handleToggle() {
         this.setState({open: !this.state.open});
     }
 
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const {isAuthenticated} = this.props.auth;
+
         return (
             <header className="header">
                 <AppBar style={{"background": "inherit", color: "green"}}
                         onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
-                        iconElementRight={this.state.logged ?  <Logged/>: <NotLogged/>}/>
+                        iconElementRight={this.state.logged ? <Logged auth={this.props.auth}/> :
+                            <NotLogged auth={this.props.auth}/>}/>
 
                 <Drawer
                     open={this.state.open}
