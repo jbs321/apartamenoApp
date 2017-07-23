@@ -1,6 +1,6 @@
 import history from "../../History.jsx"
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables.jsx';
+import { AUTH_CONFIG } from './Variables.jsx';
 
 export default class Auth {
 
