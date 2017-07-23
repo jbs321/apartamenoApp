@@ -11,8 +11,6 @@ export default class Comment extends React.Component {
             comments: [],
             message: ""
         };
-
-        console.log(this.props);
     }
 
     componentDidMount() {
@@ -20,7 +18,7 @@ export default class Comment extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log("Comment componentDidUpdate");
+        // console.log("Comment componentDidUpdate");
     }
 
     sync() {
@@ -33,22 +31,16 @@ export default class Comment extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="comment-container">
-                            <div className="comment-view">
-                                {this.state.comments.map(comment =>
-                                    <div className="comment-line" key={comment.id}>{comment.description}</div>
-                                )}
-                            </div>
-                            <div className="comment-control">
+            <div className="comment-container">
+                <div className="comment-view">
+                    {this.state.comments.map(comment =>
+                        <div className="comment-line" key={comment.id}>{comment.description}</div>
+                    )}
+                </div>
+                <div className="comment-control">
                                 <textarea type="text" onChange={this.handleTextAreaChange.bind(this)}
                                           classID="comment-textarea" className="comment-textarea"></textarea>
-                                <button onClick={this.send.bind(this)}>Send</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button onClick={this.send.bind(this)}>Send</button>
                 </div>
             </div>
         );
@@ -98,19 +90,20 @@ export default class Comment extends React.Component {
     }
 
     saveComment(comments) {
-        axios.create(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.place_id, {
-            address: this.props.location.props.address
-        }).then(result => {
-
-            if (result.data !== undefined) {
-                this.setState({
-                    address: result.data
-                });
-
-                this.commentRef.sync();
-            }
-        }).catch(function (err) {
-            console.log(err);
-        });
+        console.log(comments);
+        // axios.create(process.env.ENV.API_URL + `/buildings/` + this.props.location.props.address.place_id, {
+        //     address: this.props.location.props.address
+        // }).then(result => {
+        //
+        //     if (result.data !== undefined) {
+        //         this.setState({
+        //             address: result.data
+        //         });
+        //
+        //         this.commentRef.sync();
+        //     }
+        // }).catch(function (err) {
+        //     console.log(err);
+        // });
     }
 }

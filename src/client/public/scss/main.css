@@ -130,6 +130,7 @@ html {
         color: #FFFFFF; }
 
 .building-page {
+  top: -64px;
   padding: 0;
   @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css); }
   .building-page .img-responsive {
@@ -147,7 +148,7 @@ html {
       .building-page .ratings-wrapper .rating-block .rsr-root input {
         display: none; }
   .building-page .comments-wrapper {
-    margin: 0 0 20px 0;
+    margin: 0;
     text-align: justify; }
     .building-page .comments-wrapper .comment-block {
       min-height: 70px;
@@ -265,9 +266,6 @@ img.card-image {
   float: right; }
 
 .loading {
-  height: auto !important;
-  width: auto !important;
-  margin: auto;
-  display: block; }
+  padding: 20px; }
 
 /*# sourceMappingURL=main.css.map */

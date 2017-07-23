@@ -1,6 +1,7 @@
 import React from 'react';
-import Ratings from '../rating/ratings.jsx'
-import Comment from '../comment/comment.jsx'
+// import Ratings from '../rating/ratings.jsx';
+import Header from '../Header/header.jsx';
+import Comment from '../Comment/comment.jsx';
 import GoogleImg from "../googleImg.jsx";
 import axios from 'axios';
 
@@ -39,30 +40,29 @@ export default class Building extends React.Component {
         }
     }
 
-    componentDidUpdate() {
-        this.componentDidMount();
-    }
+    // componentDidUpdate() {
+    //     this.componentDidMount();
+    // }
 
     render() {
+        console.log(this);
         return (
             <div className="container-fluid building-page">
-                <div className="row">
-                    {/*<div className="col-12">*/}
-                        {/*<GoogleImg src={this.state.address.imgSrc}/>*/}
-                    {/*</div>*/}
-                    {/*<div className="col-12">*/}
-                        {/*<h3 className="address">{this.state.address.address}</h3>*/}
-                    {/*</div>*/}
+                {/*<Header {...this.props} auth={this.props.auth}/>*/}
+                <GoogleImg src={this.props.match.params.address}/>
 
-                    {/*<div className="col-12 ratings-wrapper">*/}
-                        {/*<Ratings ratings={this.state.address.ratings}/>*/}
-                    {/*</div>*/}
+                <div className="col-12">
+                    <h3 className="address">{this.props.match.params.address}</h3>
+                </div>
 
-                    <div className="col-12 comments-wrapper">
-                        <Comment ref={(commentRef) => {
-                            this.commentRef = commentRef;
-                        }} comments={this.state.address.comments}/>
-                    </div>
+                {/*<div className="col-12 ratings-wrapper">*/}
+                {/*<Ratings ratings={this.state.address.ratings}/>*/}
+                {/*</div>*/}
+
+                <div className="col-12 comments-wrapper">
+                    <Comment ref={(commentRef) => {
+                        this.commentRef = commentRef;
+                    }} comments={this.state.address.comments}/>
                 </div>
             </div>
         );
