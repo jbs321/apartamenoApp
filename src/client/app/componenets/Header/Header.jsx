@@ -1,56 +1,51 @@
 import React, {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
 import Search from "../search.jsx";
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import history from "../../History.jsx"
+import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
+import LoginButton from "./LoginButton.jsx";
 
-const Logged = (props) => (
-    <IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
-              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-              iconButtonElement={
-                  <IconButton><MoreVertIcon /></IconButton>
-              }
-              onItemTouchTap={props.auth.logout.bind(this)}>
-        <MenuItem primaryText="Sign out"/>
-    </IconMenu>
-);
-
-const NotLogged = (props) => {
-    return (<IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                      iconButtonElement={
-                          <IconButton><MoreVertIcon /></IconButton>
-                      }
-                      onItemTouchTap={props.auth.login.bind(this)}>
-        <MenuItem primaryText="Log In"/>
-    </IconMenu>);
+const appBarStyle = {
+    "background": "inherit",
+    color: "green"
 };
 
 export default class Header extends Component {
+
     constructor(props) {
         super(props);
 
         const {isAuthenticated} = this.props.auth;
-
 
         this.state = {
             logged: isAuthenticated(),
         };
     }
 
-    render() {
-        const {isAuthenticated} = this.props.auth;
+    handleNavigation(event, keyboardFocused) {
+        let key = parseInt(keyboardFocused.key);
 
+        switch (key) {
+            case LEGGED_MENU_ITEMS.LOGIN:
+                this.props.auth.login();
+                break;
+            case LEGGED_MENU_ITEMS.LOGOUT:
+                this.props.auth.logout();
+                break;
+            case LEGGED_MENU_ITEMS.PROFILE:
+                history.push('/profile');
+                break;
+            default:
+                console.log(key);
+                break;
+        }
+    }
+
+    render() {
         return (
             <header className="header">
-                <AppBar style={{"background": "inherit", color: "green"}}
-                        iconElementRight={this.state.logged ? <Logged auth={this.props.auth}/> : <NotLogged auth={this.props.auth}/>}
+                <AppBar style={appBarStyle}
+                        iconElementRight={<LoginButton {...this.props} itemHandle={this.handleNavigation.bind(this)}/>}
                         showMenuIconButton={false}/>
 
                 <div className="header-banner"></div>
