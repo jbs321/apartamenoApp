@@ -32,7 +32,7 @@ export default class App extends Component {
                     <Route render={(props) => <Body {...props} auth={this.props.auth} buildings={this.state.buildings}/>}/>
                 </Switch>
                 
-                <Footer></Footer>
+                <Footer/>
             </div>
         );
     }
