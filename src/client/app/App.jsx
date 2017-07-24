@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Footer from "./componenets/footer/footer.jsx";
+import Footer from "./componenets/Footer/footer.jsx";
 import axios from 'axios';
 import Body from "./componenets/Body/body.jsx";
 import Building from "./componenets/Building/building.jsx";
