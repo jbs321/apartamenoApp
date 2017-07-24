@@ -40,13 +40,8 @@ export default class Header extends Component {
 
 
         this.state = {
-            open: false,
             logged: isAuthenticated(),
         };
-    }
-
-    handleToggle() {
-        this.setState({open: !this.state.open});
     }
 
     render() {
@@ -55,17 +50,8 @@ export default class Header extends Component {
         return (
             <header className="header">
                 <AppBar style={{"background": "inherit", color: "green"}}
-                        onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
-                        iconElementRight={this.state.logged ? <Logged auth={this.props.auth}/> :
-                            <NotLogged auth={this.props.auth}/>}/>
-
-                <Drawer
-                    open={this.state.open}
-                    docked={false}
-                    onRequestChange={(open) => this.setState({open})}>
-                    <AppBar title="AppBar" showMenuIconButton={false}/>
-                    <MenuItem>Home</MenuItem>
-                </Drawer>
+                        iconElementRight={this.state.logged ? <Logged auth={this.props.auth}/> : <NotLogged auth={this.props.auth}/>}
+                        showMenuIconButton={false}/>
 
                 <div className="header-banner"></div>
 
