@@ -4,7 +4,6 @@ import BuildingCollection from '../BuildingCollection.jsx';
 
 export default class Body extends React.Component {
     render() {
-        console.log(this);
         return (
             <div className="body">
                 <Header {...this.props} auth={this.props.auth}/>

@@ -68,6 +68,13 @@ html {
 .menu img {
   width: 35px; }
 
+.loginButton {
+  width: 80px; }
+  .loginButton img {
+    float: left; }
+  .loginButton svg {
+    margin-top: 5px !important; }
+
 .building {
   height: 350px;
   padding: 10px; }

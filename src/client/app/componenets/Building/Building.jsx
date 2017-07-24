@@ -45,10 +45,8 @@ export default class Building extends React.Component {
     // }
 
     render() {
-        console.log(this);
         return (
             <div className="container-fluid building-page">
-                {/*<Header {...this.props} auth={this.props.auth}/>*/}
                 <GoogleImg src={this.props.match.params.address}/>
 
                 <div className="col-12">
