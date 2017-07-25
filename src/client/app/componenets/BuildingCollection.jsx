@@ -2,6 +2,7 @@ import React from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import axios from 'axios';
 
 const styles = {
     root: {
@@ -20,11 +21,30 @@ const styles = {
 };
 
 export default class BuildingCollection extends React.Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            buildings: [],
+        };
+    }
+
+    componentDidMount() {
+        axios.get(process.env.ENV.API_URL + '/buildings')
+            .then(res => {
+                const buildings = res.data;
+                this.setState({
+                    buildings: buildings
+                });
+            });
+    }
+
     render() {
         return (
                 <div style={styles.root}>
                     <GridList style={styles.gridList} cols={2.2}>
-                        {this.props.buildings.map(building =>
+                        {this.state.buildings.map(building =>
                             <GridTile
                                 key={building.id}
                                 title={building.address}

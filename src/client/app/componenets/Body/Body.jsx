@@ -4,6 +4,7 @@ import BuildingCollection from '../BuildingCollection.jsx';
 
 export default class Body extends React.Component {
     render() {
+        console.log(this);
         return (
             <div className="body">
                 <Header {...this.props} auth={this.props.auth}/>
@@ -11,16 +12,16 @@ export default class Body extends React.Component {
                     <div className="main main-raised">
                         Most Active
                         <hr/>
-                        <BuildingCollection buildings={this.props.buildings}/>
+                        <BuildingCollection/>
                         <br/>
                         Top Rated
                         <hr/>
-                        <BuildingCollection buildings={this.props.buildings}/>
+                        <BuildingCollection/>
                         <br/>
 
                         New Apartments
                         <hr/>
-                        <BuildingCollection buildings={this.props.buildings}/>
+                        <BuildingCollection/>
                     </div>
                 </div>
             </div>

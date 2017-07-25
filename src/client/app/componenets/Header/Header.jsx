@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
-import Search from "../search.jsx";
+import Search from "../Search/Search.jsx";
 import history from "../../History.jsx"
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 import LoginButton from "./LoginButton.jsx";
@@ -15,11 +15,17 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
 
+        console.log(props);
+
         const {isAuthenticated} = this.props.auth;
 
         this.state = {
             logged: isAuthenticated(),
         };
+    }
+
+    componentDidMount() {
+        console.log(this.props);
     }
 
     handleNavigation(event, keyboardFocused) {
@@ -54,7 +60,7 @@ export default class Header extends Component {
                     <h1 className="col-xs-12 col-sm-10 col-md-10 col-lg-7">Apartamento</h1>
                     <h2 className="col-xs-12 col-sm-10 col-md-10 col-lg-7">Find all you need about Apartments, Buildings
                         and more.</h2>
-                    <Search buildings={this.props.buildings}/>
+                    <Search {...this.props}/>
                 </div>
             </header>
         );

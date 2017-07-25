@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 
-export default class Logged extends React.Component {
+export default class LoggedButton extends React.Component {
     getProfile() {
         const {userProfile, getProfile} = this.props.auth;
 

@@ -1,10 +1,20 @@
 import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
-import MenuItem from 'material-ui/MenuItem';
-import axios from 'axios';
-import SearchIcon from 'material-ui/svg-icons/action/search';
-import {red500, greenA200} from 'material-ui/styles/colors';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import MenuItem from 'material-ui/MenuItem';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+import AutoComplete from 'material-ui/AutoComplete';
+import {red500, greenA200} from 'material-ui/styles/colors';
+import {SearchResultKeys} from "./Variables.jsx";
+
+
+const SearchIconStyle = {
+    color: {red500},
+    hoverColor: {greenA200},
+    marginRight: "15px",
+    width: 30,
+    height: 30,
+};
 
 export default class Search extends React.Component {
 
@@ -21,30 +31,24 @@ export default class Search extends React.Component {
     }
 
     getImage(address) {
+
+        let addressDescription = address[SearchResultKeys.ADDRESS_KEY];
+
         return (
-            <Link to={
-            {
-                pathname: '/building/' + address.formatted_address,
-                props: {
-                    address: address
-                }
+            <Link to={{
+                pathname: '/building/' + addressDescription,
+                props: {address: address}
             }}>
-                <div className="list-item">
-                    <img src={address.icon} height="200px"/>
-                    <span>{address.formatted_address}</span>
-                </div>
+                <span>{addressDescription}</span>
             </Link>
         )
     }
 
-    handleUpdateInput(searchText) {
+    handleUpdateInput(searchText = "") {
 
-        if (this.state.isAxiosOn) {
-            this.state.axiosRequest.abort();
-            this.state.isAxiosOn = false;
-        }
+        this.syncRequests();
 
-        if (searchText != "" && searchText != undefined) {
+        if (searchText !== "" && searchText !== undefined) {
             this.state.axiosRequest = axios.get(process.env.ENV.API_URL + "/google-places/" + searchText)
                 .then(res => {
                     if (res.data.length > 0) {
@@ -52,7 +56,7 @@ export default class Search extends React.Component {
                             dataSource: res.data
                                 .map(address => {
                                     return {
-                                        text: address.formatted_address,
+                                        text: address[SearchResultKeys.ADDRESS_KEY],
                                         value: (<MenuItem children={this.getImage(address)}/>)
                                     }
                                 })
@@ -78,22 +82,23 @@ export default class Search extends React.Component {
                             }}
                             listStyle={{maxHeight: 200, overflow: 'auto'}}
                             onUpdateInput={this.handleUpdateInput}
-                            animated={false}
+                            animated={true}
                             fullWidth={true}
                             filter={AutoComplete.noFilter}
                         />
                     </div>
                     <div className="search-icon-wrapper col-1 d-flex align-items-center justify-content-end">
-                        <SearchIcon style={{
-                            color: {red500},
-                            hoverColor: {greenA200},
-                            marginRight: "15px",
-                            width: 30,
-                            height: 30,
-                        }}/>
+                        <SearchIcon style={SearchIconStyle}/>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    syncRequests() {
+        if (this.state.isAxiosOn) {
+            this.state.axiosRequest.abort();
+            this.state.isAxiosOn = false;
+        }
     }
 }
