@@ -13,21 +13,11 @@ export default class Comment extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.sync();
-    }
-
     componentDidUpdate() {
-        // console.log("Comment componentDidUpdate");
-    }
-
-    sync() {
         this.setState({
-            comments: this.props.comments,
-            message: "",
+            comments: this.props.comments
         });
     }
-
 
     render() {
         return (

@@ -3,52 +3,53 @@ import axios from 'axios';
 import Comment from '../Comment/comment.jsx';
 import GoogleImg from "../googleImg.jsx";
 
+var qs = require('qs');
+
 export default class Building extends React.Component {
 
     constructor() {
         super();
 
         this.state = {
-            addressDescription: ""
+            addressDescription: "",
+            comments: []
         };
     }
 
     findAddress(addressDescription) {
-        axios.post(process.env.ENV.API_URL + `/buildings`, {
-            address: addressDescription
-        }).then(result => {
-            if (result.data !== undefined) {
-                this.setState({
-                    address: result.data
-                });
 
-                // this.commentRef.sync();
-            }
-        }).catch(function (err) {
-            console.log(err);
+        var axiosObj = axios.create({
+            baseURL: "http://localhost/apartamenoApi/public/api",
         });
+
+        axiosObj.get("buildings/" + addressDescription)
+            .then((response) => {
+                this.setState({
+                    addressDescription: addressDescription,
+                    comments: response.data.results.comments
+                });
+                console.log(response2.data);
+            }).catch((err) => {
+
+            if (err.response !== undefined && err.response.status == 400) {
+                axiosObj.post("buildings", qs.stringify(response.data[0]))
+                    .then((response3) => {
+                        console.log(response3);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+            }
+        })
     }
 
     componentDidMount() {
 
-        let addressDescription =  this.props.match.params.address;
-
-        //This Page will always have address param
-        this.setState({
-            addressDescription: addressDescription,
-        });
+        let addressDescription = this.props.match.params.address;
 
         this.findAddress(addressDescription);
     }
 
-    // componentDidUpdate() {
-    //     this.componentDidMount();
-    // }
-
     render() {
-
-        // console.log(this);
-
         return (
             <div className="container-fluid building-page">
                 <GoogleImg src={this.props.match.params.address}/>
@@ -61,11 +62,9 @@ export default class Building extends React.Component {
                 {/*<Ratings ratings={this.state.address.ratings}/>*/}
                 {/*</div>*/}
 
-                {/*<div className="col-12 comments-wrapper">*/}
-                    {/*<Comment ref={(commentRef) => {*/}
-                        {/*this.commentRef = commentRef;*/}
-                    {/*}} comments={this.state.address.comments}/>*/}
-                {/*</div>*/}
+                <div className="col-12 comments-wrapper">
+                    <Comment comments={this.state.comments}/>
+                </div>
             </div>
         );
     }

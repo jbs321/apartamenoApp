@@ -1,10 +1,19 @@
 import React  from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
+import Auth from "../Auth/Auth.jsx";
+
+if(typeof auth != "undefined") {
+    const auth = new Auth();
+}
 
 export default class Profile extends React.Component {
+
     componentWillMount() {
         this.setState({ profile: {} });
+
+
+
         const { userProfile, getProfile } = this.props.auth;
         if (!userProfile) {
             getProfile((err, profile) => {

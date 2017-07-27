@@ -10,7 +10,7 @@ export default class GoogleImg extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.src !== undefined) {
+        if(this.props.src !== undefined || this.props.src.includes("not_found.jpg")) {
             this.setState({
                 src: this.props.src,
             });
