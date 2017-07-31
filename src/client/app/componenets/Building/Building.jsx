@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Comment from '../Comment/comment.jsx';
 import GoogleImg from "../googleImg.jsx";
+import {SearchResultKeys} from '../Search/Variables.jsx'
 
 export default class Building extends React.Component {
 
@@ -9,46 +10,33 @@ export default class Building extends React.Component {
         super();
 
         this.state = {
-            addressDescription: ""
+            imgSrc: "",
         };
     }
 
     findAddress(addressDescription) {
-        axios.post(process.env.ENV.API_URL + `/buildings`, {
-            address: addressDescription
-        }).then(result => {
-            if (result.data !== undefined) {
-                this.setState({
-                    address: result.data
-                });
+        let url = process.env.ENV.API_URL + "/search/query/firstorfail/" + addressDescription;
 
-                // this.commentRef.sync();
-            }
-        }).catch(function (err) {
-            console.log(err);
-        });
+        axios.get(url)
+            .then(result => {
+                if (result.data !== undefined) {
+                    console.log(result.data);
+
+                    this.setState({
+                        imgSrc: result.data.address,
+                    });
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 
     componentDidMount() {
-
-        let addressDescription =  this.props.match.params.address;
-
-        //This Page will always have address param
-        this.setState({
-            addressDescription: addressDescription,
-        });
-
-        this.findAddress(addressDescription);
+        this.findAddress(this.props.match.params.address);
     }
 
-    // componentDidUpdate() {
-    //     this.componentDidMount();
-    // }
-
     render() {
-
-        // console.log(this);
-
         return (
             <div className="container-fluid building-page">
                 <GoogleImg src={this.props.match.params.address}/>
@@ -62,9 +50,9 @@ export default class Building extends React.Component {
                 {/*</div>*/}
 
                 {/*<div className="col-12 comments-wrapper">*/}
-                    {/*<Comment ref={(commentRef) => {*/}
-                        {/*this.commentRef = commentRef;*/}
-                    {/*}} comments={this.state.address.comments}/>*/}
+                {/*<Comment ref={(commentRef) => {*/}
+                {/*this.commentRef = commentRef;*/}
+                {/*}} comments={this.state.address.comments}/>*/}
                 {/*</div>*/}
             </div>
         );

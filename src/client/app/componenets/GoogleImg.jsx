@@ -10,18 +10,25 @@ export default class GoogleImg extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.src !== undefined) {
-            this.setState({
-                src: this.props.src,
+        console.log(this);
+        if(this.props.src !== undefined || this.props.src.includes("not_found.jpg")) {
+                this.setState({
+                src: process.env.ENV.API_URL + "/google-images/" + this.props.src,
             });
         }
     }
 
     handleError(image) {
         image.target.src = "/public/img/not_found.jpg";
+
+        this.setState({
+            src: "/public/img/not_found.jpg",
+        });
+
+        return false;
     }
 
     render() {
-        return (<img onError={this.handleError.bind(this)} src={process.env.ENV.API_URL + "/google-images/" + this.state.src} className="img-responsive"/>);
+        return (<img onError={this.handleError.bind(this)} src={this.state.src} className="img-responsive"/>);
     }
 }

@@ -14,18 +14,11 @@ export default class Header extends Component {
 
     constructor(props) {
         super(props);
-
-        console.log(props);
-
         const {isAuthenticated} = this.props.auth;
 
         this.state = {
             logged: isAuthenticated(),
         };
-    }
-
-    componentDidMount() {
-        console.log(this.props);
     }
 
     handleNavigation(event, keyboardFocused) {

@@ -12,7 +12,7 @@ export default class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/profile"  render={(props) => ( !auth.isAuthenticated() ? ( <Redirect to="/"/> ) : ( <Profile {...props} /> ) )} />
+                    <Route path="/profile"  render={(props) => ( !auth.isAuthenticated() ? ( <Redirect to="/"/> ) : ( <Profile {...props} auth={auth} /> ) )} />
                     <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
                     <Route render={(props) => <Body {...this.props} />}/>
                 </Switch>

@@ -3,6 +3,8 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import axios from 'axios';
+import FontIcon from 'material-ui/FontIcon';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
     root: {
@@ -47,7 +49,12 @@ export default class BuildingCollection extends React.Component {
                         {this.state.buildings.map(building =>
                             <GridTile
                                 key={building.id}
-                                title={building.address}
+                                title={<FlatButton
+                                    href={"http://apartamento.ca/building/" + building.address}
+                                    target="_blank"
+                                    secondary={true}
+                                    label={building.address}
+                                />}
                                 actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)"/></IconButton>}
                                 titleStyle={styles.titleStyle}
                                 titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"

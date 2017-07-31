@@ -15,7 +15,7 @@ export default class NotLoggedButton extends React.Component {
                           </IconButton>
                       }
                       onItemTouchTap={this.props.auth.login.bind(this)}>
-                <MenuItem primaryText="Log In"/>
+                <MenuItem primaryText="Log In/Sign Up"/>
             </IconMenu>);
     }
 }

@@ -6,7 +6,7 @@ import SearchIcon from 'material-ui/svg-icons/action/search';
 import AutoComplete from 'material-ui/AutoComplete';
 import {red500, greenA200} from 'material-ui/styles/colors';
 import {SearchResultKeys} from "./Variables.jsx";
-
+import history from "../../History.jsx"
 
 const SearchIconStyle = {
     color: {red500},
@@ -57,7 +57,14 @@ export default class Search extends React.Component {
                                 .map(address => {
                                     return {
                                         text: address[SearchResultKeys.ADDRESS_KEY],
-                                        value: (<MenuItem children={this.getImage(address)}/>)
+                                        value: (<MenuItem primaryText={address[SearchResultKeys.ADDRESS_KEY]}
+                                                          onTouchTap={() => {
+                                                              history.push({
+                                                                  pathname: '/building/' + address[SearchResultKeys.ADDRESS_KEY],
+                                                                  state: {address: address}
+                                                              })
+                                                          }
+                                        }/>)
                                     }
                                 })
                         });
