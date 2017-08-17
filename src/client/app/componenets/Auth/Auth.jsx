@@ -11,9 +11,9 @@ export default class Auth {
             domain: AUTH_CONFIG.domain,
             clientID: AUTH_CONFIG.clientID,
             redirectUri: AUTH_CONFIG.callbackUrl,
-            audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+            // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
             responseType: 'token id_token',
-            scope: 'openid profile'
+            scope: ''
         });
 
         this.login = this.login.bind(this);

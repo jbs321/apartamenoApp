@@ -26,7 +26,8 @@ export default class Header extends Component {
 
         switch (key) {
             case LEGGED_MENU_ITEMS.LOGIN:
-                this.props.auth.login();
+                window.location.href="http://passport.ca/oauth/authorize";
+                // this.props.auth.login();
                 break;
             case LEGGED_MENU_ITEMS.LOGOUT:
                 this.props.auth.logout();
