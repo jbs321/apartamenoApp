@@ -1,4 +1,4 @@
-import {DATA_SET_KEYS, KEY_VALUE, KEY_LABEL, KEY_ID } from './Variables.js';
+import {DATA_SET_KEYS, KEY_VALUE, KEY_LABEL, KEY_ID} from './Variables';
 
 export class Rate {
     constructor(id, label, value, readOnly = true) {
@@ -14,12 +14,11 @@ export class Rate {
             throw new Error("dataSet is invalid");
         }
 
-        for (let i = 0; i < DATA_SET_KEYS.length; i++) {
-            console.log(dataSet[DATA_SET_KEYS[i]]);
-            if (dataSet[DATA_SET_KEYS[i]] === undefined) {
-                throw new Error("missing key in data set: " + DATA_SET_KEYS[i]);
+        DATA_SET_KEYS.forEach((current) => {
+            if (dataSet[current] === undefined) {
+                throw new Error("missing key in data set: " + current);
             }
-        }
+        });
 
         return new Rate(dataSet[KEY_ID], dataSet[KEY_LABEL], dataSet[KEY_VALUE], readOnly);
     }

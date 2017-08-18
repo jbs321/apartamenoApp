@@ -20,7 +20,7 @@ export const ICON_STYLE = {
     height: "10px",
 };
 
-export const TOOLTIP_POSITION = "top-right";
+export const TOOLTIP_POSITION = "bottom-right";
 
 
 export const KEY_VALUE = "sum";
