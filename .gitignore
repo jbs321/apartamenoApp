@@ -29,3 +29,5 @@ README.md
 
 bundle.js
 src/client/public/scss/main.css.map
+
+.env
