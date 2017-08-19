@@ -7,24 +7,10 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 
 export default class LoggedButton extends React.Component {
-    getProfile() {
-        const {userProfile, getProfile} = this.props.auth;
-
-        let profileLocal = {};
-
-        if (!userProfile) {
-            getProfile((err, profile) => {
-                profileLocal = profile;
-            });
-        } else {
-            profileLocal = userProfile;
-        }
-
-        return profileLocal;
-    }
-
     render() {
-        let profileLocal = this.getProfile();
+        let profileLocal = {
+            picture: "https://png.icons8.com/material/1600/00897B/cat-profile"
+        };
 
         return (
             <IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}

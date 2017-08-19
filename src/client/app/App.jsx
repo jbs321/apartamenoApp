@@ -9,17 +9,13 @@ import AppBar from 'material-ui/AppBar';
 import {LEGGED_MENU_ITEMS} from "./componenets/Header/Variables.jsx";
 import history from './History.jsx'
 
-const appBarStyle = {
-    "background": "inherit",
-    color: "green"
-};
-
 export default class App extends Component {
 
     constructor(props) {
         super(props);
 
         const {isAuthenticated} = props.auth;
+
         this.state = {
             logged: isAuthenticated(),
         };
@@ -30,29 +26,28 @@ export default class App extends Component {
 
         switch (key) {
             case LEGGED_MENU_ITEMS.LOGIN:
-                this.props.auth.login();
+                // this.props.auth.login();
                 break;
             case LEGGED_MENU_ITEMS.LOGOUT:
-                this.props.auth.logout();
+                // this.props.auth.logout();
                 break;
             case LEGGED_MENU_ITEMS.PROFILE:
                 history.push('/profile');
                 break;
             default:
-                console.log(key);
+                console.log("KEY: " + key);
                 break;
         }
     }
 
     render() {
-        const auth  = this.props.auth;
         return (
             <div className="App">
-                <AppBar style={appBarStyle}
-                        iconElementRight={<LoginButton {...this.props} itemHandle={this.handleNavigation.bind(this)}/>}
+                <AppBar style={{color: "green",background: "inherit"}}
+                        iconElementRight={<LoginButton auth={this.props.auth} itemHandle={this.handleNavigation.bind(this)}/>}
                         showMenuIconButton={false}/>
                 <Switch>
-                    <Route path="/profile"  render={(props) => ( !auth.isAuthenticated() ? ( <Redirect to="/"/> ) : ( <Profile {...props} auth={auth} /> ) )} />
+                    <Route path="/profile"  render={() => ( !this.props.auth.isAuthenticated() ? ( <Redirect to="/"/> ) : ( <Profile {...this.props}/> ) )} />
                     <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
                     <Route render={(props) => <Body {...this.props} />}/>
                 </Switch>

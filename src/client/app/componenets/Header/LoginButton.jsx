@@ -3,10 +3,6 @@ import LoggedButton from "./LoggedButton.jsx";
 import NotLoggedButton from "./NotLoggedButton.jsx";
 
 export default class LoginButton extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {isAuthenticated} = this.props.auth;
 
