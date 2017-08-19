@@ -33,7 +33,7 @@ export default class Auth {
      * Here the callback from api authentication is being handled.
      */
     handleAuthentication(myCode) {
-
+        console.log(myCode);
         if (myCode === undefined) {
             if (getParameterByName('code') !== undefined) {
                 myCode = getParameterByName('code');
@@ -55,8 +55,10 @@ export default class Auth {
         }).then(result => {
             this.setSession(result.data);
 
+            console.log(result.data);
+
             //set Auth token for every request
-            axios.defaults.headers.common['Authorization'] = result.data.access_token;
+            axios.defaults.headers.common['Authorization'] = "Bearer " + result.data.access_token;
 
             // navigate to the home route
             history.replace('/');
