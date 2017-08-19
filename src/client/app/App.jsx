@@ -4,13 +4,14 @@ import Footer from "./componenets/Footer/footer.jsx";
 import Body from "./componenets/Body/body.jsx";
 import Building from "./componenets/Building/building.jsx";
 import Profile from "./componenets/Profile/Profile.jsx";
+import Rating from "./componenets/Rating/Rating.jsx";
+
 import LoginButton from "./componenets/Header/LoginButton.jsx";
 import AppBar from 'material-ui/AppBar';
 import {LEGGED_MENU_ITEMS} from "./componenets/Header/Variables.jsx";
 import history from './History.jsx'
 
 export default class App extends Component {
-
     constructor(props) {
         super(props);
 
@@ -49,6 +50,7 @@ export default class App extends Component {
                 <Switch>
                     <Route path="/profile"  render={() => ( !this.props.auth.isAuthenticated() ? ( <Redirect to="/"/> ) : ( <Profile {...this.props}/> ) )} />
                     <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
+                    <Route path="/star" render={() => <Rating />}/>
                     <Route render={(props) => <Body {...this.props} />}/>
                 </Switch>
                 

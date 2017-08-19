@@ -1,35 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import Comment from '../Comment/comment.jsx';
-import GoogleImg from "../googleImg.jsx";
-import {SearchResultKeys} from '../Search/Variables.jsx'
+import Rating from "../Rating/Rating.jsx";
+import {Rate} from "../Rating/Rate";
+import GoogleImg from "../GoogleImg.jsx";
+import {BuildingData} from "./Types/BuildingData";
+import Auth from '../Auth/Auth.jsx';
 
 export default class Building extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.state = {
-            imgSrc: "",
-        };
-    }
-
-    findAddress(addressDescription) {
-        let url = process.env.ENV.API_URL + "/search/query/firstorfail/" + addressDescription;
-
-        axios.get(url)
-            .then(result => {
-                if (result.data !== undefined) {
-                    console.log(result.data);
-
-                    this.setState({
-                        imgSrc: result.data.address,
-                    });
-                }
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
+        this.state = new BuildingData(this.props.match.params.address);
     }
 
     componentDidMount() {
@@ -37,17 +19,32 @@ export default class Building extends React.Component {
     }
 
     render() {
+        let ratings = [];
+
+        if (this.state._ratings !== undefined) {
+            let building_id = this.state.id;
+
+            ratings = this.state._ratings.map((rate, index) =>
+                <Rating key={index}
+                        rating_id={rate.id}
+                        rating={rate.value}
+                        label={rate.label}
+                        readOnly={Auth.isAuth()}
+                        building_id={building_id}
+                />);
+        }
+
         return (
-            <div className="container-fluid building-page">
-                <GoogleImg src={this.props.match.params.address}/>
+            <div className="container-fluid">
+                {/*<GoogleImg src={this.state.address}/>*/}
 
                 <div className="col-12">
-                    <h3 className="address">{this.props.match.params.address}</h3>
+                    <h3 className="address">{this.state._address}</h3>
                 </div>
 
-                {/*<div className="col-12 ratings-wrapper">*/}
-                {/*<Ratings ratings={this.state.address.ratings}/>*/}
-                {/*</div>*/}
+                <div className="col-12 ratings-wrapper">
+                    {ratings}
+                </div>
 
                 {/*<div className="col-12 comments-wrapper">*/}
                 {/*<Comment ref={(commentRef) => {*/}
@@ -56,5 +53,24 @@ export default class Building extends React.Component {
                 {/*</div>*/}
             </div>
         );
+    }
+
+    /**
+     * find address by querying the API with string representing a full address.
+     * @param addressDescription string - full address
+     */
+    findAddress(addressDescription) {
+        let url = process.env.ENV.API_URL + "/search/query/firstorfail/" + addressDescription;
+
+        axios.get(url)
+            .then(result => {
+                if (result.data !== undefined) {
+                    let buildingData = BuildingData.createFromDataSet(result.data);
+                    this.setState(buildingData);
+                }
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
     }
 }
