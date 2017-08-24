@@ -6,5 +6,3 @@ export const AUTH_CONFIG = {
     callbackUrl: process.env.ENV.AUTH_CONFIG_CALLBACK_URL,
     response_type: 'code'
 };
-
-export const STATUS_SUCCESS = 200;

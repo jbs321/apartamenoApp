@@ -52,7 +52,7 @@ export default class Rating extends React.Component {
                     user_id: 2,
                     rate: newValue
             },{
-                baseURL: 'http://api.apartamento.ca/api',
+                baseURL: process.env.ENV.API_URL,
                 responseType: 'json'
             }).then(((result) => {
                 console.log("success");
@@ -93,7 +93,6 @@ export default class Rating extends React.Component {
             //push star to stars array
             stars.push(<IconButton touch={true}
                                    tooltip={tooltip}
-                                   onTouchTap={this.props.saySomething}//this.handleClick.bind(this, i)}
                                    tooltipPosition={TOOLTIP_POSITION}
                                    key={i}>{icon}</IconButton>);
         }

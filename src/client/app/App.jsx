@@ -3,9 +3,9 @@ import {Redirect, Switch, Route} from 'react-router-dom';
 import Footer from "./componenets/Footer/footer.jsx";
 import Body from "./componenets/Body/body.jsx";
 import Building from "./componenets/Building/building.jsx";
-import Profile from "./componenets/Profile/Profile.jsx";
-import Rating from "./componenets/Rating/Rating.jsx";
+import ProfileContainer from "./componenets/Profile/ProfileContainer.jsx";
 import Auth from './componenets/Auth/Auth.jsx';
+import RegisterContainer from "./componenets/Form/RegisterContainer.jsx";
 
 export default class App extends Component {
     constructor(props) {
@@ -17,15 +17,15 @@ export default class App extends Component {
     }
 
     render() {
-        console.log(Auth.isAuth());
         return (
             <div className="App">
                     <Switch>
                         <Route path="/profile" render={(props) => (
                             Auth.isAuth()
-                            ? ( <Profile /> )
+                            ? ( <ProfileContainer /> )
                             : ( <Redirect to="/"/> )
                         )} />
+                        <Route path="/register" render={(props) => <RegisterContainer {...props}/>}/>
                         <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
                         <Route render={(props) => <Body {...this.props} />}/>
                     </Switch>

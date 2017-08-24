@@ -1,6 +1,6 @@
 import history from "../../History.jsx"
 import {getAuthorizeParams} from './Helper.jsx';
-import {AUTH_CONFIG, STATUS_SUCCESS} from './Variables.jsx';
+import {AUTH_CONFIG} from './Variables.jsx';
 import axios from 'axios';
 
 let qs = require('qs');
@@ -13,9 +13,7 @@ export default class Auth {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
-        // this.isAuthenticated = this.isAuthenticated.bind(this);
         this.getAccessToken = this.getAccessToken.bind(this);
-        // this.getProfile = this.getProfile.bind(this);
     }
 
     handleAuthentication(code) {
@@ -32,8 +30,8 @@ export default class Auth {
                 client_secret: AUTH_CONFIG.clientSecret,
             }), {baseURL: process.env.ENV.API_URL_AUTH}
         ).then((result) => {
-            console.log('im authenticated');
             this.setSession(result.data);
+            history.replace('/');
 
         }).catch((err) => {
             console.log(err);
