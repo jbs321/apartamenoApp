@@ -18,11 +18,12 @@ export default class Building extends React.Component {
         this.findAddress(this.props.match.params.address);
     }
 
+
     render() {
         let ratings = [];
 
         if (this.state._ratings !== undefined) {
-            let building_id = this.state.id;
+            let building_id = this.state._id;
 
             ratings = this.state._ratings.map((rate, index) =>
                 <Rating key={index}
@@ -30,33 +31,26 @@ export default class Building extends React.Component {
                         rating={rate.value}
                         label={rate.label}
                         readOnly={Auth.isAuth()}
-                        building_id={building_id}
-                />);
+                        building_id={building_id}/>);
         }
 
         return (
-            <div className="container-fluid">
-                {/*<GoogleImg src={this.state.address}/>*/}
+                <div className="container-fluid">
+                    {/*<GoogleImg src={this.state.address}/>*/}
 
-                <div className="col-12">
-                    <h3 className="address">{this.state._address}</h3>
+                    <div className="col-12">
+                        <h3 className="address">{this.state._address}</h3>
+                    </div>
+
+                    <div className="col-12 ratings-wrapper">
+                        {ratings}
+                    </div>
                 </div>
-
-                <div className="col-12 ratings-wrapper">
-                    {ratings}
-                </div>
-
-                {/*<div className="col-12 comments-wrapper">*/}
-                {/*<Comment ref={(commentRef) => {*/}
-                {/*this.commentRef = commentRef;*/}
-                {/*}} comments={this.state.address.comments}/>*/}
-                {/*</div>*/}
-            </div>
         );
     }
 
     /**
-     * find address by querying the API with string representing a full address.
+     * find address    <div classhe API with string representing a full address.
      * @param addressDescription string - full address
      */
     findAddress(addressDescription) {

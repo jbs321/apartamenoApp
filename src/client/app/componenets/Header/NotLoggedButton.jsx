@@ -10,9 +10,7 @@ export default class NotLoggedButton extends React.Component {
             <IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
                       anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                       iconButtonElement={
-                          <IconButton>
-                              <MoreVertIcon/>
-                          </IconButton>
+                          <IconButton><MoreVertIcon/></IconButton>
                       }
                       onItemTouchTap={this.props.auth.login.bind(this)}>
                 <MenuItem primaryText="Log In/Sign Up"/>

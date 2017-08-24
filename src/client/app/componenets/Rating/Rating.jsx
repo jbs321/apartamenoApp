@@ -32,6 +32,7 @@ export default class Rating extends React.Component {
     }
 
     handleClick(index) {
+
         if (!this.isReadOnly()) {
             let current = this.state;
             let newValue = index + 1;
@@ -45,17 +46,21 @@ export default class Rating extends React.Component {
         if (!this.isReadOnly()) {
             let building_id =  this.building_id;
 
-            axios({
-                method: "PUT",
-                url: '/building/' + building_id + '/rating/' + rate._id,
-                data: {
-                    rating: {
-                        value: newValue,
-                    }
-                }
+            axios.put('/building/' + building_id + '/rating/' + rate._id, {
+                    building_id: building_id,
+                    rating_id: rate._id,
+                    user_id: 2,
+                    rate: newValue
+            },{
+                baseURL: 'http://api.apartamento.ca/api',
+                responseType: 'json'
             }).then(((result) => {
-
-            }));
+                console.log("success");
+            })).catch((err) => {
+                if(err.response) {
+                    alert(err.response.data, err.response.status);
+                }
+            });
         }
     }
 
@@ -88,7 +93,7 @@ export default class Rating extends React.Component {
             //push star to stars array
             stars.push(<IconButton touch={true}
                                    tooltip={tooltip}
-                                   onTouchTap={this.handleClick.bind(this, i)}
+                                   onTouchTap={this.props.saySomething}//this.handleClick.bind(this, i)}
                                    tooltipPosition={TOOLTIP_POSITION}
                                    key={i}>{icon}</IconButton>);
         }

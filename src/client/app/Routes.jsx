@@ -9,8 +9,12 @@ import {MuiThemeProvider} from 'material-ui/styles';
 const auth = new Auth();
 
 const handleAuthentication = (nextState, replace) => {
-    if (/access_token|id_token|error/.test(nextState.location.hash)) {
-        auth.handleAuthentication();
+    if (/code/.test(nextState.location.search)) {
+        let url = new URL(window.location.href);
+        let code = url.searchParams.get("code");
+        auth.handleAuthentication(code);
+    } else {
+        throw new Error('code missing');
     }
 };
 
@@ -18,11 +22,15 @@ export const makeMainRoutes = () => {
     return (
         <BrowserRouter history={history} component={App}>
             <MuiThemeProvider>
-                <div>
-                    <Route path="/callback" render={(props) => { handleAuthentication(props); return <Callback {...props} /> }}/>
-                    <Route path="/"         render={(props) => <App auth={auth} {...props} />} />
+                <div className="app-container" classID="app-container">
+                    <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
+                    <Route path="/callback" render={(props) => {
+                        //entry point to authentication response from api
+                        handleAuthentication(props);
+                        return <Callback {...props} />
+                    }}/>
                 </div>
             </MuiThemeProvider>
         </BrowserRouter>
     );
-}
+};

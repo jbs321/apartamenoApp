@@ -1,33 +1,44 @@
 import React  from 'react';
-import {Panel, ControlLabel, Glyphicon} from 'react-bootstrap';
+import {Panel} from 'react-bootstrap';
 import './Profile.css';
+import {ProfileData} from "./Types/ProfileData";
+import Auth from "../Auth/Auth.jsx";
+import history from "../../History.jsx"
 
 export default class Profile extends React.Component {
-    componentWillMount() {
-        this.setState({profile: {}});
-        const {userProfile, getProfile} = this.props.auth;
-        if (!userProfile) {
-            getProfile((err, profile) => {
-                this.setState({profile});
-            });
-        } else {
-            this.setState({profile: userProfile});
+    constructor() {
+        super();
+
+        if(!Auth.isAuth()) {
+            history.replace('/');
         }
+
+        let profileData = new ProfileData();
+        profileData._email ="";
+        profileData._first_name ="";
+        profileData._last_name ="";
+
+        this.state = profileData;
+    }
+
+    componentDidMount() {
+        Auth.getProfile((profile) => {
+            this.setState({
+                _first_name: profile.first_name,
+                _last_name: profile.last_name,
+                _email: profile.email,
+            });
+        });
     }
 
     render() {
-        const {profile} = this.state;
         return (
             <div className="container">
                 <div className="profile-area">
-                    <h1>{profile.name}</h1>
+                    <h1>{this.state._first_name} {this.state._last_name}</h1>
                     <Panel header="Profile">
-                        <img src={profile.picture} alt="profile"/>
-                        <div>
-                            <ControlLabel><Glyphicon glyph="user"/> Nickname</ControlLabel>
-                            <h3>{profile.nickname}</h3>
-                        </div>
-                        <pre>{JSON.stringify(profile, null, 2)}</pre>
+                        <img src={this.state._profileImg} style={{height:"100px", width:"100px"}}/>
+                        <pre>{JSON.stringify(this.state, null, 2)}</pre>
                     </Panel>
                 </div>
             </div>
