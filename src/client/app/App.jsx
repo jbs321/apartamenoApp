@@ -6,6 +6,7 @@ import Building from "./componenets/Building/building.jsx";
 import ProfileContainer from "./componenets/Profile/ProfileContainer.jsx";
 import Auth from './componenets/Auth/Auth.jsx';
 import RegisterContainer from "./componenets/Form/RegisterContainer.jsx";
+import Header from "./componenets/Header/Header.jsx";
 
 export default class App extends Component {
     constructor(props) {
@@ -19,17 +20,20 @@ export default class App extends Component {
     render() {
         return (
             <div className="App">
-                    <Switch>
-                        <Route path="/profile" render={(props) => (
-                            Auth.isAuth()
-                            ? ( <ProfileContainer /> )
+                <Header {...this.props} auth={this.props.auth}/>
+
+                <Switch>
+                    <Route path="/profile" render={(props) => (
+                        Auth.isAuth()
+                            ? ( <ProfileContainer/> )
                             : ( <Redirect to="/"/> )
-                        )} />
-                        <Route path="/register" render={(props) => <RegisterContainer {...props}/>}/>
-                        <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
-                        <Route render={(props) => <Body {...this.props} />}/>
-                    </Switch>
-                    <Footer/>
+                    )}/>
+                    <Route path="/register" render={(props) => <RegisterContainer {...props}/>}/>
+                    <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
+                    <Route render={(props) => <Body {...this.props} />}/>
+                </Switch>
+
+                <Footer/>
             </div>
         );
     }

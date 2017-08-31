@@ -1,38 +1,59 @@
 import React, {Component} from 'react';
 import Register from "./Register.jsx";
+import axios from 'axios';
+
+let qs = require('qs');
 
 export default class RegisterContainer extends Component {
     constructor() {
         super();
+
+        this.formFields = [
+            'firstName',
+            'lastName',
+            'email',
+            'address',
+            'unitNumber',
+            'phoneNumber',
+            'password',
+            'rePassword',
+        ];
+
         this.onSubmit = this.onSubmit.bind(this);
+        this.register = this.register.bind(this);
     }
 
-    onSubmit(val, somethign) {
-        console.log(val, somethign);
-        // e.preventDefault();
-        // console.log(this.toJSONString(e.target));
-    }
+    onSubmit(event) {
+        event.preventDefault();
 
-    toJSONString( form ) {
-        let obj = {};
-        let elements = form.querySelectorAll("input, select, textarea");
-
-        for (let i = 0; i < elements.length; ++i) {
-            let element = elements[i];
-            let name = element.name;
-            let value = element.value;
-
-            if (name) {
-                obj[name] = value;
-            }
+        if (event === undefined) {
+            throw new Error("Event doesn't exist");
         }
 
-        return JSON.stringify( obj );
+        let formData = {};
+        this.formFields.forEach(field => {
+            if (event.target[field] === undefined) {
+                throw new Error(field + "doesn't exit");
+            }
+
+            formData[field] = event.target[field].value;
+        });
+
+        this.register(formData);
+    }
+
+    register(data) {
+        axios.post(process.env.ENV.API_URL + "/register", qs.stringify(data))
+        .then((result) => {
+            console.log(result.data);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {
         return (
-            <Register onSubmit={(val) => this.onSubmit(val)} />
+            <Register onSubmit={this.onSubmit}/>
         );
     }
 }
