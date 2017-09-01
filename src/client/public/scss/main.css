@@ -327,15 +327,6 @@ html {
       height: 4%;
       margin: 0 0 10px 0; }
 
-.building-page .img-section {
-  width: 100%; }
-  @media (min-width: 1200px) {
-    .building-page .img-section {
-      height: 600px; } }
-  .building-page .img-section img {
-    height: 100%;
-    width: 100%; }
-
 .rating section {
   width: 300px;
   text-align: center;
@@ -368,5 +359,14 @@ html {
   display: block;
   margin: 0 auto;
   color: #999; }
+
+.building-page .img-section {
+  width: 100%; }
+  @media (min-width: 1200px) {
+    .building-page .img-section {
+      height: 600px; } }
+  .building-page .img-section img {
+    height: 100%;
+    width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
