@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import Rating from "../Rating/Rating.jsx";
-import {Rate} from "../Rating/Rate";
 import GoogleImg from "../GoogleImg.jsx";
 import MapsImage from '../MapsImage.jsx';
-
+import Auth from '../Auth/Auth.jsx';
+import RatingSection from '../Rating/RatingSection.jsx';
+import {BuildingData} from './Types/BuildingData';
 
 export default class Building extends React.Component {
     constructor(props) {
@@ -41,8 +41,8 @@ export default class Building extends React.Component {
                 {/*<GoogleImg src={this.state.address}/>*/}
             <div className="container-fluid building-page" style={{padding: 0}}>
                 <div className="img-section">
-                    <GoogleImg src={this.props.address} />
-                    <MapsImage address={this.props.address} width={300} height={300} zDepth={3}/>
+                    <GoogleImg src={this.props.match.params.address} />
+                    <MapsImage address={this.props.match.params.address} width={300} height={300} zDepth={3}/>
                 </div>
 
                 <div className="col-12">

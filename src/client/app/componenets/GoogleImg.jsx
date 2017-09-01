@@ -30,7 +30,7 @@ export default class GoogleImg extends React.Component {
     render() {
         return (<img onError={this.handleError.bind(this)}
                      src={this.state.src}
-                     className="img-responsive"
+                     className={this.props.className}
                      style={{
                          maxHeight: "800px"
                      }}

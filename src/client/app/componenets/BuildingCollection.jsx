@@ -3,7 +3,7 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import axios from 'axios';
-import FontIcon from 'material-ui/FontIcon';
+import GoogleImg from './GoogleImg.jsx';
 import FlatButton from 'material-ui/FlatButton';
 
 const styles = {

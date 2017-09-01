@@ -5,6 +5,7 @@ import history from "../../History.jsx"
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 import LoginButton from "./LoginButton.jsx";
 import Auth from '../Auth/Auth.jsx';
+import TopMenuContainer from './TopMenuContainer.jsx';
 
 export default class HeaderContainer extends React.Component {
 
@@ -12,6 +13,8 @@ export default class HeaderContainer extends React.Component {
         super(props);
         this.state = {};
         this.state.logged = Auth.isAuth();
+
+        this.handleNavigation = this.handleNavigation.bind(this);
     }
 
     handleNavigation(event, keyboardFocused) {
@@ -39,11 +42,13 @@ export default class HeaderContainer extends React.Component {
     render() {
         return (
                 <header className="header">
-                    <AppBar style={{color: "green",background: "inherit",}}
-                            iconElementRight={
-                                <LoginButton {...this.props} itemHandle={this.handleNavigation.bind(this)}/>
-                            }
-                            showMenuIconButton={false}/>
+                    {/*<AppBar style={{color: "green",background: "inherit",}}*/}
+                            {/*iconElementRight={*/}
+                                {/*<LoginButton {...this.props} itemHandle={this.handleNavigation.bind(this)}/>*/}
+                            {/*}*/}
+                            {/*showMenuIconButton={false}/>*/}
+
+                    <TopMenuContainer itemHandle={this.handleNavigation}/>
 
                     <div className="header-banner"></div>
 

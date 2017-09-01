@@ -1,4 +1,5 @@
 import React from 'react';
+import Auth from '../Auth/Auth.jsx';
 import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
@@ -7,32 +8,14 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 
 export default class LoggedButton extends React.Component {
-    getProfile() {
-        const {userProfile, getProfile} = this.props.auth;
-
-        let profileLocal = {};
-
-        if (!userProfile) {
-            getProfile((err, profile) => {
-                profileLocal = profile;
-            });
-        } else {
-            profileLocal = userProfile;
-        }
-
-        return profileLocal;
-    }
-
     render() {
-        let profileLocal = this.getProfile();
-
         return (
             <IconMenu targetOrigin={{horizontal: 'right', vertical: 'top'}}
                       anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                       onItemTouchTap={this.props.itemHandle}
                       iconButtonElement={
                           <IconButton className="loginButton" style={{width: 80}}>
-                              <Avatar src={profileLocal.picture} size={30}/>
+                              <Avatar src={"/public/img/profileImg.png"} size={30}/>
                               <MoreVertIcon style={{float: 'right'}}/>
                           </IconButton>
                       }>
