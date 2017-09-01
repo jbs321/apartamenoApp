@@ -5,7 +5,7 @@ export class ProfileData {
     _profileImg;
 
     constructor() {
-        this.profileImg = "/public/img/profileImg.png";
+        this._profileImg = "/public/img/profileImg.png";
     }
 
     get first_name() {

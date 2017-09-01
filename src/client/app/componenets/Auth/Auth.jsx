@@ -10,8 +10,6 @@ export default class Auth {
     userProfile;
 
     constructor() {
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
         this.getAccessToken = this.getAccessToken.bind(this);
     }
@@ -31,7 +29,10 @@ export default class Auth {
             }), {baseURL: process.env.ENV.API_URL_AUTH}
         ).then((result) => {
             this.setSession(result.data);
-            history.replace('/');
+
+            setTimeout(() => {
+                 history.replace('/');
+            }, '2000');
 
         }).catch((err) => {
             console.log(err);
@@ -45,7 +46,7 @@ export default class Auth {
             });
     }
 
-    login() {
+    static login() {
         let authrizeParams = getAuthorizeParams();
 
         if (!authrizeParams) {
@@ -74,7 +75,7 @@ export default class Auth {
         localStorage.setItem('refresh_token', authResult.refresh_token);
     }
 
-    logout() {
+    static logout() {
         localStorage.removeItem('token_type');
         localStorage.removeItem('expires_in');
         localStorage.removeItem('access_token');
@@ -85,7 +86,7 @@ export default class Auth {
     }
 
     static isAuth() {
-        if (!localStorage.getItem('expires_at')) {
+        if (!localStorage.getItem('expires_in')) {
             return false;
         }
 

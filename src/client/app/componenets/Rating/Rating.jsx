@@ -17,47 +17,47 @@ export default class Rating extends React.Component {
     constructor(props) {
         super(props);
 
-        let id    = this.props.rating_id;
+        let id = this.props.rating_id;
         let label = this.props.label;
         let value = this.props.rating;
         let readOnly = true;
 
         this.building_id = this.props.building_id;
 
-        if(this.props.readOnly !== undefined) {
+        if (this.props.readOnly !== undefined) {
             readOnly = this.props.readOnly;
         }
 
         this.state = new Rate(id, label, value, readOnly);
     }
 
-    handleClick(index) {
-
-        if (!this.isReadOnly()) {
-            let current = this.state;
-            let newValue = index + 1;
-            this.setState(new Rate(current._id, current._label, newValue, current._readOnly));
+    handleClick(rate) {
+        if (this.isReadOnly()) {
+            return false;
         }
 
-        this.updateRate(this.state, index);
+        let current  = this.state;
+        let newValue = rate + 1;
+        this.setState(new Rate(current._id, current._label, newValue, current._readOnly));
+        this.updateRate(this.state, newValue);
     }
 
     updateRate(rate, newValue) {
+        console.log(newValue);
         if (!this.isReadOnly()) {
-            let building_id =  this.building_id;
+            let building_id = this.building_id;
 
             axios.put('/building/' + building_id + '/rating/' + rate._id, {
-                    building_id: building_id,
-                    rating_id: rate._id,
-                    user_id: 2,
-                    rate: newValue
-            },{
+                building_id: building_id,
+                rating_id: rate._id,
+                rate: newValue
+            }, {
                 baseURL: process.env.ENV.API_URL,
                 responseType: 'json'
             }).then(((result) => {
                 console.log("success");
             })).catch((err) => {
-                if(err.response) {
+                if (err.response) {
                     alert(err.response.data, err.response.status);
                 }
             });
@@ -67,7 +67,7 @@ export default class Rating extends React.Component {
     isReadOnly() {
         let flag = true;
 
-        if(this.state._readOnly !== undefined) {
+        if (this.state._readOnly !== undefined) {
             flag = this.state._readOnly;
         } else {
             flag = !Auth.isAuth();
@@ -92,6 +92,7 @@ export default class Rating extends React.Component {
 
             //push star to stars array
             stars.push(<IconButton touch={true}
+                                   onTouchTap={(element) => this.handleClick(i, element)}
                                    tooltip={tooltip}
                                    tooltipPosition={TOOLTIP_POSITION}
                                    key={i}>{icon}</IconButton>);

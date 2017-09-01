@@ -10,9 +10,10 @@ export default class GoogleImg extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.src);
         if(this.props.src !== undefined || this.props.src.includes("not_found.jpg")) {
                 this.setState({
-                src: process.env.ENV.API_URL + "/google-images/" + this.props.src,
+                src: process.env.ENV.API_URL + "/street-view/" + this.props.src,
             });
         }
     }
@@ -31,9 +32,6 @@ export default class GoogleImg extends React.Component {
         return (<img onError={this.handleError.bind(this)}
                      src={this.state.src}
                      className="img-responsive"
-                     style={{
-                         maxHeight: "800px"
-                     }}
         />);
     }
 }

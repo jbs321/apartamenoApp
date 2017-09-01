@@ -1,47 +1,14 @@
 .building-page {
-  top: -64px;
-  padding: 0;
-
-  @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-  .img-responsive {
+  .img-section {
     width: 100%;
-  }
 
-  .address {
-    margin: 10px 0;
-  }
-
-  .ratings-wrapper {
-    margin: 0;
-
-    .bg {
-      background: #0288D1;
+    @include breakpoint(lg) {
+      height: 600px;
     }
 
-    .rating-block {
-      height: 100px;
-      padding: 10px 0;
-      text-align: center;
-
-      .rsr-root input {
-        display: none;
-
-      }
-    }
-  }
-
-  .comments-wrapper {
-    margin: 0;
-    text-align: justify;
-
-    .comment-block {
-      min-height: 70px;
-      padding: 20px;
-
-      &:nth-child(2n) {
-        background: $accent-color;
-      }
+    img {
+      height: 100%;
+      width: 100%;
     }
   }
 }

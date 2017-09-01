@@ -1,3 +1,19 @@
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin animation($animation) {
+  -moz-animation: $animation;
+  -o-animation: $animation;
+  -ms-animation: $animation;
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
 @mixin breakpoint($class) {
 
   @if $class == xs {

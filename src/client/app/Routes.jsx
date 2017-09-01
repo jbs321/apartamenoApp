@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route, Router} from 'react-router-dom';
 import Auth from "./componenets/Auth/Auth.jsx";
 import Callback from "./componenets/Callback/Callback.jsx";
 import App from "./App.jsx";
@@ -20,7 +20,7 @@ const handleAuthentication = (nextState, replace) => {
 
 export const makeMainRoutes = () => {
     return (
-        <BrowserRouter history={history} component={App}>
+        <Router history={history}>
             <MuiThemeProvider>
                 <div className="app-container" classID="app-container">
                     <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
@@ -31,6 +31,6 @@ export const makeMainRoutes = () => {
                     }}/>
                 </div>
             </MuiThemeProvider>
-        </BrowserRouter>
+            </Router>
     );
 };

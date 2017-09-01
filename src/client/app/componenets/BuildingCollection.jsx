@@ -59,7 +59,7 @@ export default class BuildingCollection extends React.Component {
                                 titleStyle={styles.titleStyle}
                                 titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                             >
-                                <img src={building.imgSrc} className="card-image"/>
+                                <img src={process.env.ENV.API_URL + "/street-view/" + building.address} className="card-image"/>
                             </GridTile>
                         )}
                     </GridList>

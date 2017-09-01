@@ -9,27 +9,30 @@ import Profile from "./Profile.jsx";
 export default class ProfileContainer extends React.Component {
     constructor() {
         super();
-        if(!Auth.isAuth()) {
+        if (!Auth.isAuth()) {
             history.replace('/');
         }
 
         let profileData = new ProfileData();
-        profileData._email ="";
-        profileData._first_name ="";
-        profileData._last_name ="";
+        profileData._email = "";
+        profileData._first_name = "";
+        profileData._last_name = "";
+        profileData._profileImg = "/public/img/profileImg.png";
 
-        this.state = profileData;
+        this.state = {profile: profileData};
     }
 
     componentDidMount() {
         Auth.getProfile((profile) => {
+            let profileData = new ProfileData();
+            profileData.email = profile.email;
+            profileData.first_name(profile.first_name);
+            profileData.last_name(profile.last_name);
+            profileData.profileImg(profile.picture);
+
             this.setState(
                 {
-                    profile: {
-                        _first_name: profile.first_name,
-                        _last_name: profile.last_name,
-                        _email: profile.email,
-                    }
+                    profile: profileData
                 });
         });
     }
