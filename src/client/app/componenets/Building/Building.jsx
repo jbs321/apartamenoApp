@@ -5,6 +5,7 @@ import MapsImage from '../MapsImage.jsx';
 import Auth from '../Auth/Auth.jsx';
 import RatingSection from '../Rating/RatingSection.jsx';
 import {BuildingData} from './Types/BuildingData';
+import TopMenuContainer from '../Header/TopMenuContainer.jsx';
 
 export default class Building extends React.Component {
     constructor(props) {
@@ -37,31 +38,31 @@ export default class Building extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                {/*<GoogleImg src={this.state.address}/>*/}
-            <div className="container-fluid building-page" style={{padding: 0}}>
-                <div className="img-section">
-                    <GoogleImg src={this.props.match.params.address} />
-                    <MapsImage address={this.props.match.params.address} width={300} height={300} zDepth={3}/>
-                </div>
+            <div className="container-fluid" style={{padding: 0}}>
+                <TopMenuContainer itemHandle={this.handleNavigation}/>
+                <div className="container-fluid building-page" style={{padding: 0}}>
+                    <div className="img-section">
+                        <GoogleImg src={this.props.match.params.address}/>
+                        <MapsImage address={this.props.match.params.address} width={300} height={300} zDepth={3}/>
+                    </div>
 
-                <div className="col-12">
-                    <h3 className="address">{this.state._address}</h3>
-                </div>
-                <div className="col-12">
+                    <div className="col-12">
+                        <h3 className="address">{this.state._address}</h3>
+                    </div>
+                    <div className="col-12">
 
-                    <h3 className="address">{this.props.address}</h3>
-                </div>
+                        <h3 className="address">{this.props.address}</h3>
+                    </div>
 
-                <div className="col-12 ratings-wrapper">
-                    <RatingSection readOnly={this.isReadOnly} handleClick={this.updateRate}
-                                   ratings={this.state._ratings} style={{
-                        margin: 0,
-                        padding: "20px",
-                        background: "#efefef",
-                    }}/>
+                    <div className="col-12 ratings-wrapper">
+                        <RatingSection readOnly={this.isReadOnly} handleClick={this.updateRate}
+                                       ratings={this.state._ratings} style={{
+                            margin: 0,
+                            padding: "20px",
+                            background: "#efefef",
+                        }}/>
+                    </div>
                 </div>
-            </div>
                 <div className="col-12 ratings-wrapper">
                     {this.props.ratings}
                 </div>

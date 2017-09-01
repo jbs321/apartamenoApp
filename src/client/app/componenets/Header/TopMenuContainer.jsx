@@ -17,6 +17,7 @@ const NotLoggedButton = (props) => (
         iconButtonElement={<IconButton> <MoreVertIcon /></IconButton>}
         anchorOrigin={MenuItemStyle}
         targetOrigin={MenuItemStyle}>
+        <MenuItem key={LEGGED_MENU_ITEMS.HOME} primaryText="Home"/>
         <MenuItem key={LEGGED_MENU_ITEMS.LOGIN} primaryText="Log in"/>
         <MenuItem key={LEGGED_MENU_ITEMS.REGISTER} primaryText="Register"/>
         <MenuItem key={LEGGED_MENU_ITEMS.HELP} primaryText="Help"/>
@@ -29,6 +30,7 @@ const LoggedButton = (props) => (
         iconButtonElement={<IconButton style={{width:"100px"}}><Avatar src="/public/img/profileImg.png" size={30}/></IconButton>}
         anchorOrigin={MenuItemStyle}
         targetOrigin={MenuItemStyle}>
+        <MenuItem key={LEGGED_MENU_ITEMS.HOME} primaryText="Home"/>
         <MenuItem key={LEGGED_MENU_ITEMS.PROFILE} primaryText="Profile"/>
         <MenuItem key={LEGGED_MENU_ITEMS.LOGOUT} primaryText="Log Out"/>
         <MenuItem key={LEGGED_MENU_ITEMS.HELP} primaryText="Help"/>
@@ -46,6 +48,9 @@ export default class TopMenuContainer extends React.Component {
         let key = parseInt(child.key);
 
         switch (key) {
+            case LEGGED_MENU_ITEMS.HOME:
+                history.replace('/body');
+                break;
             case LEGGED_MENU_ITEMS.LOGIN:
                 Auth.login();
                 break;

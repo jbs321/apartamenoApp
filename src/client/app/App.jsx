@@ -27,7 +27,6 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <HeaderContainer {...this.props} auth={this.props.auth}/>
                 <Switch>
                     <Route path="/profile" render={(props) => (
                         Auth.isAuth()

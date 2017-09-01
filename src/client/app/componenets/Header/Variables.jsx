@@ -4,4 +4,5 @@ export const LEGGED_MENU_ITEMS = {
     PROFILE: 2,
     REGISTER: 3,
     HELP: 4,
+    HOME: 5,
 };
