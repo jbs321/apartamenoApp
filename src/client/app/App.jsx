@@ -33,6 +33,7 @@ export default class App extends React.Component {
                             ? ( <ProfileContainer/> )
                             : ( <Redirect to="/"/> )
                     )}/>
+                    <Route path="/login" render={(props) => <Login {...props}/>}/>
                     <Route path="/register" render={(props) => <RegisterContainer {...props}/>}/>
                     <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
                     <Route render={(props) => <Body {...this.props} />}/>

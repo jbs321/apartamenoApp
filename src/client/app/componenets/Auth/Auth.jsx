@@ -8,7 +8,6 @@ let qs = require('qs');
 export default class Auth {
 
     constructor() {
-        this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
         this.getAccessToken = this.getAccessToken.bind(this);
@@ -43,7 +42,7 @@ export default class Auth {
             });
     }
 
-    login() {
+    static login() {
         let authrizeParams = getAuthorizeParams();
 
         if (!authrizeParams) {

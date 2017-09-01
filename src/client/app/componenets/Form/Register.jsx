@@ -1,17 +1,45 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Register extends Component {
+export default class Register extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {a: 1, b: 2};
+        this.state = {};
+
+        this.formFields = [
+            'first_name',
+            'last_name',
+            'email',
+            'address',
+            'unit_number',
+            'phone_number',
+            'password',
+            'password_confirmation',
+        ];
+
+        //initialize attributes
+        this.formFields.forEach(field => {
+            this.state[field] = "";
+        });
+
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     onSubmit(event) {
         if (this.props.onSubmit !== undefined) {
             this.props.onSubmit(event);
+        }
+    }
+
+    onChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+
+        if(this.props.onChange !== undefined) {
+            this.props.onChange(event);
         }
     }
 
@@ -24,58 +52,72 @@ export default class Register extends Component {
                             <div className="panel-body">
                                 <form role="form" className="htmlForm-horizontal" onSubmit={this.onSubmit}>
                                     <div className="htmlForm-group">
-                                        <label htmlFor="firstName" className="col-md-4 control-label">First Name</label>
+                                        <label htmlFor="first_name" className="col-md-4 control-label">First
+                                            Name</label>
                                         <div className="col-md-6">
-                                            <input id="firstName" type="text" name="firstName" autoFocus="autoFocus" className="htmlForm-control" value="jacob"/>
+                                            <input id="first_name" type="text" name="first_name" onChange={this.onChange}
+                                                   className="htmlForm-control"
+                                                   value={this.state.first_name}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="lastName" className="col-md-4 control-label">Last Name</label>
+                                        <label htmlFor="last_name" className="col-md-4 control-label">Last Name</label>
                                         <div className="col-md-6">
-                                            <input id="lastName" type="text" name="lastName" autoFocus="autoFocus" className="htmlForm-control" value="balabanov"/>
+                                            <input id="last_name" type="text" name="last_name" onChange={this.onChange}
+                                                   className="htmlForm-control" value={this.state.last_name}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="email" className="col-md-4 control-label">E-Mail Address</label>
                                         <div className="col-md-6">
-                                            <input id="email" type="email" name="email" className="htmlForm-control" value="jacob@balabanov.ca"/>
+                                            <input id="email" type="email" name="email" className="htmlForm-control" onChange={this.onChange}
+                                                   value={this.state.email}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="address" className="col-md-4 control-label">Address</label>
                                         <div className="col-md-6">
-                                            <input id="address" type="address" name="address" className="htmlForm-control" value="Eli Cohen 22 bat yam"/>
+                                            <input id="address" type="address" name="address" onChange={this.onChange}
+                                                   className="htmlForm-control" value={this.state.address}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="unitNumber" className="col-md-4 control-label">Unit Number</label>
+                                        <label htmlFor="unit_number" className="col-md-4 control-label">Unit
+                                            Number</label>
                                         <div className="col-md-6">
-                                            <input id="unitNumber" type="number" min="1" name="unitNumber" className="htmlForm-control" value="6"/>
+                                            <input id="unit_number" type="number" min="1" name="unit_number" onChange={this.onChange}
+                                                   className="htmlForm-control" value={this.state.unit_number}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="phoneNumber" className="col-md-4 control-label">Phone Number</label>
+                                        <label htmlFor="phone_number" className="col-md-4 control-label">Phone
+                                            Number</label>
                                         <div className="col-md-6">
-                                            <input id="phoneNumber" type="" min="10" max="10" name="phoneNumber" className="htmlForm-control" value="7788820853"/>
+                                            <input id="phone_number" type="" min="10" max="10" name="phone_number" onChange={this.onChange}
+                                                   className="htmlForm-control" value={this.state.phone_number}/>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="password" className="col-md-4 control-label">Password</label>
                                         <div className="col-md-6">
-                                            <input id="password" type="password" name="password" className="htmlForm-control" value="Aa123456"/>
+                                            <input id="password" type="password" name="password" onChange={this.onChange}
+                                                   className="htmlForm-control" value={this.state.password}/>
                                         </div>
                                     </div>
 
                                     <div className="htmlForm-group">
-                                        <label htmlFor="rePassword" className="col-md-4 control-label">Confirm Password</label>
+                                        <label htmlFor="password_confirmation" className="col-md-4 control-label">Confirm
+                                            Password</label>
                                         <div className="col-md-6">
-                                            <input id="rePassword" type="password" name="password_confirmation" className="htmlForm-control" value="Aa123456"/>
+                                            <input id="password_confirmation" type="password" onChange={this.onChange}
+                                                   name="password_confirmation" className="htmlForm-control"
+                                                   value={this.state.password_confirmation}/>
                                         </div>
                                     </div>
 

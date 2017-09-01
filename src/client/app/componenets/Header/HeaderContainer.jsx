@@ -19,14 +19,16 @@ export default class HeaderContainer extends React.Component {
 
         switch (key) {
             case LEGGED_MENU_ITEMS.LOGIN:
-                console.log(process.env.ENV.API_URL_AUTH + "/oauth/authorize");
-                window.location.href = process.env.ENV.API_URL_AUTH + "/oauth/authorize";
+                Auth.login();
                 break;
             case LEGGED_MENU_ITEMS.LOGOUT:
                 this.props.auth.logout();
                 break;
             case LEGGED_MENU_ITEMS.PROFILE:
                 history.push('/profile');
+                break;
+            case LEGGED_MENU_ITEMS.REGISTER:
+                history.push('/register');
                 break;
             default:
                 console.log(key);

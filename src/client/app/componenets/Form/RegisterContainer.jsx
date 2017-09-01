@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Register from "./Register.jsx";
 import axios from 'axios';
+import isAuth from '../Auth/Auth.jsx';
 
 let qs = require('qs');
 
@@ -9,18 +10,23 @@ export default class RegisterContainer extends Component {
         super();
 
         this.formFields = [
-            'firstName',
-            'lastName',
+            'first_name',
+            'last_name',
             'email',
             'address',
-            'unitNumber',
-            'phoneNumber',
+            'unit_number',
+            'phone_number',
             'password',
-            'rePassword',
+            'password_confirmation',
         ];
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.register = this.register.bind(this);
+    }
+
+    onChange(event) {
+        console.log(event.target.value);
     }
 
     onSubmit(event) {
@@ -45,7 +51,11 @@ export default class RegisterContainer extends Component {
     register(data) {
         axios.post(process.env.ENV.API_URL + "/register", qs.stringify(data))
         .then((result) => {
-            console.log(result.data);
+            let isSaved = result.data;
+
+            if(isSaved) {
+                isAuth.login();
+            }
         }).catch((error) => {
             console.log(error);
         });
@@ -53,7 +63,7 @@ export default class RegisterContainer extends Component {
 
     render() {
         return (
-            <Register onSubmit={this.onSubmit}/>
+            <Register onSubmit={this.onSubmit} onChange={this.onChange}/>
         );
     }
 }

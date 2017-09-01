@@ -13,7 +13,7 @@ export default class LoginButton extends React.Component {
         if (Auth.isAuth()) {
             return (<LoggedButton auth={this.props.auth} itemHandle={this.props.itemHandle} {...this.props} />);
         } else {
-            return (<NotLoggedButton auth={this.props.auth} {...this.props}/>);
+            return (<NotLoggedButton auth={this.props.auth} itemHandle={this.props.itemHandle} {...this.props}/>);
         }
     }
 };
