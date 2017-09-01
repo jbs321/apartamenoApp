@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Register from "./Register.jsx";
 import axios from 'axios';
 import isAuth from '../Auth/Auth.jsx';
+import TopMenuContainer from '../Header/TopMenuContainer.jsx';
 
 let qs = require('qs');
 
@@ -63,7 +64,11 @@ export default class RegisterContainer extends Component {
 
     render() {
         return (
-            <Register onSubmit={this.onSubmit} onChange={this.onChange}/>
+            <div className="container-fluid" style={{padding:0}}>
+                <TopMenuContainer/>
+                <Register onSubmit={this.onSubmit} onChange={this.onChange}/>
+            </div>
+
         );
     }
 }

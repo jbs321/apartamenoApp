@@ -60,6 +60,9 @@ export default class TopMenuContainer extends React.Component {
             case LEGGED_MENU_ITEMS.PROFILE:
                 history.replace('/profile');
                 break;
+            case LEGGED_MENU_ITEMS.REGISTER:
+                history.replace('/register');
+                break;
             case LEGGED_MENU_ITEMS.HELP:
                 console.log('hahaha');
                 break;
