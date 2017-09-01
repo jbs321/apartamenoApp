@@ -7,8 +7,6 @@ let qs = require('qs');
 
 export default class Auth {
 
-    userProfile;
-
     constructor() {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
@@ -85,7 +83,7 @@ export default class Auth {
     }
 
     static isAuth() {
-        if (!localStorage.getItem('expires_at')) {
+        if (!localStorage.getItem('expires_in')) {
             return false;
         }
 

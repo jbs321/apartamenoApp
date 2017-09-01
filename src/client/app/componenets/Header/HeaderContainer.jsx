@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Search from "../Search/Search.jsx";
 import history from "../../History.jsx"
@@ -6,7 +6,7 @@ import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
 import LoginButton from "./LoginButton.jsx";
 import Auth from '../Auth/Auth.jsx';
 
-export default class Header extends Component {
+export default class HeaderContainer extends React.Component {
 
     constructor(props) {
         super(props);

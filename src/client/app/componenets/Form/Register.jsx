@@ -10,9 +10,7 @@ export default class Register extends Component {
     }
 
     onSubmit(event) {
-        event.preventDefault();
-
-        if(this.props.onSubmit !== undefined) {
+        if (this.props.onSubmit !== undefined) {
             this.props.onSubmit(event);
         }
     }
@@ -25,7 +23,6 @@ export default class Register extends Component {
                         <div className="panel panel-default">
                             <div className="panel-body">
                                 <form role="form" className="htmlForm-horizontal" onSubmit={this.onSubmit}>
-                                    {/*<input type="hidden" name="_token" value="gmdXurRIAOTCxEgPiGGP1QlhTB6JJyezvpw2Tgrr" />*/}
                                     <div className="htmlForm-group">
                                         <label htmlFor="firstName" className="col-md-4 control-label">First Name</label>
                                         <div className="col-md-6">

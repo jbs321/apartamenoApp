@@ -5,6 +5,7 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import axios from 'axios';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
+import GoogleImg from './GoogleImg.jsx';
 
 const styles = {
     root: {
@@ -59,7 +60,8 @@ export default class BuildingCollection extends React.Component {
                                 titleStyle={styles.titleStyle}
                                 titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                             >
-                                <img src={building.imgSrc} className="card-image"/>
+                                <GoogleImg src={building.address} className="card-image"/>
+                                {/*<img src={building.imgSrc} className="card-image"/>*/}
                             </GridTile>
                         )}
                     </GridList>

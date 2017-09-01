@@ -5,6 +5,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {LEGGED_MENU_ITEMS} from "./Variables.jsx";
+import Auth from '../Auth/Auth.jsx';
 
 export default class LoggedButton extends React.Component {
     getProfile() {
@@ -13,7 +14,7 @@ export default class LoggedButton extends React.Component {
         let profileLocal = {};
 
         if (!userProfile) {
-            getProfile((err, profile) => {
+            Auth.getProfile((err, profile) => {
                 profileLocal = profile;
             });
         } else {

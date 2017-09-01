@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "../Header/header.jsx";
 import BuildingCollection from '../BuildingCollection.jsx';
 
 export default class Body extends React.Component {
