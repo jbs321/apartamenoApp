@@ -1,38 +1,69 @@
 import React, {Component} from 'react';
 import Register from "./Register.jsx";
+import axios from 'axios';
+import isAuth from '../Auth/Auth.jsx';
+
+let qs = require('qs');
 
 export default class RegisterContainer extends Component {
     constructor() {
         super();
+
+        this.formFields = [
+            'first_name',
+            'last_name',
+            'email',
+            'address',
+            'unit_number',
+            'phone_number',
+            'password',
+            'password_confirmation',
+        ];
+
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.register = this.register.bind(this);
     }
 
-    onSubmit(val, somethign) {
-        console.log(val, somethign);
-        // e.preventDefault();
-        // console.log(this.toJSONString(e.target));
+    onChange(event) {
+        console.log(event.target.value);
     }
 
-    toJSONString( form ) {
-        let obj = {};
-        let elements = form.querySelectorAll("input, select, textarea");
+    onSubmit(event) {
+        event.preventDefault();
 
-        for (let i = 0; i < elements.length; ++i) {
-            let element = elements[i];
-            let name = element.name;
-            let value = element.value;
-
-            if (name) {
-                obj[name] = value;
-            }
+        if (event === undefined) {
+            throw new Error("Event doesn't exist");
         }
 
-        return JSON.stringify( obj );
+        let formData = {};
+        this.formFields.forEach(field => {
+            if (event.target[field] === undefined) {
+                throw new Error(field + "doesn't exit");
+            }
+
+            formData[field] = event.target[field].value;
+        });
+
+        this.register(formData);
+    }
+
+    register(data) {
+        axios.post(process.env.ENV.API_URL + "/register", qs.stringify(data))
+        .then((result) => {
+            let isSaved = result.data;
+
+            if(isSaved) {
+                isAuth.login();
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {
         return (
-            <Register onSubmit={(val) => this.onSubmit(val)} />
+            <Register onSubmit={this.onSubmit} onChange={this.onChange}/>
         );
     }
 }
