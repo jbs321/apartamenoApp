@@ -5,14 +5,15 @@ import {
     Route
 } from 'react-router-dom';
 import Auth from './componenets/Auth/Auth.jsx';
-import Body from "./componenets/Body/body.jsx";
-import Footer from "./componenets/Footer/footer.jsx";
-import HeaderContainer from "./componenets/Header/HeaderContainer.jsx";
-import Building from "./componenets/Building/building.jsx";
-import ProfileContainer from "./componenets/Profile/ProfileContainer.jsx";
-import RegisterContainer from "./componenets/Form/RegisterContainer.jsx";
-import TopMenuContainer from './componenets/Header/TopMenuContainer.jsx'
-import MapsImage from './componenets/MapsImage.jsx'
+
+//TODO:: remove next todos:
+import Placeholder from './componenets/Presentation/Placeholder.jsx';
+import Footer from "./componenets/Presentation/Footer/Footer.jsx";
+import HomePage from "./componenets/Pages/HomePage.jsx";
+import BuildingPage from "./componenets/Pages/BuildingPage.jsx";
+import RegisterPage from "./componenets/Pages/RegisterPage.jsx";
+import ProfilePage from "./componenets/Pages/ProfilePage.jsx";
+import Login from "./componenets/Presentation/Form/Login.jsx";
 
 
 export default class App extends React.Component {
@@ -28,15 +29,12 @@ export default class App extends React.Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/profile" render={(props) => (
-                        Auth.isAuth()
-                            ? ( <ProfileContainer/> )
-                            : ( <Redirect to="/"/> )
-                    )}/>
+                    <Route path="/profile" render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
+                    <Route path="/placeholder" render={(props) => <div style={{width:500, height:500}}><Placeholder/></div>}/>
                     <Route path="/login" render={(props) => <Login {...props}/>}/>
-                    <Route path="/register" render={(props) => <RegisterContainer {...props}/>}/>
-                    <Route path="/building/:address" render={(props) => <Building {...props}/>}/>
-                    <Route render={(props) => <Body {...this.props} />}/>
+                    <Route path="/register" render={(props) => <RegisterPage/>}/>
+                    <Route path="/building/:address" render={(props) => <BuildingPage address={props.match.params.address}/>}/>
+                    <Route render={(props) => <HomePage {...this.props} />}/>
                 </Switch>
 
                 <Footer/>

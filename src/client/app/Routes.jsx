@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Router} from 'react-router-dom';
 import Auth from "./componenets/Auth/Auth.jsx";
-import Callback from "./componenets/Callback/Callback.jsx";
 import App from "./App.jsx";
 import history from "./History.jsx";
 import {MuiThemeProvider} from 'material-ui/styles';
+import Callback from "./componenets/Presentation/Callback/Callback.jsx";
 
 const auth = new Auth();
 
@@ -23,11 +23,10 @@ export const makeMainRoutes = () => {
         <Router history={history}>
             <MuiThemeProvider>
                 <div className="app-container" classID="app-container">
-                    <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
+                    <Route path="/" render={(props) => <App/>}/>
                     <Route path="/callback" render={(props) => {
                         //entry point to authentication response from api
-                        handleAuthentication(props);
-                        return <Callback {...props} />
+                        handleAuthentication(props); return <Callback/>
                     }}/>
                 </div>
             </MuiThemeProvider>

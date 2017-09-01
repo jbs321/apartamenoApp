@@ -14,25 +14,76 @@
   animation: $animation;
 }
 
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
 @mixin breakpoint($class) {
 
   @if $class == xs {
-    @media (max-width: 767px) { @content; }
-  }
-
-  @else if $class == sm {
-    @media (min-width: 768px) { @content; }
-  }
-
-  @else if $class == md {
-    @media (min-width: 992px) { @content; }
-  }
-
-  @else if $class == lg {
-    @media (min-width: 1200px) { @content; }
-  }
-
-  @else {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
     @warn "Breakpoint mixin supports: xs, sm, md, lg";
   }
+}
+
+@mixin box-sizing($value...) {
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  box-sizing: $value;
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@mixin border-radius($value) {
+  -moz-border-radius: $value;
+  -webkit--radius: $value;
+  border-radius: $value;
+}
+
+@mixin background-size($value) {
+  -o-background-size: $value;
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  background-size: $value;
+}
+
+@mixin linear-gradient($angle,$gradient1, $gradient2) {
+  background-color: $gradient2; /* Fallback Color */
+  background-image: -webkit-gradient(linear, $angle, from($gradient1), to($gradient2)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($angle, $gradient1, $gradient2); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient($angle, $gradient1, $gradient2); /* FF3.6 */
+  background-image: -ms-linear-gradient($angle, $gradient1, $gradient2); /* IE10 */
+  background-image: -o-linear-gradient($angle, $gradient1, $gradient2); /* Opera 11.10+ */
+  background-image: linear-gradient($angle, $gradient1, $gradient2);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=$angle, StartColorStr='#{$gradient1}', EndColorStr='#{$gradient2}');
 }
