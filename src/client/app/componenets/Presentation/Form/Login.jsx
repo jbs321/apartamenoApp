@@ -23,6 +23,8 @@ export default class Login extends React.Component {
     onSubmit(event) {
         event.preventDefault();
 
+        console.log(event);
+
         if(this.props.onSubmit !== undefined) {
             this.props.onSubmit(event);
         }
@@ -52,15 +54,13 @@ export default class Login extends React.Component {
                                         <div className="form-group">
                                             <label htmlFor="email" className="col-md-4 control-label">E-Mail Address</label>
                                             <div className="col-md-6">
-                                                <input id="email" type="email" name="email" className="htmlForm-control" onChange={this.onChange}
-                                                       value={this.state.email}/>
+                                                <input id="email" type="email" name="email" className="htmlForm-control" onChange={this.onChange} value={this.state.email}/>
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="password" className="col-md-4 control-label">Password</label>
                                             <div className="col-md-6">
-                                                <input id="password" type="password" name="password" onChange={this.onChange}
-                                                       className="htmlForm-control" value={this.state.password}/>
+                                                <input id="password" type="password" name="password" onChange={this.onChange} className="htmlForm-control" value={this.state.password}/>
                                             </div>
                                         </div>
 

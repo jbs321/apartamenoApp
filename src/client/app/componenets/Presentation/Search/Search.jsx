@@ -49,7 +49,7 @@ export default class Search extends React.Component {
         this.syncRequests();
 
         if (searchText !== "" && searchText !== undefined) {
-            this.state.axiosRequest = axios.get(process.env.ENV.API_URL + "/google-places/" + searchText)
+            this.state.axiosRequest = axios.get(process.env.ENV.API_URL + "/search/query/" + searchText)
                 .then(res => {
                     if (res.data.length > 0) {
                         this.setState({

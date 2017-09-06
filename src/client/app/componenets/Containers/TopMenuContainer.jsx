@@ -24,10 +24,11 @@ const NotLoggedButton = (props) => (
     </IconMenu>
 );
 
-const LoggedButton = (props) => (
-    <IconMenu
+const LoggedButton = (props) => {
+    return <IconMenu
         onItemTouchTap={props.handleClick}
-        iconButtonElement={<IconButton style={{width:"100px"}}><Avatar src="/public/img/profileImg.png" size={30}/></IconButton>}
+        iconButtonElement={<IconButton style={{width: "100px"}}><Avatar src={props.avatar}
+                                                                        size={30}/></IconButton>}
         anchorOrigin={MenuItemStyle}
         targetOrigin={MenuItemStyle}>
         <MenuItem key={LEGGED_MENU_ITEMS.HOME} primaryText="Home"/>
@@ -35,11 +36,15 @@ const LoggedButton = (props) => (
         <MenuItem key={LEGGED_MENU_ITEMS.LOGOUT} primaryText="Log Out"/>
         <MenuItem key={LEGGED_MENU_ITEMS.HELP} primaryText="Help"/>
     </IconMenu>
-);
+};
 
 export default class TopMenuContainer extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            avatar: "/public/img/profileImg.png",
+        };
 
         this.handleNavigation = this.handleNavigation.bind(this);
     }
@@ -72,13 +77,25 @@ export default class TopMenuContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if(Auth.isAuth()) {
+            Auth.getProfile(profile => {
+                if(profile.avatar !== undefined) {
+                    this.setState({
+                        avatar: profile.avatar,
+                    });
+                }
+            });
+        }
+    }
+
     render() {
         return (
             <AppBar showMenuIconButton={false}
                     style={{background: 'inherit'}}
                     iconElementRight={
                         Auth.isAuth()
-                            ? <LoggedButton handleClick={this.handleNavigation}/>
+                            ? <LoggedButton handleClick={this.handleNavigation} avatar={this.state.avatar}/>
                             : <NotLoggedButton handleClick={this.handleNavigation}/>
                     }
             />);

@@ -2,7 +2,7 @@ export class ProfileData {
     _first_name;
     _last_name;
     _email;
-    _profileImg;
+    _avatar;
 
     constructor() {
         this._profileImg = "/public/img/profileImg.png";
@@ -32,11 +32,11 @@ export class ProfileData {
         this._email = value;
     }
 
-    get profileImg() {
-        return this._profileImg;
+    get avatar() {
+        return this._avatar;
     }
 
-    set profileImg(value) {
-        this._profileImg = value;
+    set avatar(value) {
+        this._avatar = value;
     }
 }

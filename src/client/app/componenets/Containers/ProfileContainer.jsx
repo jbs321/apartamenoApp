@@ -23,11 +23,12 @@ export default class ProfileContainer extends React.Component {
 
     componentDidMount() {
         Auth.getProfile((profile) => {
+            console.log(profile);
             let profileData = new ProfileData();
             profileData.email = profile.email;
-            profileData.first_name(profile.first_name);
-            profileData.last_name(profile.last_name);
-            profileData.profileImg(profile.picture);
+            profileData.first_name = profile.first_name;
+            profileData.last_name = profile.last_name;
+            profileData.avatar = profile.avatar;
 
             this.setState(
                 {

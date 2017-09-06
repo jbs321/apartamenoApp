@@ -5,15 +5,13 @@ import {
     Route
 } from 'react-router-dom';
 import Auth from './componenets/Auth/Auth.jsx';
-
-//TODO:: remove next todos:
 import Placeholder from './componenets/Presentation/Placeholder.jsx';
 import Footer from "./componenets/Presentation/Footer/Footer.jsx";
 import HomePage from "./componenets/Pages/HomePage.jsx";
 import BuildingPage from "./componenets/Pages/BuildingPage.jsx";
 import RegisterPage from "./componenets/Pages/RegisterPage.jsx";
 import ProfilePage from "./componenets/Pages/ProfilePage.jsx";
-import Login from "./componenets/Presentation/Form/Login.jsx";
+import LoginContainer from "./componenets/Containers/LoginContainer.jsx";
 
 
 export default class App extends React.Component {
@@ -29,11 +27,14 @@ export default class App extends React.Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/profile" render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
-                    <Route path="/placeholder" render={(props) => <div style={{width:500, height:500}}><Placeholder/></div>}/>
-                    <Route path="/login" render={(props) => <Login {...props}/>}/>
-                    <Route path="/register" render={(props) => <RegisterPage/>}/>
-                    <Route path="/building/:address" render={(props) => <BuildingPage address={props.match.params.address}/>}/>
+                    <Route path="/profile"
+                           render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
+                    <Route path="/placeholder"
+                           render={() => <div style={{width: 500, height: 500}}><Placeholder/></div>}/>
+                    <Route path="/login" render={() => <LoginContainer/>}/>
+                    <Route path="/register" render={() => <RegisterPage/>}/>
+                    <Route path="/building/:address"
+                           render={(props) => <BuildingPage address={props.match.params.address}/>}/>
                     <Route render={(props) => <HomePage {...this.props} />}/>
                 </Switch>
 

@@ -46,6 +46,30 @@ export default class Auth {
             });
     }
 
+    static authenticate(email, password, scope = '') {
+        let postData = {
+            grant_type: 'password',
+            password: password,
+            client_id: process.env.ENV.AUTH_CONFIG_CLIENT_ID,
+            client_secret: process.env.ENV.AUTH_CONFIG_CLIENT_SECRET,
+            username: email,
+            scope: scope,
+        };
+
+        axios({
+            method: "POST",
+            url: "oauth/token",
+            baseURL: process.env.ENV.API_URL_AUTH,
+            data: qs.stringify(postData),
+        }).then(result => {
+            this.setSession(result.data);
+            setTimeout(() => { history.replace('/'); }, '2000');
+        }).catch(e => {
+            alert(e.message);
+            console.log(e);
+        });
+    }
+
     static login() {
         let authrizeParams = getAuthorizeParams();
 
@@ -66,7 +90,7 @@ export default class Auth {
         return accessToken;
     }
 
-    setSession(authResult) {
+    static setSession(authResult) {
         // Set the time that the access token will expire at
         let expiresIn = JSON.stringify((authResult.expires_in * 1000) + new Date().getTime());
         localStorage.setItem('token_type', authResult.token_type);
