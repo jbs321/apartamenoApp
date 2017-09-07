@@ -6,14 +6,8 @@
 @import "general";
 @import "header";
 @import "footer";
-@import "pages/body";
+
 @import "menu";
 
-
-@import "components/building";
-@import "components/callback";
-@import "components/placeholder";
-@import "components/google-img";
-@import "components/rating";
-
-@import "pages/building-page";
+@import "components/bootstrap";
+@import "pages/bootstrap";

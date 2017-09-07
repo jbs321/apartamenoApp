@@ -5,7 +5,7 @@ import {
     Route
 } from 'react-router-dom';
 import Auth from './componenets/Auth/Auth.jsx';
-import Placeholder from './componenets/Presentation/Placeholder.jsx';
+import Placeholder from './componenets/Presentation/Placeholder/Placeholder.jsx';
 import Footer from "./componenets/Presentation/Footer/Footer.jsx";
 import HomePage from "./componenets/Pages/HomePage.jsx";
 import BuildingPage from "./componenets/Pages/BuildingPage.jsx";
