@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from '../Auth/Auth.jsx';
 import TopMenuContainer from './TopMenuContainer.jsx';
-import Search from "../Presentation/Search/Search.jsx";
+import SearchContainer from "./SearchContainer.jsx";
 
 export default class HeaderContainer extends React.Component {
 
@@ -22,7 +22,7 @@ export default class HeaderContainer extends React.Component {
                         <h1 className="col-xs-12 col-sm-10 col-md-10 col-lg-7">Apartamento</h1>
                         <h2 className="col-xs-12 col-sm-10 col-md-10 col-lg-7">Find all you need about Apartments, Buildings
                             and more.</h2>
-                        <Search {...this.props}/>
+                        <SearchContainer {...this.props}/>
                     </div>
                 </header>
         );
