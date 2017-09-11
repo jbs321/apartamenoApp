@@ -139,7 +139,6 @@ html {
 
 .footer {
   padding: 72px 24px 72px 256px;
-  margin-top: 50px;
   box-sizing: border-box;
   background: #212121; }
   .footer .footer-content {
@@ -349,6 +348,9 @@ html {
   margin: 0 auto;
   color: #999; }
 
+.page {
+  height: 100%; }
+
 .body-container .main-raised {
   top: -100px;
   margin: 0px 30px 0px;
@@ -368,5 +370,28 @@ html {
   .building-page .img-section img {
     height: 100%;
     width: 100%; }
+
+.login-page {
+  background: rgba(0, 0, 0, 0.67); }
+  .login-page .login-container {
+    width: 100%;
+    height: 100%; }
+    .login-page .login-container .login-form {
+      width: 400px;
+      height: 250px;
+      margin: auto;
+      padding: 10px;
+      margin-top: 100px;
+      background: #fff;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+      .login-page .login-container .login-form .field {
+        padding: 10px;
+        display: block; }
+  .login-page a {
+    color: inherit;
+    transition: .3s ease;
+    text-decoration: none; }
+    .login-page a:hover {
+      color: #bababa; }
 
 /*# sourceMappingURL=main.css.map */

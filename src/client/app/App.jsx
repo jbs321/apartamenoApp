@@ -11,7 +11,7 @@ import HomePage from "./componenets/Pages/HomePage.jsx";
 import BuildingPage from "./componenets/Pages/BuildingPage.jsx";
 import RegisterPage from "./componenets/Pages/RegisterPage.jsx";
 import ProfilePage from "./componenets/Pages/ProfilePage.jsx";
-import LoginContainer from "./componenets/Containers/LoginContainer.jsx";
+import LoginPage from "./componenets/Pages/LoginPage.jsx";
 
 
 export default class App extends React.Component {
@@ -25,13 +25,13 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App" style={{height:"100%"}}>
                 <Switch>
                     <Route path="/profile"
                            render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
                     <Route path="/placeholder"
                            render={() => <div style={{width: 500, height: 500}}><Placeholder/></div>}/>
-                    <Route path="/login" render={() => <LoginContainer/>}/>
+                    <Route path="/login" render={() => <LoginPage/>}/>
                     <Route path="/register" render={() => <RegisterPage/>}/>
                     <Route path="/building/:address"
                            render={(props) => <BuildingPage address={props.match.params.address}/>}/>
