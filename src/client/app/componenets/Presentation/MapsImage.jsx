@@ -13,9 +13,11 @@ export default class MapsImage extends React.Component {
         if (path === undefined) {
             throw new Error("path not found");
         }
-        this.state = {
-            imgSrc: path,
-        };
+
+        this.state        = {};
+        this.state.imgSrc = path;
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     findPathByAdderss(address) {
@@ -29,6 +31,11 @@ export default class MapsImage extends React.Component {
         }
 
         return path;
+    }
+
+    handleClick() {
+        let prefix = "https://www.google.ca/maps/place/";
+        window.open(prefix + this.props.address, '_blank');
     }
 
     handleError(image) {
@@ -45,7 +52,9 @@ export default class MapsImage extends React.Component {
         return (
             <img src={this.state.imgSrc}
                  onError={this.handleError.bind(this)}
-                 className="maps-image"/>
+                 className={this.props.className}
+                 style={this.props.style}
+                 onClick={this.handleClick}/>
         );
     }
 }

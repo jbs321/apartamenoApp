@@ -7,8 +7,8 @@ import {
 import Auth from './componenets/Auth/Auth.jsx';
 import Placeholder from './componenets/Presentation/Placeholder/Placeholder.jsx';
 import Footer from "./componenets/Presentation/Footer/Footer.jsx";
-import HomePage from "./componenets/Pages/HomePage.jsx";
-import BuildingPage from "./componenets/Pages/BuildingPage.jsx";
+import HomePage from "./componenets/Pages/HomePage/HomePage.jsx";
+import BuildingPage from "./componenets/Pages/BuildingPage/BuildingPage.jsx";
 import RegisterPage from "./componenets/Pages/RegisterPage.jsx";
 import ProfilePage from "./componenets/Pages/ProfilePage.jsx";
 import LoginContainer from "./componenets/Containers/LoginContainer.jsx";
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="page-container">
                 <Switch>
                     <Route path="/profile"
                            render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>

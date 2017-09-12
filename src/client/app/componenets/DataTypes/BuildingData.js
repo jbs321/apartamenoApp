@@ -5,9 +5,14 @@ import {
     KEY_ADDRESS,
     KEY_COMMENTS,
     KEY_IMAGE_SRC,
+    KEY_LONG,
+    KEY_LAT,
     MANDATORY_FIELDS,
     KEY_GOOGLE_PLACE_ID,
 } from '../Variables/BuildingVariables';
+
+import RateData from '../DataTypes/RateData';
+
 
 export class BuildingData {
     constructor(address) {
@@ -28,9 +33,11 @@ export class BuildingData {
 
         let newBuilding = new BuildingData(dataSet[KEY_ADDRESS]);
 
-        newBuilding.id = dataSet[KEY_ID];
-        newBuilding.ratings = dataSet[KEY_RATINGS];
+        newBuilding.id       = dataSet[KEY_ID];
+        newBuilding.ratings  = dataSet[KEY_RATINGS];
         newBuilding.comments = dataSet[KEY_COMMENTS];
+        newBuilding.lng      = dataSet[KEY_LONG];
+        newBuilding.lat      = dataSet[KEY_LAT];
         // newBuilding.imgSrc = dataSet[KEY_IMAGE_SRC];
 
         return newBuilding;
@@ -78,7 +85,7 @@ export class BuildingData {
 
         if(value.length > 0) {
             this._ratings = value.map((rate) => {
-                return Rate.createFromDataSet(rate);
+                return RateData.createFromDataSet(rate);
             });
         }
 
@@ -107,5 +114,22 @@ export class BuildingData {
 
     set comments(value) {
         this._comments = value;
+    }
+
+
+    get lng() {
+        return this._lng;
+    }
+
+    set lng(value) {
+        this._lng = value;
+    }
+
+    get lat() {
+        return this._lat;
+    }
+
+    set lat(value) {
+        this._lat = value;
     }
 }

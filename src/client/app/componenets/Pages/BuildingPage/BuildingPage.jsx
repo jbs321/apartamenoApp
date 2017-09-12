@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import {BuildingData} from "../../componenets/DataTypes/BuildingData";
-import Auth from "../Auth/Auth.jsx";
-import Building from "../Presentation/Building/Building.jsx";
+import BuildingContainer from "../../Containers/BuildingContainer.jsx";
+import ToolbarExamplesSimple from './ToolbarExamplesSimple.jsx';
+import TopMenuContainer from '../../Containers/TopMenuContainer.jsx'
+import {BuildingData} from "../../DataTypes/BuildingData";
 
-export default class BuildingContainer extends React.Component {
+export default class BuildingPage extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state          = {};
-        this.state.building = new BuildingData(this.props.address);
+        this.state       = new BuildingData(props.address);
         this.findAddress = this.findAddress.bind(this);
     }
 
@@ -29,9 +29,7 @@ export default class BuildingContainer extends React.Component {
             .then(result => {
                 if (result.data !== undefined) {
                     let buildingData = BuildingData.createFromDataSet(result.data);
-                    this.setState({
-                        building: buildingData
-                    });
+                    this.setState(buildingData);
                 }
             })
             .catch(function (err) {
@@ -40,6 +38,12 @@ export default class BuildingContainer extends React.Component {
     }
 
     render() {
-        return (<Building address={this.props.address} building={this.state.building}/>);
+        return (
+            <div className="page building-page">
+                <TopMenuContainer/>
+                <ToolbarExamplesSimple address={this.props.address} buildingId={this.state._id}/>
+                <BuildingContainer address={this.props.address} building={this.state}/>
+            </div>
+        );
     }
 }

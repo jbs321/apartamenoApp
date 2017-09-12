@@ -1,6 +1,6 @@
 import React from 'react';
 import RatingStar from "./RatingStar.jsx";
-
+import axios from 'axios';
 
 export default class RatingStarGroup extends React.Component {
     constructor(props) {
@@ -31,19 +31,24 @@ export default class RatingStarGroup extends React.Component {
             readOnly: readOnly,
             numOfStars: numOfStars,
         };
-
-        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(element) {
-        if (this.props.handleClick !== undefined) {
-            this.props.handleClick(element);
-        } else {
-            this.setState({
-                index: element.props.index,
-                numOfStars: this.state.numOfStars
-            });
-        }
+        this.setState({
+            index: element.props.index,
+            numOfStars: this.state.numOfStars
+        });
+        let newValue = element.props.index;
+
+        axios.put('/building/' + this.props.building_id + '/rating/' + this.props.rating_id, {
+            rate: newValue
+        }).then(((result) => {
+            console.log(result);
+        })).catch((err) => {
+            if (err.response) {
+                alert(err.response.data, err.response.status);
+            }
+        });
     }
 
     render() {
@@ -52,11 +57,12 @@ export default class RatingStarGroup extends React.Component {
         for (let i = 1; i <= this.state.numOfStars; i++) {
             let isActive = (this.state.index >= i);
             stars.push(<RatingStar
-               key={i}
-               index={i}
-               active={isActive}
-               readOnly={this.state.readOnly}
-               handleClick={this.handleClick}/>)}
+                key={i}
+                index={i}
+                active={isActive}
+                readOnly={this.state.readOnly}
+                handleClick={this.handleClick.bind(this)}/>)
+        }
 
         return <div itemID="star-group" className="star-group" style={this.props.style}>{stars}</div>;
     }

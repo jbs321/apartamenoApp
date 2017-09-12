@@ -1,6 +1,6 @@
-import {DATA_SET_KEYS, KEY_VALUE, KEY_LABEL, KEY_ID} from '../../Variables/RatingVariables';
+import {DATA_SET_KEYS, KEY_VALUE, KEY_LABEL, KEY_ID} from '../Variables/RatingVariables';
 
-export class Rate {
+export default class RateData {
     constructor(id, label, value, readOnly = true) {
         this.id = id;
         this.label = label;
@@ -20,7 +20,7 @@ export class Rate {
             }
         });
 
-        return new Rate(dataSet[KEY_ID], dataSet[KEY_LABEL], dataSet[KEY_VALUE], readOnly);
+        return new RateData(dataSet[KEY_ID], dataSet[KEY_LABEL], dataSet[KEY_VALUE], readOnly);
     }
 
     get id() {
