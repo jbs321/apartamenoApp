@@ -25,21 +25,22 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="App" style={{height:"100%"}}>
-            <div className="page-container">
-                <Switch>
-                    <Route path="/profile"
-                           render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
-                    <Route path="/placeholder"
-                           render={() => <div style={{width: 500, height: 500}}><Placeholder/></div>}/>
-                    <Route path="/login" render={() => <LoginPage/>}/>
-                    <Route path="/register" render={() => <RegisterPage/>}/>
-                    <Route path="/building/:address"
-                           render={(props) => <BuildingPage address={props.match.params.address}/>}/>
-                    <Route render={(props) => <HomePage {...this.props} />}/>
-                </Switch>
+            <div className="App" style={{height: "100%"}}>
+                <div className="page-container">
+                    <Switch>
+                        <Route path="/profile"
+                               render={() => (Auth.isAuth() ? ( <ProfilePage/> ) : ( <Redirect to="/"/> ))}/>
+                        <Route path="/placeholder"
+                               render={() => <div style={{width: 500, height: 500}}><Placeholder/></div>}/>
+                        <Route path="/login" render={() => <LoginPage/>}/>
+                        <Route path="/register" render={() => <RegisterPage/>}/>
+                        <Route path="/building/:address"
+                               render={(props) => <BuildingPage address={props.match.params.address}/>}/>
+                        <Route render={(props) => <HomePage {...this.props} />}/>
+                    </Switch>
 
-                <Footer/>
+                    {/*<Footer/>*/}
+                </div>
             </div>
         );
     }
