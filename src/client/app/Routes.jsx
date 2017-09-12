@@ -22,7 +22,7 @@ export const makeMainRoutes = () => {
     return (
         <Router history={history}>
             <MuiThemeProvider>
-                <div className="app-container" classID="app-container">
+                <div className="app-container" classID="app-container" style={{height:"100%"}}>
                     <Route path="/" render={(props) => <App/>}/>
                     <Route path="/callback" render={(props) => {
                         //entry point to authentication response from api
