@@ -42,8 +42,18 @@ export default class Auth {
     static getProfile(callback) {
         axios.post('getProfile')
             .then((result) => {
-                callback(result.data);
+                let data = result.data;
+                localStorage.setItem('userId', data['id']);
+                callback(data);
             });
+    }
+
+    static getUserId() {
+        if(localStorage.getItem('userId') !== undefined) {
+            return localStorage.getItem('userId');
+        }
+
+        return null;
     }
 
     static authenticate(email, password, scope = '') {

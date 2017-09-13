@@ -8,28 +8,17 @@ export default class Comment extends React.Component {
 
     constructor(props) {
         super(props);
-
-        //init
         this.state = {};
         this.state.message = "";
         this.state.comments = [];
 
         this.handleClick = this.handleClick.bind(this);
         this.fetchComments = this.fetchComments.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
     }
 
     componentDidMount() {
         this.fetchComments();
-    }
-
-    fetchComments() {
-        let that = this;
-        axios.get('building/' + this.props.building._id + "/comment")
-            .then(result => {
-                that.setState({
-                    comments: result.data
-                });
-            });
     }
 
     handleClick(event) {
@@ -66,6 +55,18 @@ export default class Comment extends React.Component {
         event.target.commentInput.value = "";
     }
 
+    fetchComments() {
+        let that = this;
+
+        axios.get('building/' + this.props.building._id + "/comment")
+            .then(result => {
+                console.log(result.data);
+                that.setState({
+                    comments: result.data
+                });
+            });
+    }
+
     saveComment(comment) {
         if(comment === undefined) {
             throw new Error("Comment Missing");
@@ -78,10 +79,16 @@ export default class Comment extends React.Component {
         });
     }
 
+    deleteComment(commentId) {
+
+        axios.delete("building/" + this.props.building._id + "/comment/" + commentId)
+             .then(result => console.log(result.data));
+    }
+
     render() {
         return (
             <div className="comment-container">
-                <CommentView building={this.props.building} comments={this.state.comments}/>
+                <CommentView building={this.props.building} comments={this.state.comments} handleDelete={this.deleteComment}/>
                 <CommentControl building={this.props.building} onSubmit={this.handleClick}/>
             </div>
         );

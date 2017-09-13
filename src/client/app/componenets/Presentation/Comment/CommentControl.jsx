@@ -18,7 +18,7 @@ export default class CommentControl extends React.Component {
     render() {
         return (
             <div className="comment-control">
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} autoComplete="off">
                     <TextField hintText="Comment" id="commentInput" name="commentInput" style={{width: "100%"}}/>
                     <br/>
                     <RaisedButton label="send" primary={true} type="submit"/>
