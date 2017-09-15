@@ -26,6 +26,10 @@ export default class FeedController extends React.Component {
     }
 
     render() {
+        if(this.props.building === undefined) {
+            return <div className="feed-controller">Loading</div>
+        }
+
         return (
             <div className="feed-controller">
                 <Trumbowyg id='react-trumbowyg' data={this.data} onChange={this.handleChange} style={{height: 200}}/>

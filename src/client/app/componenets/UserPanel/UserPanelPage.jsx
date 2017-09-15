@@ -2,8 +2,7 @@ import React from 'react';
 import MenuContainer from "./Menu/MenuContainer.jsx";
 import TopMenuContainer from "../Containers/TopMenuContainer.jsx";
 import FeedList from "./Feed/FeedList.jsx";
-import FeedController from "./Feed/FeedController.jsx";
-
+import Auth from "../Auth/Auth.jsx";
 
 export default class UserPanelPage extends React.Component {
     render() {

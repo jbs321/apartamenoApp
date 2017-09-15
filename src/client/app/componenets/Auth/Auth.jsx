@@ -29,10 +29,7 @@ export default class Auth {
             }), {baseURL: process.env.ENV.API_URL_AUTH}
         ).then((result) => {
             this.setSession(result.data);
-
-            setTimeout(() => {
-                 history.replace('/');
-            }, '2000');
+             history.replace('/');
 
         }).catch((err) => {
             console.log(err);
@@ -132,5 +129,11 @@ export default class Auth {
         }
 
         return isAuthenticated;
+    }
+
+    static getRegisteredBuilding(cb) {
+        axios.post('regBuilding').then(result => {
+            cb(result.data);
+        });
     }
 }
