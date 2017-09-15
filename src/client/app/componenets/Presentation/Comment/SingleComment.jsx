@@ -28,7 +28,7 @@ export default class SingleComment extends React.Component {
                 <IconMenu iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}
                           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-                    <MenuItem primaryText="Edit"/>
+                    {/*<MenuItem primaryText="Edit"/>*/}
                     <MenuItem primaryText="Delete" onTouchTap={this.handleDelete}/>
                 </IconMenu>
             );
@@ -42,7 +42,10 @@ export default class SingleComment extends React.Component {
             <div className="single-comment">
                 <List>
                     <ListItem disabled={true} leftAvatar={<Avatar>A</Avatar>} rightIcon={this.getMenuButton()}>
-                        {this.props.comment}
+                        {this.props.comment} <p style={{
+                        fontSize: 11,
+                        fontStyle: 'italic',
+                    }}>{this.props.createdAt}</p>
                     </ListItem>
                 </List>
             </div>

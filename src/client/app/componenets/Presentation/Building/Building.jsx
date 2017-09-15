@@ -1,12 +1,11 @@
 import React from 'react';
-import RatingSection from "../../Presentation/Rating/RatingSection.jsx";
 import StreetView from '../StreetView.jsx';
 import MapsView from '../MapsView.jsx';
 import PricingGraph from '../../Presentation/Building/PricingGraph.jsx';
 import CommentSection from "../Comment/CommentSection.jsx";
+import TextHeader from "../TextHeader.jsx";
 
 export default class Building extends React.Component {
-
     constructor() {
         super();
         this.getCommentsSection = this.getCommentsSection.bind(this);
@@ -21,35 +20,38 @@ export default class Building extends React.Component {
     }
 
     render() {
-
         return (
-            <div className="building">
-                {/*<section className="images">*/}
-                {/*<StreetView className={"street-view-image"}*/}
-                {/*lat={this.props.building._lat}*/}
-                {/*lng={this.props.building._lng}*/}
-                {/*style={{*/}
-                {/*height: '400px',*/}
-                {/*backgroundColor: '#eeeeee'*/}
-                {/*}}/>*/}
+            <div className="building container">
+                <section className="images row">
+                    <StreetView className={"street-view-image col-lg-6"}
+                                lat={this.props.building._lat}
+                                lng={this.props.building._lng}
+                                style={{
+                                    height: '400px',
+                                    backgroundColor: '#eeeeee'
+                                }}/>
 
-                {/*<PricingGraph />*/}
+                    <TextHeader value="This is a header example" className={"col-lg-6"}/>
 
-                {/*<MapsView lat={this.props.building._lat}*/}
-                {/*lng={this.props.building._lng}*/}
-                {/*style={{*/}
-                {/*width: "100%",*/}
-                {/*}}*/}
-                {/*address={this.props.address}/>*/}
-                {/*</section>*/}
+                    <PricingGraph building={this.props.building}/>
 
-                {/*<RatingSection building={this.props.building} style={{ margin: 0, padding: "20px", background: "#efefef" }}/>*/}
-                {/*<div style={{padding: "20px", margin: "auto", width: "1200px"}}>*/}
-                {/*<div id="disqus_thread"></div>*/}
-                {/*</div>*/}
+                    <TextHeader value="This is a header example" className={"col-lg-6"}/>
 
-                {this.getCommentsSection()}
+                    <div className={"col-lg-6"}>
+                    <MapsView lat={this.props.building._lat}
+                              lng={this.props.building._lng}
+                              style={{
+                                  width: "100%",
+                                  height: '400px',
+                                  position: 'relative',
+                              }}
+                              address={this.props.address}/>
+                    </div>
+                </section>
 
+                <section className="comments col-lg-12" style={{paddingTop: 20}}>
+                    {this.getCommentsSection()}
+                </section>
             </div>
         );
     }

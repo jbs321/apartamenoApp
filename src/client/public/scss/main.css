@@ -164,20 +164,6 @@ html {
   .loginButton svg {
     margin-top: 5px !important; }
 
-.building {
-  height: 350px;
-  padding: 10px; }
-  .building .img-section {
-    position: relative; }
-    .building .img-section img.maps-image {
-      right: 5%;
-      width: 250px !important;
-      height: 250px !important;
-      border: 4px solid black;
-      bottom: -50px;
-      position: absolute;
-      border-radius: 10px; }
-
 .callback-wrapper {
   top: 0px;
   left: 0px;
@@ -365,6 +351,13 @@ html {
   .comment-container .comment-view {
     padding: 10px; }
 
+.text-header {
+  display: table;
+  text-align: center; }
+  .text-header span {
+    display: table-cell;
+    vertical-align: middle; }
+
 .page {
   height: 100%; }
 
@@ -385,8 +378,10 @@ html {
   -webkit--radius: 6px;
   border-radius: 6px; }
 
-.building-page .building {
+.building-page * {
   padding: 0; }
+.building-page .building {
+  width: 100%; }
   .building-page .building section.images {
     width: 100%;
     position: relative; }
@@ -404,11 +399,13 @@ html {
       bottom: 0;
       position: absolute;
       cursor: pointer; }
-  .building-page .building section.comments .comment-container {
-    background: #f7f7f7;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
-    .building-page .building section.comments .comment-container .comment-control {
-      background: #fff; }
+  .building-page .building section.comments {
+    height: 800px; }
+    .building-page .building section.comments .comment-container {
+      background: #f7f7f7;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+      .building-page .building section.comments .comment-container .comment-control {
+        background: #fff; }
 
 .login-page {
   background: rgba(0, 0, 0, 0.67); }
@@ -432,5 +429,21 @@ html {
     text-decoration: none; }
     .login-page a:hover {
       color: #bababa; }
+
+.user-panel-page {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+  .user-panel-page .feed-container {
+    background: #f3f3f3;
+    min-height: 300px; }
+    .user-panel-page .feed-container .feed-frame {
+      padding: 10%; }
+      .user-panel-page .feed-container .feed-frame .feed {
+        padding: 10px;
+        background: #fff;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+        .user-panel-page .feed-container .feed-frame .feed img {
+          width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

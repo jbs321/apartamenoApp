@@ -11,13 +11,20 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 
 export default class ToolbarExamplesSimple extends React.Component {
 
+    constructor() {
+        super();
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
     handleChange(event, index, value) {
+        window.scrollTo( 0, 800 );
         this.setState({value})
     };
 
     render() {
         return (
-            <Toolbar>
+            <Toolbar className="container" style={{margin:0, width:"100%"}}>
                 <ToolbarGroup firstChild={true}>
                     <DropDownMenu value={1} onChange={this.handleChange}>
                         <MenuItem value={1} primaryText="All Broadcasts" />
@@ -28,7 +35,9 @@ export default class ToolbarExamplesSimple extends React.Component {
                     <ToolbarTitle text={this.props.address} />
                     <FontIcon className="muidocs-icon-custom-sort" />
                     <ToolbarSeparator />
-                    <RegisterButton label="REGISTER TO BUILDING" primary={true} addressId={this.props.buildingId}/>
+                    <RegisterButton label="DO YOU LIVE HERE?"
+                                    primary={true}
+                                    addressId={this.props.buildingId}/>
                     <IconMenu
                         iconButtonElement={
                             <IconButton touch={true}>
@@ -36,8 +45,9 @@ export default class ToolbarExamplesSimple extends React.Component {
                             </IconButton>
                         }
                     >
-                        <MenuItem primaryText="Download" />
-                        <MenuItem primaryText="More Info" />
+                        <MenuItem primaryText="Street View"/>
+                        <MenuItem primaryText="Map View"/>
+                        <MenuItem primaryText="Pricing Statistics"/>
                     </IconMenu>
                 </ToolbarGroup>
             </Toolbar>

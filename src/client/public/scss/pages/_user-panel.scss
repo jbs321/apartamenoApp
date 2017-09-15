@@ -1,0 +1,24 @@
+.user-panel-page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .feed-container {
+    background: #f3f3f3;
+    min-height: 300px;
+
+    .feed-frame {
+      padding: 10%;
+
+      .feed {
+        padding: 10px;
+        background: #fff;
+        @include materialShadow(4);
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

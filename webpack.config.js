@@ -55,6 +55,10 @@ module.exports = {
             'process.env': {
                 ENV: JSON.stringify(env.parsed)
             }
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ]
 };

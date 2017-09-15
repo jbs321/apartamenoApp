@@ -1,6 +1,10 @@
 .building-page {
-  .building {
+  * {
     padding: 0;
+  }
+
+  .building {
+    width: 100%;
 
     section.images {
       width: 100%;
@@ -27,6 +31,8 @@
     }
 
     section.comments {
+height: 800px;
+
       .comment-container {
         background: #f7f7f7;
         @include materialShadow(4);

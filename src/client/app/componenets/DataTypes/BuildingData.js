@@ -5,7 +5,7 @@ import {
     KEY_ADDRESS,
     KEY_COMMENTS,
     KEY_IMAGE_SRC,
-    KEY_LONG,
+    KEY_LNG,
     KEY_LAT,
     MANDATORY_FIELDS,
     KEY_GOOGLE_PLACE_ID,
@@ -36,7 +36,7 @@ export class BuildingData {
         newBuilding.id       = dataSet[KEY_ID];
         newBuilding.ratings  = dataSet[KEY_RATINGS];
         newBuilding.comments = dataSet[KEY_COMMENTS];
-        newBuilding.lng      = dataSet[KEY_LONG];
+        newBuilding.lng      = dataSet[KEY_LNG];
         newBuilding.lat      = dataSet[KEY_LAT];
         // newBuilding.imgSrc = dataSet[KEY_IMAGE_SRC];
 

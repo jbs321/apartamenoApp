@@ -42,9 +42,9 @@ export default class Comment extends React.Component {
 
         let commentsArr = this.state.comments;
 
-        commentsArr.push({
+        commentsArr = [{
             description: comment,
-        });
+        }].concat(commentsArr);
 
         if(commentsArr.length >= 0) {
             this.setState({
@@ -60,7 +60,6 @@ export default class Comment extends React.Component {
 
         axios.get('building/' + this.props.building._id + "/comment")
             .then(result => {
-                console.log(result.data);
                 that.setState({
                     comments: result.data
                 });
@@ -82,7 +81,12 @@ export default class Comment extends React.Component {
     deleteComment(commentId) {
 
         axios.delete("building/" + this.props.building._id + "/comment/" + commentId)
-             .then(result => console.log(result.data));
+             .then(result => {
+                 let comments = this.state.comments.filter(comment => comment.id !== commentId);
+                 this.setState({
+                     comments: comments
+                 });
+             });
     }
 
     render() {

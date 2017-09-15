@@ -57,7 +57,7 @@ export default class TopMenuContainer extends React.Component {
                 history.replace('/');
                 break;
             case LEGGED_MENU_ITEMS.LOGIN:
-                Auth.login();
+                history.replace('/login');
                 break;
             case LEGGED_MENU_ITEMS.LOGOUT:
                 Auth.logout();

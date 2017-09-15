@@ -1,7 +1,7 @@
 export const KEY_ID              = "id";
 export const KEY_RATINGS         = "ratings";
 export const KEY_ADDRESS         = "address";
-export const KEY_LONG            = "long";
+export const KEY_LNG             = "lng";
 export const KEY_LAT             = "lat";
 export const KEY_COMMENTS        = "comments";
 export const KEY_IMAGE_SRC       = "imgSrc";

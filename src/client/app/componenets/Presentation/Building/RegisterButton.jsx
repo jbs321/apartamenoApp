@@ -7,8 +7,8 @@ export default class RegisterButton extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
-        this.state.primary = props.primary;
+        this.state           = {};
+        this.state.primary   = props.primary;
         this.state.secondary = !props.primary;
 
         this.handleClick = this.handleClick.bind(this);

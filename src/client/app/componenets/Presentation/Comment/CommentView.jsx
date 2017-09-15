@@ -10,7 +10,7 @@ export default class CommentView extends React.Component {
         this.state.maxComments  = 6;
         this.getComments        = this.getComments.bind(this);
         this.handleMoreComments = this.handleMoreComments.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleDelete       = this.handleDelete.bind(this);
     }
 
     handleDelete(id) {
@@ -25,6 +25,7 @@ export default class CommentView extends React.Component {
                 userId={comment.user_id}
                 id={comment.id}
                 key={idx}
+                createdAt={comment.created_at}
                 comment={comment.description}
                 handleDelete={this.handleDelete}
             />);
