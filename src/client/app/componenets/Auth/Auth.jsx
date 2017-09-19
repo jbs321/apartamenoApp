@@ -6,9 +6,6 @@ import axios from 'axios';
 let qs = require('qs');
 
 export default class Auth {
-
-    userProfile;
-
     constructor() {
         this.handleAuthentication = this.handleAuthentication.bind(this);
         this.getAccessToken = this.getAccessToken.bind(this);
@@ -41,6 +38,7 @@ export default class Auth {
             .then((result) => {
                 let data = result.data;
                 localStorage.setItem('userId', data['id']);
+                localStorage.setItem('user', JSON.stringify(data));
                 callback(data);
             });
     }
@@ -48,6 +46,14 @@ export default class Auth {
     static getUserId() {
         if(localStorage.getItem('userId') !== undefined) {
             return localStorage.getItem('userId');
+        }
+
+        return null;
+    }
+
+    static getUser() {
+        if(localStorage.getItem('user') !== undefined) {
+            return JSON.parse(localStorage.getItem('user'));
         }
 
         return null;
@@ -77,16 +83,6 @@ export default class Auth {
         });
     }
 
-    static login() {
-        let authrizeParams = getAuthorizeParams();
-
-        if (!authrizeParams) {
-            throw new Error('Params isn\'t set');
-        }
-
-        window.location.href = process.env.ENV.API_URL_AUTH + "/oauth/authorize?" + authrizeParams;
-    }
-
     getAccessToken() {
         const accessToken = localStorage.getItem('access_token');
 
@@ -111,7 +107,6 @@ export default class Auth {
         localStorage.removeItem('expires_in');
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
-        this.userProfile = null;
         // navigate to the home route
         history.replace('/');
     }
@@ -132,8 +127,14 @@ export default class Auth {
     }
 
     static getRegisteredBuilding(cb) {
-        axios.post('regBuilding').then(result => {
-            cb(result.data);
-        });
+        let regBuilding = localStorage.getItem('regBuilding');
+        if(regBuilding !== undefined && regBuilding !== null) {
+            cb(JSON.parse(localStorage.getItem('regBuilding')));
+        } else {
+            axios.post('regBuilding').then(result => {
+                localStorage.setItem('regBuilding', JSON.stringify(result.data));
+                cb(result.data);
+            });
+        }
     }
 }

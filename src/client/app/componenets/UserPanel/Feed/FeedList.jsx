@@ -3,6 +3,8 @@ import Feed from "./Feed.jsx";
 import axios from 'axios';
 import FeedController from "./FeedController.jsx";
 import Auth from "../../Auth/Auth.jsx";
+import {BuildingData} from "../../DataTypes/BuildingData";
+import FeedData from "../../DataTypes/FeedData";
 
 export default class FeedList extends React.Component {
     constructor(props) {
@@ -18,26 +20,33 @@ export default class FeedList extends React.Component {
 
     componentDidMount() {
         Auth.getRegisteredBuilding(building => {
-            this.fetchFeeds(building, feeds => {
-                this.setState({
-                    feeds: feeds,
-                })
+            let buildingObj = BuildingData.createFromDataSet(building);
+
+            this.setState({building: buildingObj});
+            this.fetchFeeds(buildingObj, feeds => {
+
+                let feedsMap = feeds.map(feed => new FeedData(feed));
+                console.log(feedsMap);
+                this.setState({feeds: feeds});
             });
         });
     }
 
     fetchFeeds(building, cb) {
-        axios.get('building/' + building.id + '/feeds').then(result => {
+        axios.get('building/' + building._id + '/feeds').then(result => {
             cb(result.data);
         });
     }
 
     handleClick(htmlStr) {
-        let result = [{content: htmlStr}].concat(this.state.feeds);
+        let result = [new FeedData({
+            id: 99999999,
+            content: htmlStr,
+            user: Auth.getUser(),
+            created_at: "20/23/23 23:23:23",
+        })].concat(this.state.feeds);
 
-        this.setState({
-            feeds: result,
-        });
+        this.setState({feeds: result,});
     }
 
     render() {

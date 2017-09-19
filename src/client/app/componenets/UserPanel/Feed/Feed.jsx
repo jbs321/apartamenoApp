@@ -7,7 +7,6 @@ const style = {margin: 5};
 
 export default class Feed extends React.Component {
     render() {
-        console.log(this);
         if (this.props.feed.content === undefined || this.props.feed === undefined) {
             return (
                 <div className="feed-frame">
@@ -20,13 +19,15 @@ export default class Feed extends React.Component {
 
         return (
             <div className="feed-frame">
-                <header>
-                    <Avatar color={deepOrange300} backgroundColor={purple500} size={30} style={style}>A</Avatar>
-                    <i>{this.props.feed.user.first_name + " " + this.props.feed.user.last_name}</i>
-                    <mark>{this.props.feed.created_at}</mark>
-                </header>
-                <div className="feed"
-                     dangerouslySetInnerHTML={{__html: this.props.feed.content}}></div>
+                <div className="feed-inner-frame">
+                    <header>
+                        <Avatar color={deepOrange300} backgroundColor={purple500} size={30} style={style}>A</Avatar>
+                        <i>{this.props.feed.user.first_name} {this.props.feed.user.last_name}</i>
+                        <div className="mark">{this.props.feed.created_at}</div>
+                    </header>
+                    <div className="feed"
+                         dangerouslySetInnerHTML={{__html: this.props.feed.content}}></div>
+                </div>
             </div>
         );
     }

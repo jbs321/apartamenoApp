@@ -20,7 +20,6 @@ export class BuildingData {
     }
 
     static createFromDataSet(dataSet) {
-        // console.log('call');
         if (!dataSet instanceof Object || dataSet instanceof Array) {
             throw new Error("dataSet is invalid");
         }
@@ -38,7 +37,6 @@ export class BuildingData {
         newBuilding.comments = dataSet[KEY_COMMENTS];
         newBuilding.lng      = dataSet[KEY_LNG];
         newBuilding.lat      = dataSet[KEY_LAT];
-        // newBuilding.imgSrc = dataSet[KEY_IMAGE_SRC];
 
         return newBuilding;
     }
@@ -101,6 +99,10 @@ export class BuildingData {
     }
 
     get comments() {
+        return this._comments;
+    }
+
+    set comments(value) {
         if(value === undefined) {
             this._ratings = [];
         }
@@ -109,10 +111,6 @@ export class BuildingData {
             throw new Error("Comments have to be of type Array");
         }
 
-        return this._comments;
-    }
-
-    set comments(value) {
         this._comments = value;
     }
 

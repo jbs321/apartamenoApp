@@ -18,7 +18,7 @@ export default class FeedController extends React.Component {
     }
 
     handleClick() {
-        axios.post('building/51/feed', {
+        axios.post('building/' + this.props.building._id + '/feed', {
             content: this.data,
         }).then(result => console.log(result.data));
 
