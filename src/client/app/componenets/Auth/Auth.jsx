@@ -2,6 +2,7 @@ import history from "../../History.jsx"
 import {getAuthorizeParams} from './Helper.jsx';
 import {AUTH_CONFIG} from './Variables.jsx';
 import axios from 'axios';
+import BuildingDat from "../DataTypes/BuildingDat";
 
 let qs = require('qs');
 
@@ -127,14 +128,20 @@ export default class Auth {
     }
 
     static getRegisteredBuilding(cb) {
+        let buildingData;
+
         let regBuilding = localStorage.getItem('regBuilding');
+
         if(regBuilding !== undefined && regBuilding !== null) {
-            cb(JSON.parse(localStorage.getItem('regBuilding')));
+            buildingData = new BuildingDat(JSON.parse(localStorage.getItem('regBuilding')));
         } else {
             axios.post('regBuilding').then(result => {
                 localStorage.setItem('regBuilding', JSON.stringify(result.data));
-                cb(result.data);
+                buildingData = new BuildingDat(result.data);
             });
         }
+
+        //callback with buildingDat
+        cb(buildingData);
     }
 }

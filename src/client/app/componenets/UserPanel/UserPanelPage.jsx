@@ -5,6 +5,7 @@ import FeedList from "./Feed/FeedList.jsx";
 import Auth from "../Auth/Auth.jsx";
 
 export default class UserPanelPage extends React.Component {
+
     render() {
         return (
             <div className="page user-panel-page">

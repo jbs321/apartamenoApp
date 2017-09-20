@@ -5,6 +5,7 @@ import FeedController from "./FeedController.jsx";
 import Auth from "../../Auth/Auth.jsx";
 import {BuildingData} from "../../DataTypes/BuildingData";
 import FeedData from "../../DataTypes/FeedData";
+import BuildingDat from "../../DataTypes/BuildingDat";
 
 export default class FeedList extends React.Component {
     constructor(props) {
@@ -13,28 +14,54 @@ export default class FeedList extends React.Component {
         this.state = {};
         this.state.building = [];
         this.state.feeds = (props.feeds !== undefined) ? props.feeds : [];
+        this.state.next_page_url = "";
+        this.state.current_page = 1;
+        this.state.total = 1;
 
+        this.getFeeds = this.getFeeds.bind(this);
         this.fetchFeeds = this.fetchFeeds.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
+        this.getFeeds();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    getFeeds() {
         Auth.getRegisteredBuilding(building => {
-            let buildingObj = BuildingData.createFromDataSet(building);
+            this.setState({
+                building: building
+            });
 
-            this.setState({building: buildingObj});
-            this.fetchFeeds(buildingObj, feeds => {
-
+            this.fetchFeeds(building, result => {
+                let feeds    = result.data;
                 let feedsMap = feeds.map(feed => new FeedData(feed));
-                console.log(feedsMap);
-                this.setState({feeds: feeds});
+
+                this.setState({
+                    feeds: feedsMap,
+                    total: parseInt(result.total),
+                    current_page: parseInt(result.current_page),
+                    next_page_url: result.next_page_url,
+                });
+
             });
         });
     }
 
+    handleScroll(event) {
+        let scrollTop = event.srcElement.body.scrollTop;
+
+        if (scrollTop > window.outerHeight * this.state.current_page) {
+            //TODO:: load more feeds
+        }
+    }
+
     fetchFeeds(building, cb) {
-        axios.get('building/' + building._id + '/feeds').then(result => {
-            cb(result.data);
+        axios.get('building/' + building._id + '/feeds/3').then(result => {
+            let feedPagination = result.data;
+            cb();
         });
     }
 
@@ -58,9 +85,10 @@ export default class FeedList extends React.Component {
         });
 
         return (
-            <div className="feed-list" style={{background: "#f3f3f3"}}>
-                <FeedController building={this.state.building} handleClick={this.handleClick}
-                                style={{background: "#fff"}}/>
+            <div className="feed-list">
+                {/*TODO::Remove this when finnish testing*/}
+                <pre>{this.state.next_page_url}</pre>
+                <FeedController building={this.state.building} handleClick={this.handleClick}/>
                 {feeds}
             </div>
         );
