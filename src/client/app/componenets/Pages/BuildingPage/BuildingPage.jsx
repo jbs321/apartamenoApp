@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import BuildingContainer from "../../Containers/BuildingContainer.jsx";
-import ToolbarExamplesSimple from './ToolbarExamplesSimple.jsx';
+import ToolBar from './ToolBar.jsx';
 import TopMenuContainer from '../../Containers/TopMenuContainer.jsx'
 import {BuildingData} from "../../DataTypes/BuildingData";
 import Building from "../../Presentation/Building/Building.jsx";
@@ -11,8 +10,9 @@ export default class BuildingPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state       = new BuildingData(props.address);
-        this.findAddress = this.findAddress.bind(this);
+        this.state          = {};
+        this.state.building = new BuildingData(props.address);
+        this.findAddress    = this.findAddress.bind(this);
     }
 
     componentDidMount() {
@@ -42,7 +42,7 @@ export default class BuildingPage extends React.Component {
         return (
             <div className="page building-page">
                 <TopMenuContainer/>
-                <ToolbarExamplesSimple address={this.props.address} buildingId={this.state._id}/>
+                <ToolBar address={this.props.address} building={this.state}/>
                 <Building address={this.props.address} building={this.state}/>
             </div>
         );

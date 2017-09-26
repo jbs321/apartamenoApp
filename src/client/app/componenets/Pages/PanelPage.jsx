@@ -1,14 +1,12 @@
 import React from 'react';
-import MenuContainer from "./Menu/MenuContainer.jsx";
 import TopMenuContainer from "../Containers/TopMenuContainer.jsx";
-import FeedList from "./Feed/FeedList.jsx";
-import Auth from "../Auth/Auth.jsx";
+import MenuContainer from "../UserPanel/Menu/MenuContainer.jsx";
+import FeedList from "../UserPanel/Feed/FeedList.jsx";
 
-export default class UserPanelPage extends React.Component {
-
+export default class PanelPage extends React.Component {
     render() {
         return (
-            <div className="page user-panel-page">
+            <div className="page building-page">
                 <TopMenuContainer/>
 
                 <div className="menu-container container">

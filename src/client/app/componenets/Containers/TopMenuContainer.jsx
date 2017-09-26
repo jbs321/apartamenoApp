@@ -69,10 +69,9 @@ export default class TopMenuContainer extends React.Component {
                 history.replace('/register');
                 break;
             case LEGGED_MENU_ITEMS.HELP:
-                console.log('hahaha');
+                console.log('help');
                 break;
             default:
-                console.log(key);
                 break;
         }
     }

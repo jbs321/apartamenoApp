@@ -1,6 +1,4 @@
 import history from "../../History.jsx"
-import {getAuthorizeParams} from './Helper.jsx';
-import {AUTH_CONFIG} from './Variables.jsx';
 import axios from 'axios';
 import BuildingDat from "../DataTypes/BuildingDat";
 
@@ -8,44 +6,20 @@ let qs = require('qs');
 
 export default class Auth {
     constructor() {
-        this.handleAuthentication = this.handleAuthentication.bind(this);
         this.getAccessToken = this.getAccessToken.bind(this);
     }
 
-    handleAuthentication(code) {
-        if (!code) {
-            throw new Error('Missing Code');
-        }
-
-        axios.post("oauth/token",
-            qs.stringify({
-                code: code,
-                client_id: AUTH_CONFIG.clientID,
-                grant_type: 'authorization_code',
-                redirect_uri: AUTH_CONFIG.callbackUrl,
-                client_secret: AUTH_CONFIG.clientSecret,
-            }), {baseURL: process.env.ENV.API_URL_AUTH}
-        ).then((result) => {
-            this.setSession(result.data);
-             history.replace('/');
-
-        }).catch((err) => {
-            console.log(err);
+    static getProfile(cb) {
+        axios.post('getProfile').then((result) => {
+            let data = result.data;
+            localStorage.setItem('userId', data['id']);
+            localStorage.setItem('user', JSON.stringify(data));
+            cb(data);
         });
     }
 
-    static getProfile(callback) {
-        axios.post('getProfile')
-            .then((result) => {
-                let data = result.data;
-                localStorage.setItem('userId', data['id']);
-                localStorage.setItem('user', JSON.stringify(data));
-                callback(data);
-            });
-    }
-
     static getUserId() {
-        if(localStorage.getItem('userId') !== undefined) {
+        if (localStorage.getItem('userId') !== undefined) {
             return localStorage.getItem('userId');
         }
 
@@ -53,7 +27,7 @@ export default class Auth {
     }
 
     static getUser() {
-        if(localStorage.getItem('user') !== undefined) {
+        if (localStorage.getItem('user') !== undefined) {
             return JSON.parse(localStorage.getItem('user'));
         }
 
@@ -62,25 +36,25 @@ export default class Auth {
 
     static authenticate(email, password, scope = '') {
         let postData = {
-            grant_type: 'password',
+            scope: scope,
+            username: email,
             password: password,
             client_id: process.env.ENV.AUTH_CONFIG_CLIENT_ID,
+            grant_type: 'password',
             client_secret: process.env.ENV.AUTH_CONFIG_CLIENT_SECRET,
-            username: email,
-            scope: scope,
         };
 
         axios({
-            method: "POST",
             url: "oauth/token",
-            baseURL: process.env.ENV.API_URL_AUTH,
             data: qs.stringify(postData),
+            method: "POST",
+            baseURL: process.env.ENV.API_URL_AUTH,
         }).then(result => {
             this.setSession(result.data);
-            setTimeout(() => { history.replace('/'); }, '2000');
+            history.replace('/');
         }).catch(e => {
             alert(e.message);
-            console.log(e);
+            history.replace('/');
         });
     }
 
@@ -120,7 +94,7 @@ export default class Auth {
         let expiresAt = JSON.parse(localStorage.getItem('expires_in'));
         let isAuthenticated = new Date().getTime() < expiresAt;
 
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token_type') + " " + localStorage.getItem('access_token');
         }
 
@@ -129,19 +103,17 @@ export default class Auth {
 
     static getRegisteredBuilding(cb) {
         let buildingData;
-
         let regBuilding = localStorage.getItem('regBuilding');
 
-        if(regBuilding !== undefined && regBuilding !== null) {
+        if (regBuilding !== undefined && regBuilding !== null) {
             buildingData = new BuildingDat(JSON.parse(localStorage.getItem('regBuilding')));
+            cb(buildingData);
         } else {
             axios.post('regBuilding').then(result => {
                 localStorage.setItem('regBuilding', JSON.stringify(result.data));
                 buildingData = new BuildingDat(result.data);
+                cb(buildingData);
             });
         }
-
-        //callback with buildingDat
-        cb(buildingData);
     }
 }

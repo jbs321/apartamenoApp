@@ -54,14 +54,24 @@ export default class FeedList extends React.Component {
         let scrollTop = event.srcElement.body.scrollTop;
 
         if (scrollTop > window.outerHeight * this.state.current_page) {
-            //TODO:: load more feeds
+            axios.get(this.state.next_page_url).then(result => {
+                let feeds    = result.data;
+                let feedsMap = feeds.map(feed => new FeedData(feed));
+
+                this.setState({
+                    feeds: this.state.feeds.concat(feedsMap),
+                    total: parseInt(result.total),
+                    current_page: parseInt(result.current_page),
+                    next_page_url: result.next_page_url,
+                });
+            });
         }
     }
 
     fetchFeeds(building, cb) {
-        axios.get('building/' + building._id + '/feeds/3').then(result => {
+        axios.get('building/' + building.id + '/feeds/3').then(result => {
             let feedPagination = result.data;
-            cb();
+            cb(feedPagination);
         });
     }
 
