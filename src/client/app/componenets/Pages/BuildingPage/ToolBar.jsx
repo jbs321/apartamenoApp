@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import RegisterButton from '../../Presentation/Building/RegisterButton.jsx';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-export default class ToolbarExamplesSimple extends React.Component {
+export default class ToolBar extends React.Component {
 
     constructor() {
         super();
@@ -35,9 +35,9 @@ export default class ToolbarExamplesSimple extends React.Component {
                     <ToolbarTitle text={this.props.address} />
                     <FontIcon className="muidocs-icon-custom-sort" />
                     <ToolbarSeparator />
-                    <RegisterButton label="DO YOU LIVE HERE?"
-                                    primary={true}
-                                    addressId={this.props.buildingId}/>
+
+                    <RegisterButton label="DO YOU LIVE HERE?" addressId={this.props.building}/>
+
                     <IconMenu
                         iconButtonElement={
                             <IconButton touch={true}>
