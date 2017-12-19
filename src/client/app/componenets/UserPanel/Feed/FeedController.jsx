@@ -1,40 +1,42 @@
 import React from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {Field, reduxForm} from 'redux-form';
 import Trumbowyg from 'react-trumbowyg';
 import 'react-trumbowyg/dist/trumbowyg.css';
 import RaisedButton from 'material-ui/RaisedButton';
+import {createFeed} from '../../../actions/feeds';
 
-export default class FeedController extends React.Component {
-
+class FeedController extends React.Component {
     constructor() {
         super();
+
         this.data = "";
         this.handleChange = this.handleChange.bind(this);
         this.handleClick  = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        const {id} = this.props.building;
+        this.props.createFeed(this.data, id).then(result => console.log(result.data));
+        // this.props.handleClick(this.data);
     }
 
     handleChange(event) {
         this.data = event.target.innerHTML;
     }
 
-    handleClick() {
-        axios.post('building/' + this.props.building._id + '/feed', {
-            content: this.data,
-        }).then(result => console.log(result.data));
-
-        this.props.handleClick(this.data);
-    }
-
     render() {
-        if(this.props.building === undefined) {
-            return <div className="feed-controller">Loading</div>
+        if (this.props.building === undefined) {
+            return <div className="feed-controller">Loading...</div>
         }
 
         return (
             <div className="feed-controller">
-                <Trumbowyg id='react-trumbowyg' data={this.data} onChange={this.handleChange} style={{height: 200}}/>
-                <RaisedButton primary={true} label={"POST"} onTouchTap={this.handleClick}/>
+                <Trumbowyg id='react-trumbowyg' data={this.data} onChange={this.handleChange}/>
+                <RaisedButton onTouchTap={this.handleClick}>Post</RaisedButton>
             </div>
         );
     }
 }
+
+export default connect(null, {createFeed})(FeedController);

@@ -1,14 +1,33 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import TopMenuContainer from "../Containers/TopMenuContainer.jsx";
-import ProfileContainer from "../Containers/ProfileContainer.jsx";
+import {fetchUserProfile} from '../../actions/UserProfileAction';
+import Profile from "../Presentation/Profile/Profile.jsx";
 
-export default class ProfilePage extends React.Component {
+class ProfilePage extends React.Component {
+    componentDidMount() {
+        this.props.fetchUserProfile();
+    }
+
     render() {
+        console.log(this.props);
+        const {user} = this.props;
+
+        if (user == null) {
+            return <div>Loading...</div>
+        }
+
         return (
             <div className="page profile-page">
                 <TopMenuContainer/>
-                <ProfileContainer/>
+                <Profile profile={user}/>
             </div>
         );
     }
 }
+
+function mapStateToProps({user}) {
+    return {user};
+}
+
+export default connect(mapStateToProps, {fetchUserProfile})(ProfilePage);

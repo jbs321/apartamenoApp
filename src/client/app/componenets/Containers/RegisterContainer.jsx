@@ -1,72 +1,137 @@
 import React, {Component} from 'react';
+import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {registerUser} from '../../actions/UserAction';
 import axios from 'axios';
-import isAuth from '../Auth/Auth.jsx';
-import Register from "../Presentation/Form/Register.jsx";
-
+import _ from 'lodash';
+import history from '../../History.jsx';
+import {authenticate} from '../../actions/Auth';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 let qs = require('qs');
 
-export default class RegisterContainer extends Component {
-    constructor() {
-        super();
 
-        this.formFields = [
-            'first_name',
-            'last_name',
-            'email',
-            'address',
-            'unit_number',
-            'phone_number',
-            'password',
-            'password_confirmation',
-        ];
+const style = {
+    margin: 12,
+};
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.register = this.register.bind(this);
-    }
+class RegisterContainer extends Component {
 
-    onChange(event) {
-        console.log(event.target.value);
-    }
+    onSubmit(data) {
+        const {registerUser, authenticate} = this.props;
 
-    onSubmit(event) {
-        event.preventDefault();
-
-        if (event === undefined) {
-            throw new Error("Event doesn't exist");
-        }
-
-        let formData = {};
-        this.formFields.forEach(field => {
-            if (event.target[field] === undefined) {
-                throw new Error(field + "doesn't exit");
-            }
-
-            formData[field] = event.target[field].value;
+        registerUser(data, (result) => {
+            authenticate(data.email, data.password, (result) => {
+                let expiresIn = JSON.stringify((result.expires_in * 1000) + new Date().getTime());
+                localStorage.setItem('token_type', result.token_type);
+                localStorage.setItem('expires_in', expiresIn);
+                localStorage.setItem('access_token', result.access_token);
+                localStorage.setItem('refresh_token', result.refresh_token);
+                axios.defaults.headers.common['Authorization'] = result.token_type + " " + result.access_token;
+                history.push('/');
+            });
         });
-
-        this.register(formData);
     }
 
-    register(data) {
-        axios.post(process.env.ENV.API_URL + "/register", qs.stringify(data))
-        .then((result) => {
-            let isSaved = result.data;
+    renderField(field) {
+        const {meta: {touched, error}} = field;
+        const className = `form-group ${touched && error ? 'has-danger' : ""}`;
 
-            if(isSaved) {
-                isAuth.login();
-            }
-        }).catch((error) => {
-            console.log(error);
-        });
+        return (
+            <div className={className}>
+                <TextField hintText={field.label} {...field.input} className="field login-field"
+                           floatingLabelText={field.label}/>
+                <div className="text-help" style={{color: "red"}}>{touched ? error : ""}</div>
+            </div>
+        );
     }
 
     render() {
+        const {handleSubmit} = this.props;
+        const className = (this.props.className !== undefined) ? this.props.className : "";
+
         return (
-            <div className="container-fluid" style={{padding:0}}>
-                <Register onSubmit={this.onSubmit} onChange={this.onChange}/>
+            <div className={"login-container " + className} style={this.props.style}>
+                <div className={"login-form " + className} style={this.props.style}>
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                        <Field name="first_name" label="First Name" component={this.renderField}/>
+                        <Field name="last_name" label="Last Name" component={this.renderField}/>
+                        <Field name="email" label="Email" component={this.renderField}/>
+                        <Field name="address" label="Address" component={this.renderField}/>
+                        <Field name="unit_number" label="Unit Number" component={this.renderField}/>
+                        <Field name="phone_number" label="Phone Number" component={this.renderField}/>
+                        <Field name="password" label="Password" component={this.renderField}/>
+                        <Field name="password_confirmation" label="Password Confirmation" component={this.renderField}/>
+
+                        <RaisedButton label="Login" primary={true} style={style}/>
+                        <RaisedButton type="submit" label="Register" secondary={true} style={style}/>
+                    </form>
+                </div>
             </div>
 
         );
     }
 }
+
+function asyncValidate(values) {
+    const {API_URL} = process.env.ENV;
+    return axios.post(`${API_URL}/register/validate`, qs.stringify(values))
+        .then(() => {
+            console.log('success');
+        })
+        .catch(result => {
+            const {errors} = result.response.data;
+            throw _.mapValues(errors, arr => arr.join(" "));
+        });
+
+}
+
+function validate(values) {
+    const errors = {};
+
+    if (!values.first_name) {
+        errors.first_name = 'Missing First Name';
+    }
+
+    if (!values.last_name) {
+        errors.last_name = 'Missing Last Name';
+    }
+
+    if (!values.unit_number) {
+        errors.unit_number = 'Missing Unit Number';
+    }
+
+    if (!values.phone_number) {
+        errors.address = 'Missing Address';
+    }
+
+    if (!values.address) {
+        errors.phone_number = 'Missing Phone Number';
+    }
+
+    if (!values.email || values.email == "") {
+        errors.email = 'Missing Email';
+    } else if (!(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(values.email))) {
+        errors.email = 'Please provide a correct email format user@example.com';
+    }
+
+    if (!values.password || values.password == "") {
+        errors.password = 'Missing Password';
+    } else if (values.password != values.password_confirmation) {
+        errors.password_confirmation = 'Password Confirmation do not match';
+    }
+
+    if (!values.password_confirmation) {
+        errors.password_confirmation = 'Missing Password Confirmation';
+    }
+
+    return errors;
+}
+
+export default reduxForm({
+    validate,
+    asyncValidate,
+    form: 'RegisterForm'
+})(
+    connect(null, {registerUser, authenticate})(RegisterContainer)
+);

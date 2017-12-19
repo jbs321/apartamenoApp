@@ -5,4 +5,5 @@ export const LEGGED_MENU_ITEMS = {
     REGISTER: 3,
     HELP: 4,
     HOME: 5,
+    PANEL: 6,
 };

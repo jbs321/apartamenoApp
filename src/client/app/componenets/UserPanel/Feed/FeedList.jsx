@@ -1,96 +1,70 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Feed from "./Feed.jsx";
-import axios from 'axios';
 import FeedController from "./FeedController.jsx";
-import Auth from "../../Auth/Auth.jsx";
-import {BuildingData} from "../../DataTypes/BuildingData";
-import FeedData from "../../DataTypes/FeedData";
-import BuildingDat from "../../DataTypes/BuildingDat";
+import {fetchFeeds} from '../../../actions/feeds';
+// import {fetchUserProfile} from '../../../actions/userProfile';
+import {fetchUserBuilding} from '../../../actions/userBuilding';
 
-export default class FeedList extends React.Component {
+class FeedList extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {};
-        this.state.building = [];
-        this.state.feeds = (props.feeds !== undefined) ? props.feeds : [];
-        this.state.next_page_url = "";
-        this.state.current_page = 1;
-        this.state.total = 1;
-
-        this.getFeeds = this.getFeeds.bind(this);
-        this.fetchFeeds = this.fetchFeeds.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
-        this.getFeeds();
-        window.addEventListener('scroll', this.handleScroll);
-    }
-
-    getFeeds() {
-        Auth.getRegisteredBuilding(building => {
-            this.setState({
-                building: building
-            });
-
-            this.fetchFeeds(building, result => {
-                let feeds    = result.data;
-                let feedsMap = feeds.map(feed => new FeedData(feed));
-
-                this.setState({
-                    feeds: feedsMap,
-                    total: parseInt(result.total),
-                    current_page: parseInt(result.current_page),
-                    next_page_url: result.next_page_url,
-                });
-
-            });
-        });
+        this.props.fetchFeeds();
+        // this.props.fetchUserProfile();
+        this.props.fetchUserBuilding();
+        // document.addEventListener('scroll', this.handleScroll);
     }
 
     handleScroll(event) {
-        let scrollTop = event.srcElement.body.scrollTop;
-
-        if (scrollTop > window.outerHeight * this.state.current_page) {
-            //TODO:: load more feeds
-        }
-    }
-
-    fetchFeeds(building, cb) {
-        axios.get('building/' + building._id + '/feeds/3').then(result => {
-            let feedPagination = result.data;
-            cb();
-        });
+        //     console.log(event.currentTarget.scrollingElement.scrollTop , window.outerHeight);
+        //     if(event.currentTarget.scrollingElement.scrollTop > window.outerHeight) {
+        //         axios.post(this.state.next_page_url).then(result => console.log(result.data));
+        //     }
     }
 
     handleClick(htmlStr) {
-        let result = [new FeedData({
-            id: 99999999,
-            content: htmlStr,
-            user: Auth.getUser(),
-            created_at: "20/23/23 23:23:23",
-        })].concat(this.state.feeds);
+        // let result = [new FeedData({
+        //     id: 99999999,
+        //     content: htmlStr,
+        //     user: Auth.getUser(),
+        //     created_at: "20/23/23 23:23:23",
+        // })].concat(this.state.feeds);
+        //
+        // this.setState({feeds: result,});
+    }
 
-        this.setState({feeds: result,});
+
+    renderFeeds(feeds) {
+        return null;
+        // return feeds.map((feed, idx) => <Feed feed={feed} key={idx}/>);
     }
 
     render() {
-        let stateFeeds = this.state.feeds;
-        let feeds = stateFeeds.map((feed, idx) => {
-            return (
-                <Feed feed={feed} key={idx}/>
-            );
-        });
+        const {feeds, building} = this.props;
+
+        if (feeds == undefined) {
+            return <div>Loading...</div>
+        }
 
         return (
             <div className="feed-list">
                 {/*TODO::Remove this when finnish testing*/}
-                <pre>{this.state.next_page_url}</pre>
-                <FeedController building={this.state.building} handleClick={this.handleClick}/>
-                {feeds}
+                {/*<pre>{this.state.next_page_url}</pre>*/}
+                <FeedController building={building} handleClick={this.handleClick}/>
+                {this.renderFeeds(feeds.data)}
             </div>
         );
     }
 }
+
+
+function mapStateToProps({feeds, userProfile, userBuilding}) {
+    return {feeds, user: userProfile, building: userBuilding};
+}
+
+export default connect(mapStateToProps, {fetchFeeds, fetchUserBuilding})(FeedList);

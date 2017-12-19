@@ -18,10 +18,7 @@ function BuildingDat(data) {
         'id',
         'created_at',
         'address',
-        'imgSrc',
-        'ratings',
         'google_place_id',
-        'comments',
         'lng',
         'lat',
     ];

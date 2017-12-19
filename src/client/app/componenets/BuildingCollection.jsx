@@ -2,9 +2,10 @@ import React from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import axios from 'axios';
 import GoogleImg from './Presentation/GoogleImg.jsx';
 import FlatButton from 'material-ui/FlatButton';
+import {connect} from 'react-redux';
+import {fetchTopBuildings} from '../actions';
 
 const styles = {
     root: {
@@ -22,46 +23,49 @@ const styles = {
     },
 };
 
-export default class BuildingCollection extends React.Component {
-
-    constructor() {
-        super();
-
-        this.state = {
-            buildings: [],
-        };
+class BuildingCollection extends React.Component {
+    componentDidMount() {
+        this.props.fetchTopBuildings();
     }
 
-    componentDidMount() {
-        axios.get(process.env.ENV.API_URL + '/buildings')
-            .then(res => {
-                const buildings = res.data;
-                this.setState({
-                    buildings: buildings
-                });
-            });
+    renderThumbnail(building) {
+        return <GridTile
+            key={building.id}
+            title={<FlatButton
+                href={"/building/" + building.address}
+                target="_blank"
+                secondary={true}
+                label={building.address}/>}
+            actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)"/></IconButton>}
+            titleStyle={styles.titleStyle}
+            titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
+            <GoogleImg src={building.address} style={{width: 350}}/>
+        </GridTile>;
     }
 
     render() {
+        const {topBuildings} = this.props;
+
+        if (topBuildings == undefined) {
+            return <div>loading...</div>;
+        }
+
         return (
             <div style={styles.root}>
                 <GridList style={styles.gridList} cols={2.2}>
-                    {this.state.buildings.map(building =>
-                        <GridTile
-                            key={building.id}
-                            title={<FlatButton
-                                        href={"/building/" + building.address}
-                                        target="_blank"
-                                        secondary={true}
-                                        label={building.address}/>}
-                            actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)"/></IconButton>}
-                            titleStyle={styles.titleStyle}
-                            titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
-                            <GoogleImg src={building.address} style={{width: 350}}/>
-                        </GridTile>
-                    )}
+                    {topBuildings.map(building => this.renderThumbnail(building))}
                 </GridList>
             </div>
         );
     }
 }
+
+function mapStateToProps({topBuildings}) {
+    return {topBuildings};
+}
+
+export default connect(mapStateToProps, {
+    fetchTopBuildings
+})(BuildingCollection);
+
+
