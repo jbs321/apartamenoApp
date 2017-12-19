@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TopMenuContainer from "../Containers/TopMenuContainer.jsx";
-import FeedList from "./Feed/FeedList.jsx";
 
 class UserPanelPage extends React.Component {
     render() {
@@ -19,9 +18,7 @@ class UserPanelPage extends React.Component {
                     <div className="row">
 
                         <div className="col-lg-9">
-                            <div className="feed-container">
-                                <FeedList/>
-                            </div>
+                            sdasdas
                         </div>
                     </div>
                 </div>

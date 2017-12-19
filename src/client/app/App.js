@@ -5,7 +5,7 @@ import BuildingPage from "./componenets/Pages/BuildingPage/BuildingPage";
 import RegisterPage from "./componenets/Pages/RegisterPage.jsx";
 import ProfilePage from "./componenets/Pages/ProfilePage.jsx";
 import LoginPage from "./componenets/Pages/LoginPage.jsx";
-import UserPanelPage from "./componenets/UserPanel/UserPanelPage.jsx";
+import UserPanelPage from "./componenets/Pages/PanelPage.jsx";
 import {connect} from 'react-redux';
 import {fetchUserProfile} from './actions/UserProfileAction';
 

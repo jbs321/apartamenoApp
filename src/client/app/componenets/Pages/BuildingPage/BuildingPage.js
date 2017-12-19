@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ToolbarExamplesSimple from './ToolbarExamplesSimple.jsx';
+// import ToolbarExamplesSimple from './ToolbarExamplesSimple.jsx';
 import TopMenuContainer from '../../Containers/TopMenuContainer.jsx'
 import {BuildingData} from "../../DataTypes/BuildingData";
 import Building from "../../Presentation/Building/Building.jsx";
@@ -49,7 +49,7 @@ class BuildingPage extends React.Component {
         return (
             <div className="page building-page">
                 <TopMenuContainer/>
-                <ToolbarExamplesSimple address={this.props.address} buildingId={this.state._id}/>
+                {/*<ToolbarExamplesSimple address={this.props.address} buildingId={this.state._id}/>*/}
                 <Building address={this.props.address} building={this.state}/>
             </div>
         );
